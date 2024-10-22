@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "231588270002",
-    "project_id": "kelompok4-fitmeal",
-    "storage_bucket": "kelompok4-fitmeal.appspot.com"
+    "project_number": "617967748668",
+    "project_id": "fitmeal-4265d",
+    "storage_bucket": "fitmeal-4265d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:231588270002:android:bff7580a4a3e3c3abb9eab",
+        "mobilesdk_app_id": "1:617967748668:android:d1a66933625e2e6177a539",
         "android_client_info": {
           "package_name": "com.example.fitmeal"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCN3KcWVxmpfTIITJCLj1UpGw0tDeuiy3g"
+          "current_key": "AIzaSyCd1UK-ANNnTFG3jLKz3uKTv4Ad5V7AeIo"
         }
       ],
       "services": {
