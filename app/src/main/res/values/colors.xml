@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="green">#FF00FF00</color>
     <color name="FitMealGreen">#53B175</color>
+    <color name="grey">#cfcfcf</color>
 </resources>

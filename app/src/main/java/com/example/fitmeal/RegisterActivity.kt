@@ -9,8 +9,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
 
     private lateinit var usernameInput: EditText
     private lateinit var mobileNumberInput: EditText
@@ -23,6 +28,10 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.register_page)
+
+        // Initialize Firebase Auth and Firestore
+        auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
 
         // Menghubungkan view dengan id dari XML
         usernameInput = findViewById(R.id.usernameInput)
@@ -58,9 +67,36 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Jika semua validasi lolos, tampilkan pesan sukses (atau integrasi lebih lanjut)
-            Toast.makeText(this, "Registration Successful!", Toast.LENGTH_LONG).show()
-            // Di sini, Anda bisa menambahkan integrasi ke Firebase atau server backend
+            // Create user with email and password
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val userId = auth.currentUser?.uid
+                        if (userId != null) {
+                            // Create user data map
+                            val userData = hashMapOf(
+                                "username" to username,
+                                "email" to email,
+                                "role" to "user",
+                                "phonenumber" to mobileNumber
+                            )
+
+                            // Store user data in Firestore
+                            firestore.collection("users").document(userId)
+                                .set(userData)
+                                .addOnSuccessListener {
+                                    Toast.makeText(this, "Account created successfully", Toast.LENGTH_SHORT).show()
+                                    // Redirect to login or home activity
+                                    finish()
+                                }
+                                .addOnFailureListener {
+                                    Toast.makeText(this, "Failed to store user data", Toast.LENGTH_SHORT).show()
+                                }
+                        }
+                    } else {
+                        Toast.makeText(this, "Registration failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    }
+                }
         }
 
         // Tombol Google Sign-In (Tambahkan fungsi sesuai kebutuhan)
