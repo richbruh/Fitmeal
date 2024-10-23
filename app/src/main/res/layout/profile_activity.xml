@@ -1,20 +1,21 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/FitMealGreen"
+        android:orientation="vertical"
         android:padding="16dp">
 
         <ImageView
             android:id="@+id/profile_image"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
             android:background="@drawable/circle"
             android:backgroundTint="@color/grey"
             android:src="@drawable/ic_profile" />
@@ -23,39 +24,46 @@
             android:id="@+id/tv_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/profile_image"
-            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:text="Afsar Hossen Shuvo"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppinsregular"/>
 
         <TextView
             android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_username"
-            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="4dp"
-            android:text="imafsar@example.com"
+            android:text="imshuvo97@gmail.com"
             android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:fontFamily="@font/poppinsregular"/>
 
         <TextView
             android:id="@+id/tv_phone_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_email"
-            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="4dp"
-            android:text="+1234567890"
+            android:text="+6282255292321"
             android:textColor="@android:color/white"
-            android:textSize="16sp" />
-    </RelativeLayout>
+            android:textSize="16sp"
+            android:fontFamily="@font/poppinsregular"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="610dp"
         android:orientation="vertical"
         android:paddingTop="16dp">
 
@@ -63,12 +71,13 @@
             android:id="@+id/tv_my_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="My Account"
             android:drawableEnd="@drawable/ic_arrow_right"
             android:gravity="center_vertical"
+            android:onClick="startMyAccountActivity"
+            android:padding="16dp"
+            android:text="My Account"
             android:textSize="16sp"
-            android:onClick="startMyAccountActivity" />
+            android:fontFamily="@font/poppinsregular"/>
 
         <View
             android:layout_width="match_parent"
@@ -79,12 +88,13 @@
             android:id="@+id/tv_orders"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="Orders"
             android:drawableEnd="@drawable/ic_arrow_right"
             android:gravity="center_vertical"
+            android:onClick="startOrderActivity"
+            android:padding="16dp"
+            android:text="Orders"
             android:textSize="16sp"
-            android:onClick="startOrderActivity" />
+            android:fontFamily="@font/poppinsregular"/>
 
         <View
             android:layout_width="match_parent"
@@ -95,78 +105,38 @@
             android:id="@+id/tv_security"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="Security"
             android:drawableEnd="@drawable/ic_arrow_right"
             android:gravity="center_vertical"
+            android:onClick="startSecurityActivity"
+            android:padding="16dp"
+            android:text="Security"
             android:textSize="16sp"
-            android:onClick="startSecurityActivity" />
+            android:fontFamily="@font/poppinsregular"/>
     </LinearLayout>
 
     <Button
         android:id="@+id/btn_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:text="Log Out"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="@color/FitMealGreen"/>
-
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="bottom">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="139dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/FitMealGreen"
+        android:text="Log Out"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/poppinsbold"/>
 
-        <TextView
-            android:id="@+id/tv_shop"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Shop"
-            android:drawableTop="@drawable/ic_shop"
-            android:gravity="center"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/tv_explore"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Explore"
-            android:drawableTop="@drawable/ic_explore"
-            android:gravity="center"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/tv_cart"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Cart"
-            android:drawableTop="@drawable/ic_cart"
-            android:gravity="center"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/tv_favorite"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Favorite"
-            android:drawableTop="@drawable/ic_favorite"
-            android:gravity="center"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/tv_account"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Account"
-            android:drawableTop="@drawable/ic_account"
-            android:gravity="center"
-            android:textSize="14sp" />
-    </LinearLayout>
-</LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        app:menu="@menu/bottom_nav_menu"
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="@android:color/black"
+        app:itemTextColor="@android:color/black" />
+</RelativeLayout>
