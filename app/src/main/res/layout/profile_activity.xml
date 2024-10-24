@@ -150,13 +150,13 @@
         android:id="@+id/btn_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="80dp"
+        android:layout_above="@id/bottom_navigation"
+        android:layout_margin="16dp"
         android:backgroundTint="@color/FitMealGreen"
         android:text="Log Out"
         android:textStyle="bold"
-        android:fontFamily="@font/poppinsbold"/>
+        android:fontFamily="@font/poppinsbold"
+        android:padding="16dp" />
 
     <!-- Bottom Navigation -->
     <include

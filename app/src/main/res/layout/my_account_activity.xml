@@ -42,7 +42,7 @@
         android:text="Save Changes" />
 
     <!-- Bottom Navigation -->
-    <!-- Bottom Navigation -->
+
     <include
         layout="@layout/bottom_navigation"
         />
