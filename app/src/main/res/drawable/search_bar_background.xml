@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/search_bar_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Gradient color -->
+    <gradient
+        android:startColor="@color/grey"
+        android:endColor="@color/white"
+        android:angle="90" />
+
+    <!-- Rounded corners -->
+    <corners android:radius="12dp" />
+
+    <!-- Optional padding inside the shape -->
+    <padding
+        android:left="8dp"
+        android:top="8dp"
+        android:right="8dp"
+        android:bottom="8dp" />
+
+    <!-- Optional stroke (border) -->
+    <stroke
+        android:width="2dp"
+        android:color="#BDBDBD" />
+</shape>
