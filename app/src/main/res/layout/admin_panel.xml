@@ -20,8 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Stock Opname"
-            android:backgroundTint="@color/black"
-            android:textColor="@android:color/white"/>
+            android:backgroundTint="@color/grey"/>
 
         <Button
             android:id="@+id/btnRequestOrder"
@@ -29,8 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Request Order"
-            android:backgroundTint="@color/green"
-            android:textColor="@android:color/white"
+            android:backgroundTint="@color/FitMealGreen"
             android:layout_marginStart="8dp"/>
     </LinearLayout>
 
@@ -48,7 +46,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Update"
-        android:backgroundTint="@color/green"
-        android:textColor="@android:color/white"
+        android:backgroundTint="@color/FitMealGreen"
         android:layout_marginTop="16dp"/>
 </LinearLayout>

@@ -22,24 +22,7 @@ class FavoritesActivity : AppCompatActivity() {
         // Inisialisasi BottomNavigationView
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNav.selectedItemId = R.id.navigation_favorite // Highlight Favorite
-
-        bottomNav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_shop -> {
-                    // Arahkan ke HomeActivity saat Shop dipilih
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-                R.id.navigation_favorite -> {
-                    // Arahkan ke FavoritesActivity saat Favorite dipilih
-                    val intent = Intent(this, FavoritesActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-                else -> false
-            }
-        }
+        BottomNavHelper.setupBottomNav(bottomNav, this)
 
         // Inisialisasi views
         backBtn = findViewById(R.id.btnBack)

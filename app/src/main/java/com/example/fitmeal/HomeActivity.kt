@@ -41,6 +41,18 @@ class HomeActivity : AppCompatActivity() {
                     startActivity(intent)
                     true
                 }
+                R.id.navigation_account -> {
+                    // Arahkan ke FavoritesActivity saat Favorite dipilih
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.navigation_cart -> {
+                    // Arahkan ke MyCartActivity saat Favorite dipilih
+                    val intent = Intent(this, MyCartActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
                 else -> false
             }
         }
