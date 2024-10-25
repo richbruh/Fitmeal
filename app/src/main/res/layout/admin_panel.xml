@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Tombol Stock Opname dan Request Order -->
+    <!-- Header with buttons for Stock Opname and Request Order -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
             android:layout_marginStart="8dp"/>
     </LinearLayout>
 
-    <!-- RecyclerView untuk Menampilkan Daftar Produk -->
+    <!-- RecyclerView for displaying product list -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewProducts"
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
         android:layout_weight="1"
         android:orientation="vertical"/>
 
-    <!-- Tombol Update -->
+    <!-- Update button -->
     <Button
         android:id="@+id/btnUpdate"
         android:layout_width="match_parent"
