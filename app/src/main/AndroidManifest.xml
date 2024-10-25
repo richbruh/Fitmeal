@@ -38,6 +38,7 @@
         <activity android:name=".HomeActivity" android:exported="true"/>
         <activity android:name=".ProfileActivity" android:exported="true" />
         <activity android:name=".MyCartActivity" android:exported="true" />
+        <activity android:name=".AdminPanelActivity" />
 
 
 

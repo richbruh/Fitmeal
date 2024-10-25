@@ -26,6 +26,7 @@ class LoginActivity : AppCompatActivity() {
         val passwordInput = findViewById<EditText>(R.id.passwordInput)
         val loginButton = findViewById<Button>(R.id.loginButton)
         val createAccountButton = findViewById<Button>(R.id.createAccountButton)
+        val AdminButton = findViewById<Button>(R.id.AdminButton)
 
         loginButton.setOnClickListener {
             val email = emailInput.text.toString()
@@ -71,6 +72,11 @@ class LoginActivity : AppCompatActivity() {
 
         createAccountButton.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+
+        AdminButton.setOnClickListener {
+            val intent = Intent(this, AdminPanelActivity::class.java)
             startActivity(intent)
         }
     }
