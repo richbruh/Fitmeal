@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Tombol Stock Opname dan Request Order -->
+    <!-- Header with buttons for Stock Opname and Request Order -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,8 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Stock Opname"
-            android:backgroundTint="@color/gray"
-            android:textColor="@android:color/white"/>
+            android:backgroundTint="@color/FitMealGreen"/>
 
         <Button
             android:id="@+id/btnRequestOrder"
@@ -29,26 +28,32 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Request Order"
-            android:backgroundTint="@color/green"
-            android:textColor="@android:color/white"
+            android:backgroundTint="@color/grey"
             android:layout_marginStart="8dp"/>
     </LinearLayout>
 
-    <!-- RecyclerView untuk Menampilkan Daftar Produk -->
+    <!-- RecyclerView for displaying product list -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewProducts"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"/>
+        android:layout_weight="1"/>
 
-    <!-- Tombol Update -->
+    <!-- Add New Item button positioned directly below the RecyclerView -->
+    <Button
+        android:id="@+id/btnAddNewItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add New Item"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/FitMealGreen"/>
+
+    <!-- Update button at the bottom of the screen -->
     <Button
         android:id="@+id/btnUpdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Update"
-        android:backgroundTint="@color/green"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="16dp"/>
+        android:backgroundTint="@color/FitMealGreen"
+        android:layout_marginTop="8dp"/>
 </LinearLayout>

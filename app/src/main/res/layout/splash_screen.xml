@@ -22,7 +22,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="Making Your Life Easy and Healthy"
-        android:textColor="@android:color/black"
         android:textSize="16sp"
         android:fontFamily="@font/poppinsregular"
         app:layout_constraintEnd_toEndOf="parent"

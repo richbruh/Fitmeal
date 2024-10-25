@@ -1,5 +1,6 @@
 package com.example.fitmeal
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
@@ -19,6 +21,42 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_activity)
+
+
+        // Inisialisasi BottomNavigationView
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNav.selectedItemId = R.id.navigation_shop // Highlight Favorite
+
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_shop -> {
+                    // Arahkan ke HomeActivity saat Shop dipilih
+                    val intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.navigation_favorite -> {
+                    // Arahkan ke FavoritesActivity saat Favorite dipilih
+                    val intent = Intent(this, FavoritesActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.navigation_account -> {
+                    // Arahkan ke FavoritesActivity saat Favorite dipilih
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.navigation_cart -> {
+                    // Arahkan ke MyCartActivity saat Favorite dipilih
+                    val intent = Intent(this, MyCartActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
+
 
         // Initialize RecyclerViews
         popularNowRecyclerView = findViewById(R.id.rv_popular_now)
@@ -75,7 +113,7 @@ data class Item(
 class ItemAdapter(private val itemList: List<Item>) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
     // Adapter implementation here
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_product, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.favorite_item, parent, false)
         return ItemViewHolder(view)
     }
 
