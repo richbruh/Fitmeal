@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "617967748668",
+    "firebase_url": "https://fitmeal-4265d-default-rtdb.firebaseio.com",
     "project_id": "fitmeal-4265d",
     "storage_bucket": "fitmeal-4265d.appspot.com"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.example.fitmeal"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "617967748668-tob8kmpmi6ipu5eg0dmdg3d6lorvelhe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fitmeal",
+            "certificate_hash": "4bfceb34a4db010f95dcb9455d862e8086a59149"
+          }
+        },
+        {
+          "client_id": "617967748668-6u5ofenbos62e3eupm7m1fit80q2pe8v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCd1UK-ANNnTFG3jLKz3uKTv4Ad5V7AeIo"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "617967748668-6u5ofenbos62e3eupm7m1fit80q2pe8v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
