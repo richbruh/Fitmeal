@@ -39,6 +39,8 @@
         <activity android:name=".ProfileActivity" android:exported="true" />
         <activity android:name=".MyCartActivity" android:exported="true" />
         <activity android:name=".AdminPanelActivity" />
+        <activity android:name=".EditProfileActivity"/>
+        <activity android:name=".ChangePasswordActivity" android:exported="true" />
 
 
 
