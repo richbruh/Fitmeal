@@ -1,5 +1,6 @@
 package com.example.fitmeal
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +26,14 @@ class AdminPanelActivity : AppCompatActivity() {
         binding.btnAddNewItem.setOnClickListener {
             addNewItem() // Add a new item to the RecyclerView
         }
+
+        // Integrasi Navigasi ke AdminRequest
+        binding.btnRequestOrder.setOnClickListener {
+            val intent = Intent(this, AdminRequest::class.java)
+            startActivity(intent)
+        }
     }
+
 
     // Function to add a new item to the list
     private fun addNewItem() {

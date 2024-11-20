@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <!-- Header -->
+    <TextView
+        android:id="@+id/tvAdminPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Admin Panel"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center" />
+
+    <!-- Button Stock Opname -->
+    <Button
+        android:id="@+id/btnStockOpname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Stock Opname"
+        app:layout_constraintTop_toBottomOf="@id/tvAdminPanel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnRequestOrder"
+        app:layout_constraintHorizontalWeight="1"
+        android:layout_marginEnd="8dp" />
+
+    <!-- Button Request Order -->
+    <Button
+        android:id="@+id/btnRequestOrder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Request Order"
+        app:layout_constraintTop_toBottomOf="@id/tvAdminPanel"
+        app:layout_constraintStart_toEndOf="@id/btnStockOpname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontalWeight="1"
+        android:layout_marginStart="8dp" />
+
+    <!-- Order Details Card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardOrderDetails"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/btnRequestOrder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- User Details -->
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Afsar Hossen Shuvo"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- Order Date and ID -->
+            <TextView
+                android:id="@+id/tvOrderDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Date: 10 March 2023" />
+
+            <TextView
+                android:id="@+id/tvOrderId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Order ID: 00001" />
+
+            <!-- Total Price -->
+            <TextView
+                android:id="@+id/tvTotalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Total Price: 82.000" />
+
+            <!-- Order Items -->
+            <TextView
+                android:id="@+id/tvOrderItems"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Items:"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvItemList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- Red Apple\n- Egg Chicken Red\n- Egg Noodles" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Process Button -->
+    <Button
+        android:id="@+id/btnProcessOrder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Process"
+        android:backgroundTint="@android:color/holo_green_dark"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/cardOrderDetails"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnCancelOrder"
+        app:layout_constraintHorizontalWeight="1"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp" />
+
+    <!-- Cancel Button -->
+    <Button
+        android:id="@+id/btnCancelOrder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/cardOrderDetails"
+        app:layout_constraintStart_toEndOf="@id/btnProcessOrder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontalWeight="1"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
