@@ -1,100 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:gravity="center_vertical"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:elevation="2dp">
 
-    <!-- Image of the product -->
     <ImageView
-        android:id="@+id/productImage"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:id="@+id/product_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginEnd="8dp"
-        android:src="@drawable/placeholder" />
+        android:src="@drawable/fruit"
+        android:contentDescription="Product Image" />
 
-    <!-- Product name and details stacked above quantity controls -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <!-- Product name and details -->
         <EditText
-            android:id="@+id/productName"
-            android:layout_width="wrap_content"
+            android:id="@+id/product_name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Product Name"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="@android:color/black" />
+            android:hint="Product Name"
+            android:inputType="text" />
 
         <EditText
-            android:id="@+id/productDetails"
-            android:layout_width="wrap_content"
+            android:id="@+id/product_quantity"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Details of the product" />
+            android:hint="Quantity"
+            android:inputType="number" />
 
-        <!-- Quantity controls -->
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/product_price"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginTop="8dp">
-
-            <Button
-                android:id="@+id/btnDecreaseQuantity"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:text="-"
-                android:textSize="30sp"
-                android:textColor="@android:color/black" />
-
-            <TextView
-                android:id="@+id/quantity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="0"
-                android:textSize="16sp"
-                android:textColor="@android:color/black"
-                android:gravity="center"/>
-
-            <Button
-                android:id="@+id/btnIncreaseQuantity"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:text="+"
-                android:textSize="18sp"
-                android:textColor="@android:color/black" />
-        </LinearLayout>
+            android:hint="Price"
+            android:inputType="numberDecimal" />
     </LinearLayout>
 
-    <!-- Editable Price Field -->
-    <EditText
-        android:id="@+id/productPrice"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:backgroundTint="@android:color/transparent"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:inputType="numberDecimal"
-        android:text="0" /> <!-- Default price or placeholder -->
-
-    <!-- Close/Delete Button (optional if needed) -->
     <ImageView
         android:id="@+id/deleteProduct"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:src="@drawable/ic_close"
-        android:layout_marginStart="8dp"
-        android:layout_gravity="center_vertical"
-        android:contentDescription="Delete Product"/>
+        android:layout_gravity="end"
+        android:layout_marginTop="8dp"
+        android:contentDescription="Delete Product"
+        android:src="@drawable/ic_close" />
+
 </LinearLayout>

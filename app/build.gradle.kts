@@ -47,7 +47,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.firebase.auth.ktx)
+
     implementation(libs.firebase.firestore.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -57,4 +57,18 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation ("com.google.android.gms:play-services-auth")
     implementation ("com.google.firebase:firebase-auth")
+    implementation ("com.google.firebase:firebase-storage")
+
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
+
+
+    implementation("androidx.core:core-ktx:1.10.1")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.firebase:firebase-auth-ktx:22.1.1")
+    implementation("com.google.firebase:firebase-firestore-ktx:24.8.1")
+    implementation("com.google.android.material:material:1.9.0")
+
+
 }
+

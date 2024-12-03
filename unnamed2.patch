@@ -1,0 +1,2466 @@
+Index: app/src/main/res/layout/my_cart.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/my_cart.xml b/app/src/main/res/layout/my_cart.xml
+new file mode 100644
+--- /dev/null	(date 1733245657541)
++++ b/app/src/main/res/layout/my_cart.xml	(date 1733245657541)
+@@ -0,0 +1,1121 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    android:background="#FFFFFF"
++    android:orientation="vertical"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent">
++    <ScrollView
++        android:id="@+id/rb7wkae903e"
++        android:layout_width="match_parent"
++        android:layout_height="0dp"
++        android:layout_weight="1"
++        android:background="#FFFFFF">
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"
++            android:orientation="vertical">
++            <LinearLayout
++                xmlns:android="http://schemas.android.com/apk/res/android"
++                xmlns:tools="http://schemas.android.com/tools"
++                xmlns:app="http://schemas.android.com/apk/res-auto"
++                android:id="@+id/r7ew4y5nxcis"
++                android:layout_width="410dp"
++                android:layout_height="44dp"
++                android:gravity="center_vertical"
++                android:background="#FFFFFF"
++                android:paddingVertical="17dp"
++                android:paddingLeft="22dp"
++                android:layout_marginBottom="13dp"
++                android:layout_marginHorizontal="1dp"
++                android:orientation="horizontal">
++                <TextView
++                    android:id="@+id/rk8285bxtknd"
++                    android:textColor="#181725"
++                    android:textSize="14sp"
++                    android:layout_marginEnd="4dp"
++                    android:layout_height="wrap_content"
++                    android:layout_width="match_parent"
++                    android:layout_weight="1"
++                    android:text="2:51 PM"
++                    />
++                <ImageView
++                    android:id="@+id/rvhfmhhrq6nk"
++                    android:layout_width="19dp"
++                    android:layout_height="10dp"
++                    android:layout_marginEnd="8dp"
++                    android:src="@mipmap/ic_launcher"
++                    android:scaleType="fitXY"
++                    />
++                <ImageView
++                    android:id="@+id/rs968votmfn"
++                    android:layout_width="17dp"
++                    android:layout_height="10dp"
++                    android:layout_marginEnd="9dp"
++                    android:src="@mipmap/ic_launcher"
++                    android:scaleType="fitXY"
++                    />
++                <LinearLayout
++                    xmlns:android="http://schemas.android.com/apk/res/android"
++                    xmlns:tools="http://schemas.android.com/tools"
++                    xmlns:app="http://schemas.android.com/apk/res-auto"
++                    android:id="@+id/rxom0atwmwm"
++                    android:layout_width="22dp"
++                    android:layout_height="wrap_content"
++                    android:background="@drawable/s181725sw1cr2"
++                    android:paddingHorizontal="2dp"
++                    android:layout_marginEnd="1dp"
++                    android:orientation="vertical">
++                    <LinearLayout
++                        xmlns:android="http://schemas.android.com/apk/res/android"
++                        xmlns:tools="http://schemas.android.com/tools"
++                        xmlns:app="http://schemas.android.com/apk/res-auto"
++                        android:id="@+id/rj4f3wi32ny"
++                        android:layout_width="match_parent"
++                        android:layout_height="7dp"
++                        android:background="@drawable/cr1b181725"
++                        android:layout_marginTop="2dp"
++                        android:orientation="vertical">
++                    </LinearLayout>
++                </LinearLayout>
++                <LinearLayout
++                    xmlns:android="http://schemas.android.com/apk/res/android"
++                    xmlns:tools="http://schemas.android.com/tools"
++                    xmlns:app="http://schemas.android.com/apk/res-auto"
++                    android:id="@+id/rfyxdiqpsxil"
++                    android:layout_width="1dp"
++                    android:layout_height="4dp"
++                    android:background="#181725"
++                    android:orientation="vertical">
++                </LinearLayout>
++            </LinearLayout>
++            <LinearLayout
++                xmlns:android="http://schemas.android.com/apk/res/android"
++                xmlns:tools="http://schemas.android.com/tools"
++                xmlns:app="http://schemas.android.com/apk/res-auto"
++                android:id="@+id/r7noal9s9km"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:gravity="center_vertical"
++                android:layout_marginBottom="23dp"
++                android:layout_marginHorizontal="29dp"
++                android:orientation="horizontal">
++                <LinearLayout
++                    xmlns:android="http://schemas.android.com/apk/res/android"
++                    xmlns:tools="http://schemas.android.com/tools"
++                    xmlns:app="http://schemas.android.com/apk/res-auto"
++                    android:id="@+id/rhemtehyyx7"
++                    android:layout_width="31dp"
++                    android:layout_height="wrap_content"
++                    android:background="@drawable/cr12bffffff"
++                    android:paddingHorizontal="11dp"
++                    android:layout_marginEnd="115dp"
++                    android:elevation="4dp"
++                    android:orientation="vertical">
++                    <ImageView
++                        android:id="@+id/r3x02w7139mx"
++                        android:layout_width="match_parent"
++                        android:layout_height="15dp"
++                        android:layout_marginTop="7dp"
++                        android:src="@mipmap/ic_launcher"
++                        android:scaleType="fitXY"
++                        />
++                </LinearLayout>
++                <TextView
++                    android:id="@+id/r6e3jvwu13th"
++                    android:textColor="#181725"
++                    android:textSize="20sp"
++                    android:layout_height="wrap_content"
++                    android:layout_width="match_parent"
++                    android:layout_weight="1"
++                    android:text="My Cart"
++                    />
++            </LinearLayout>
++            <LinearLayout
++                xmlns:android="http://schemas.android.com/apk/res/android"
++                xmlns:tools="http://schemas.android.com/tools"
++                xmlns:app="http://schemas.android.com/apk/res-auto"
++                android:id="@+id/rcxn32nun46"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:gravity="center_vertical"
++                android:layout_marginBottom="3dp"
++                android:layout_marginHorizontal="34dp"
++                android:orientation="horizontal">
++                <TextView
++                    android:id="@+id/rf67cymp8cb7"
++                    android:textColor="#181725"
++                    android:textSize="16sp"
++                    android:layout_height="wrap_content"
++                    android:layout_width="wrap_content"
++                    android:text="Bell Pepper Red"
++                    />
++                <View
++                    android:layout_width="0dp"
++                    android:layout_height="0dp"
++                    android:layout_weight="1"
++                    />
++                <ImageView
++                    android:id="@+id/r5qqljd0kvgg"
++                    android:layout_width="14dp"
++                    android:layout_height="14dp"
++                    android:src="@mipmap/ic_launcher"
++                    android:scaleType="fitXY"
++                    />
++            </LinearLayout>
++            <LinearLayout
++                xmlns:android="http://schemas.android.com/apk/res/android"
++                xmlns:tools="http://schemas.android.com/tools"
++                xmlns:app="http://schemas.android.com/apk/res-auto"
++                android:id="@+id/rke02k5p47k"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginBottom="11dp"
++                android:layout_marginHorizontal="35dp"
++                android:orientation="horizontal">
++                <ImageView
++                    android:id="@+id/r1ptub667goo"
++                    android:layout_width="70dp"
++                    android:layout_height="64dp"
++                    android:layout_marginEnd="33dp"
++                    android:src="@mipmap/ic_launcher"
++                    android:scaleType="fitXY"
++                    />
++                <LinearLayout
++                    xmlns:android="http://schemas.android.com/apk/res/android"
++                    xmlns:tools="http://schemas.android.com/tools"
++                    xmlns:app="http://schemas.android.com/apk/res-auto"
++                    android:id="@+id/rm33v8v32l2j"
++                    android:layout_width="71dp"
++                    android:layout_height="wrap_content"
++                    android:layout_marginTop="2dp"
++                    android:layout_marginEnd="16dp"
++                    android:orientation="vertical">
++                    <TextView
++                        android:id="@+id/r0cas2hrtczrh"
++                        android:textColor="#7C7C7C"
++                        android:textSize="14sp"
++                        android:layout_marginBottom="12dp"
++                        android:layout_height="wrap_content"
++                        android:layout_width="wrap_content"
++                        android:text="1pcs, Price"
++                        />
++                    <LinearLayout
++                        xmlns:android="http://schemas.android.com/apk/res/android"
++                        xmlns:tools="http://schemas.android.com/tools"
++                        xmlns:app="http://schemas.android.com/apk/res-auto"
++                        android:id="@+id/rhaimgsbe2xc"
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:gravity="center_vertical"
++                        android:orientation="horizontal">
++                        <LinearLayout
++                            xmlns:android="http://schemas.android.com/apk/res/android"
++                            xmlns:tools="http://schemas.android.com/tools"
++                            xmlns:app="http://schemas.android.com/apk/res-auto"
++                            android:id="@+id/rtrlco23tol"
++                            android:layout_width="45dp"
++                            android:layout_height="wrap_content"
++                            android:background="@drawable/sf0f0f0sw1cr17"
++                            android:paddingHorizontal="15dp"
++                            android:orientation="vertical">
++                            <ImageView
++                                android:id="@+id/rn9ybvkros2"
++                                android:layout_width="match_parent"
++                                android:layout_height="2dp"
++                                android:layout_marginTop="22dp"
++                                android:src="@mipmap/ic_launcher"
++                                android:scaleType="fitXY"
++                                />
++                        </LinearLayout>
++                        <View
++                            android:layout_width="0dp"
++                            android:layout_height="0dp"
++                            android:layout_weight="1"
++                            />
++                        <TextView
++                            android:id="@+id/rnmjr7qxmjom"
++                            android:textColor="#181725"
++                            android:textSize="16sp"
++                            android:layout_height="wrap_content"
++                            android:layout_width="wrap_content"
++                            android:text="1"
++                            />
++                    </LinearLayout>
++                </LinearLayout>
++                <LinearLayout
++                    xmlns:android="http://schemas.android.com/apk/res/android"
++                    xmlns:tools="http://schemas.android.com/tools"
++                    xmlns:app="http://schemas.android.com/apk/res-auto"
++                    android:id="@+id/rrjath6adki"
++                    android:layout_width="45dp"
++                    android:layout_height="wrap_content"
++                    android:background="@drawable/se2e2e2sw1cr17"
++                    android:paddingHorizontal="16dp"
++                    android:layout_marginTop="27dp"
++                    android:orientation="vertical">
++                    <ImageView
++                        android:id="@+id/rdxp6jzoe1id"
++                        android:layout_width="match_parent"
++                        android:layout_height="17dp"
++                        android:layout_marginTop="14dp"
++                        android:src="@mipmap/ic_launcher"
++                        android:scaleType="fitXY"
++                        />
++                </LinearLayout>
++                <LinearLayout
++                    xmlns:android="http://schemas.android.com/apk/res/android"
++                    xmlns:tools="http://schemas.android.com/tools"
++                    xmlns:app="http://schemas.android.com/apk/res-auto"
++                    android:id="@+id/r355acyvyf9v"
++                    android:layout_width="0dp"
++                    android:layout_height="match_parent"
++                    android:layout_weight="1"
++                    android:orientation="vertical">
++                </LinearLayout>
++                <TextView
++                    android:id="@+id/r807qbafdc8u"
++                    android:textColor="#181725"
++                    android:textSize="20sp"
++                    android:layout_marginTop="41dp"
++                    android:layout_height="wrap_content"
++                    android:layout_width="wrap_content"
++                    android:text="22.000"
++                    />
++            </LinearLayout>
++            <LinearLayout
++                xmlns:android="http://schemas.android.com/apk/res/android"
++                xmlns:tools="http://schemas.android.com/tools"
++                xmlns:app="http://schemas.android.com/apk/res-auto"
++                android:id="@+id/r61r1jmfj9wq"
++                android:layout_width="match_parent"
++                android:layout_height="1dp"
++                android:background="#E2E2E2"
++                android:layout_marginBottom="10dp"
++                android:layout_marginHorizontal="29dp"
++                android:orientation="vertical">
++            </LinearLayout>
++            <LinearLayout
++                xmlns:android="http://schemas.android.com/apk/res/android"
++                xmlns:tools="http://schemas.android.com/tools"
++                xmlns:app="http://schemas.android.com/apk/res-auto"
++                android:id="@+id/rkb8xav4nxa"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginBottom="11dp"
++                android:layout_marginHorizontal="34dp"
++                android:orientation="horizontal">
++                <ImageView
++                    android:id="@+id/r7pqk9pio49g"
++                    android:layout_width="70dp"
++                    android:layout_height="64dp"
++                    android:layout_marginTop="13dp"
++                    android:layout_marginEnd="33dp"
++                    android:src="@mipmap/ic_launcher"
++                    android:scaleType="fitXY"
++                    />
++                <LinearLayout
++                    xmlns:android="http://schemas.android.com/apk/res/android"
++                    xmlns:tools="http://schemas.android.com/tools"
++                    xmlns:app="http://schemas.android.com/apk/res-auto"
++                    android:id="@+id/r6yccacneoqc"
++                    android:layout_width="0dp"
++                    android:layout_height="wrap_content"
++                    android:layout_weight="1"
++                    android:layout_marginEnd="4dp"
++                    android:orientation="vertical">
++                    <TextView
++                        android:id="@+id/rwpng208rabk"
++                        android:textColor="#181725"
++                        android:textSize="16sp"
++                        android:layout_marginBottom="6dp"
++                        android:layout_height="wrap_content"
++                        android:layout_width="wrap_content"
++                        android:text="Egg Chicken Red"
++                        />
++                    <TextView
++                        android:id="@+id/rbkq19vawjud"
++                        android:textColor="#7C7C7C"
++                        android:textSize="14sp"
++                        android:layout_marginBottom="11dp"
++                        android:layout_height="wrap_content"
++                        android:layout_width="wrap_content"
++                        android:text="1 Basket, Price"
++                        />
++                    <LinearLayout
++                        xmlns:android="http://schemas.android.com/apk/res/android"
++                        xmlns:tools="http://schemas.android.com/tools"
++                        xmlns:app="http://schemas.android.com/apk/res-auto"
++                        android:id="@+id/r67nm44ch5cw"
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:gravity="center_vertical"
++                        android:orientation="horizontal">
++                        <LinearLayout
++                            xmlns:android="http://schemas.android.com/apk/res/android"
++                            xmlns:tools="http://schemas.android.com/tools"
++                            xmlns:app="http://schemas.android.com/apk/res-auto"
++                            android:id="@+id/rejx0ecis8y"
++                            android:layout_width="45dp"
++                            android:layout_height="wrap_content"
++                            android:background="@drawable/sf0f0f0sw1cr17"
++                            android:paddingHorizontal="14dp"
++                            android:layout_marginEnd="19dp"
++                            android:orientation="vertical">
++                            <ImageView
++                                android:id="@+id/ris1pa1ybut"
++                                android:layout_width="match_parent"
++                                android:layout_height="2dp"
++                                android:layout_marginTop="22dp"
++                                android:src="@mipmap/ic_launcher"
++                                android:scaleType="fitXY"
++                                />
++                        </LinearLayout>
++                        <TextView
++                            android:id="@+id/rtjfho93avlp"
++                            android:textColor="#181725"
++                            android:textSize="16sp"
++                            android:layout_marginEnd="19dp"
++                            android:layout_height="wrap_content"
++                            android:layout_width="wrap_content"
++                            android:text="1"
++                            />
++                        <LinearLayout
++                            xmlns:android="http://schemas.android.com/apk/res/android"
++                            xmlns:tools="http://schemas.android.com/tools"
++                            xmlns:app="http://schemas.android.com/apk/res-auto"
++                            android:id="@+id/r71uyzq00uqs"
++                            android:layout_width="45dp"
++                            android:layout_height="wrap_content"
++                            android:background="@drawable/se2e2e2sw1cr17"
++                            android:paddingHorizontal="15dp"
++                            android:orientation="vertical">
++                            <ImageView
++                                android:id="@+id/rjgghyo08ls"
++                                android:layout_width="match_parent"
++                                android:layout_height="17dp"
++                                android:layout_marginTop="14dp"
++                                android:src="@mipmap/ic_launcher"
++                                android:scaleType="fitXY"
++                                />
++                        </LinearLayout>
++                    </LinearLayout>
++                </LinearLayout>
++                <LinearLayout
++                    xmlns:android="http://schemas.android.com/apk/res/android"
++                    xmlns:tools="http://schemas.android.com/tools"
++                    xmlns:app="http://schemas.android.com/apk/res-auto"
++                    android:id="@+id/ra035ic7o438"
++                    android:layout_width="68dp"
++                    android:layout_height="wrap_content"
++                    android:layout_marginTop="1dp"
++                    android:orientation="vertical">
++                    <ImageView
++                        android:id="@+id/rj1xwzci7mg"
++                        android:layout_width="14dp"
++                        android:layout_height="14dp"
++                        android:layout_marginBottom="46dp"
++                        android:src="@mipmap/ic_launcher"
++                        android:scaleType="fitXY"
++                        />
++                    <TextView
++                        android:id="@+id/rgncyggwltq6"
++                        android:textColor="#181725"
++                        android:textSize="20sp"
++                        android:layout_height="wrap_content"
++                        android:layout_width="wrap_content"
++                        android:text="50.000"
++                        />
++                </LinearLayout>
++            </LinearLayout>
++            <LinearLayout
++                xmlns:android="http://schemas.android.com/apk/res/android"
++                xmlns:tools="http://schemas.android.com/tools"
++                xmlns:app="http://schemas.android.com/apk/res-auto"
++                android:id="@+id/rsta8pxt9cyl"
++                android:layout_width="match_parent"
++                android:layout_height="1dp"
++                android:background="#E2E2E2"
++                android:layout_marginBottom="10dp"
++                android:layout_marginHorizontal="29dp"
++                android:orientation="vertical">
++            </LinearLayout>
++            <LinearLayout
++                xmlns:android="http://schemas.android.com/apk/res/android"
++                xmlns:tools="http://schemas.android.com/tools"
++                xmlns:app="http://schemas.android.com/apk/res-auto"
++                android:id="@+id/r2czlyudt6iu"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:gravity="center_vertical"
++                android:layout_marginBottom="1dp"
++                android:layout_marginHorizontal="34dp"
++                android:orientation="horizontal">
++                <TextView
++                    android:id="@+id/r57ow3639hy"
++                    android:textColor="#181725"
++                    android:textSize="16sp"
++                    android:layout_height="wrap_content"
++                    android:layout_width="wrap_content"
++                    android:text="Organic Banana"
++                    />
++                <View
++                    android:layout_width="0dp"
++                    android:layout_height="0dp"
++                    android:layout_weight="1"
++                    />
++                <ImageView
++                    android:id="@+id/r4ggmhdctzqo"
++                    android:layout_width="14dp"
++                    android:layout_height="14dp"
++                    android:src="@mipmap/ic_launcher"
++                    android:scaleType="fitXY"
++                    />
++            </LinearLayout>
++            <LinearLayout
++                xmlns:android="http://schemas.android.com/apk/res/android"
++                xmlns:tools="http://schemas.android.com/tools"
++                xmlns:app="http://schemas.android.com/apk/res-auto"
++                android:id="@+id/rkppddn79n9"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginBottom="11dp"
++                android:layout_marginHorizontal="35dp"
++                android:orientation="horizontal">
++                <ImageView
++                    android:id="@+id/rgg2c3mvk2cp"
++                    android:layout_width="70dp"
++                    android:layout_height="64dp"
++                    android:layout_marginEnd="33dp"
++                    android:src="@mipmap/ic_launcher"
++                    android:scaleType="fitXY"
++                    />
++                <LinearLayout
++                    xmlns:android="http://schemas.android.com/apk/res/android"
++                    xmlns:tools="http://schemas.android.com/tools"
++                    xmlns:app="http://schemas.android.com/apk/res-auto"
++                    android:id="@+id/rxgs1qytzd1p"
++                    android:layout_width="0dp"
++                    android:layout_height="wrap_content"
++                    android:layout_weight="1"
++                    android:layout_marginTop="5dp"
++                    android:layout_marginEnd="4dp"
++                    android:orientation="vertical">
++                    <TextView
++                        android:id="@+id/rn4xmc8scyb"
++                        android:textColor="#7C7C7C"
++                        android:textSize="14sp"
++                        android:layout_marginBottom="11dp"
++                        android:layout_height="wrap_content"
++                        android:layout_width="wrap_content"
++                        android:text="1 Comb, Price"
++                        />
++                    <LinearLayout
++                        xmlns:android="http://schemas.android.com/apk/res/android"
++                        xmlns:tools="http://schemas.android.com/tools"
++                        xmlns:app="http://schemas.android.com/apk/res-auto"
++                        android:id="@+id/r81drw1lc9wo"
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:gravity="center_vertical"
++                        android:orientation="horizontal">
++                        <LinearLayout
++                            xmlns:android="http://schemas.android.com/apk/res/android"
++                            xmlns:tools="http://schemas.android.com/tools"
++                            xmlns:app="http://schemas.android.com/apk/res-auto"
++                            android:id="@+id/rlt9r4c7r05l"
++                            android:layout_width="45dp"
++                            android:layout_height="wrap_content"
++                            android:background="@drawable/sf0f0f0sw1cr17"
++                            android:paddingHorizontal="14dp"
++                            android:layout_marginEnd="19dp"
++                            android:orientation="vertical">
++                            <ImageView
++                                android:id="@+id/r5x9e55hiwv8"
++                                android:layout_width="match_parent"
++                                android:layout_height="2dp"
++                                android:layout_marginTop="22dp"
++                                android:src="@mipmap/ic_launcher"
++                                android:scaleType="fitXY"
++                                />
++                        </LinearLayout>
++                        <TextView
++                            android:id="@+id/romdpwaik3g"
++                            android:textColor="#181725"
++                            android:textSize="16sp"
++                            android:layout_marginEnd="19dp"
++                            android:layout_height="wrap_content"
++                            android:layout_width="wrap_content"
++                            android:text="1"
++                            />
++                        <LinearLayout
++                            xmlns:android="http://schemas.android.com/apk/res/android"
++                            xmlns:tools="http://schemas.android.com/tools"
++                            xmlns:app="http://schemas.android.com/apk/res-auto"
++                            android:id="@+id/rfgnwya5l2w7"
++                            android:layout_width="45dp"
++                            android:layout_height="wrap_content"
++                            android:background="@drawable/se2e2e2sw1cr17"
++                            android:paddingHorizontal="15dp"
++                            android:orientation="vertical">
++                            <ImageView
++                                android:id="@+id/rmjranbjs4bp"
++                                android:layout_width="match_parent"
++                                android:layout_height="17dp"
++                                android:layout_marginTop="14dp"
++                                android:src="@mipmap/ic_launcher"
++                                android:scaleType="fitXY"
++                                />
++                        </LinearLayout>
++                    </LinearLayout>
++                </LinearLayout>
++                <TextView
++                    android:id="@+id/rk1u5id0vz8"
++                    android:textColor="#181725"
++                    android:textSize="20sp"
++                    android:layout_marginTop="44dp"
++                    android:layout_height="wrap_content"
++                    android:layout_width="wrap_content"
++                    android:text="20.000"
++                    />
++            </LinearLayout>
++            <LinearLayout
++                xmlns:android="http://schemas.android.com/apk/res/android"
++                xmlns:tools="http://schemas.android.com/tools"
++                xmlns:app="http://schemas.android.com/apk/res-auto"
++                android:id="@+id/r5holhm82d54"
++                android:layout_width="match_parent"
++                android:layout_height="1dp"
++                android:background="#E2E2E2"
++                android:layout_marginBottom="11dp"
++                android:layout_marginHorizontal="29dp"
++                android:orientation="vertical">
++            </LinearLayout>
++            <LinearLayout
++                xmlns:android="http://schemas.android.com/apk/res/android"
++                xmlns:tools="http://schemas.android.com/tools"
++                xmlns:app="http://schemas.android.com/apk/res-auto"
++                android:id="@+id/rikknznwti3l"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginBottom="11dp"
++                android:layout_marginHorizontal="33dp"
++                android:orientation="horizontal">
++                <ImageView
++                    android:id="@+id/rpg8ftu37fgg"
++                    android:layout_width="70dp"
++                    android:layout_height="64dp"
++                    android:layout_marginTop="14dp"
++                    android:layout_marginEnd="34dp"
++                    android:src="@mipmap/ic_launcher"
++                    android:scaleType="fitXY"
++                    />
++                <LinearLayout
++                    xmlns:android="http://schemas.android.com/apk/res/android"
++                    xmlns:tools="http://schemas.android.com/tools"
++                    xmlns:app="http://schemas.android.com/apk/res-auto"
++                    android:id="@+id/rzohwsx7nukm"
++                    android:layout_width="0dp"
++                    android:layout_height="wrap_content"
++                    android:layout_weight="1"
++                    android:paddingHorizontal="1dp"
++                    android:layout_marginEnd="4dp"
++                    android:orientation="vertical">
++                    <TextView
++                        android:id="@+id/r6wsemhjpsrs"
++                        android:textColor="#181725"
++                        android:textSize="16sp"
++                        android:layout_marginBottom="5dp"
++                        android:layout_height="wrap_content"
++                        android:layout_width="wrap_content"
++                        android:text="Egg Noodles"
++                        />
++                    <TextView
++                        android:id="@+id/rwe69vgd6qcb"
++                        android:textColor="#7C7C7C"
++                        android:textSize="14sp"
++                        android:layout_marginBottom="11dp"
++                        android:layout_height="wrap_content"
++                        android:layout_width="wrap_content"
++                        android:text="1pcs, Price"
++                        />
++                    <LinearLayout
++                        xmlns:android="http://schemas.android.com/apk/res/android"
++                        xmlns:tools="http://schemas.android.com/tools"
++                        xmlns:app="http://schemas.android.com/apk/res-auto"
++                        android:id="@+id/r7lyvcqmi8zr"
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:gravity="center_vertical"
++                        android:orientation="horizontal">
++                        <LinearLayout
++                            xmlns:android="http://schemas.android.com/apk/res/android"
++                            xmlns:tools="http://schemas.android.com/tools"
++                            xmlns:app="http://schemas.android.com/apk/res-auto"
++                            android:id="@+id/ru7y0ybar5h"
++                            android:layout_width="45dp"
++                            android:layout_height="wrap_content"
++                            android:background="@drawable/sf0f0f0sw1cr17"
++                            android:paddingHorizontal="15dp"
++                            android:layout_marginEnd="19dp"
++                            android:orientation="vertical">
++                            <ImageView
++                                android:id="@+id/r118qkbrbr1fm"
++                                android:layout_width="match_parent"
++                                android:layout_height="2dp"
++                                android:layout_marginTop="22dp"
++                                android:src="@mipmap/ic_launcher"
++                                android:scaleType="fitXY"
++                                />
++                        </LinearLayout>
++                        <TextView
++                            android:id="@+id/r2v2z7pt5eqo"
++                            android:textColor="#181725"
++                            android:textSize="16sp"
++                            android:layout_marginEnd="20dp"
++                            android:layout_height="wrap_content"
++                            android:layout_width="wrap_content"
++                            android:text="1"
++                            />
++                        <LinearLayout
++                            xmlns:android="http://schemas.android.com/apk/res/android"
++                            xmlns:tools="http://schemas.android.com/tools"
++                            xmlns:app="http://schemas.android.com/apk/res-auto"
++                            android:id="@+id/rzceuc48fx7"
++                            android:layout_width="45dp"
++                            android:layout_height="wrap_content"
++                            android:background="@drawable/se2e2e2sw1cr17"
++                            android:paddingHorizontal="15dp"
++                            android:orientation="vertical">
++                            <ImageView
++                                android:id="@+id/rfu57irojiug"
++                                android:layout_width="match_parent"
++                                android:layout_height="17dp"
++                                android:layout_marginTop="14dp"
++                                android:src="@mipmap/ic_launcher"
++                                android:scaleType="fitXY"
++                                />
++                        </LinearLayout>
++                    </LinearLayout>
++                </LinearLayout>
++                <LinearLayout
++                    xmlns:android="http://schemas.android.com/apk/res/android"
++                    xmlns:tools="http://schemas.android.com/tools"
++                    xmlns:app="http://schemas.android.com/apk/res-auto"
++                    android:id="@+id/r4zzroiqumwl"
++                    android:layout_width="68dp"
++                    android:layout_height="wrap_content"
++                    android:orientation="vertical">
++                    <ImageView
++                        android:id="@+id/r9t3ob1l3mo"
++                        android:layout_width="14dp"
++                        android:layout_height="14dp"
++                        android:layout_marginBottom="46dp"
++                        android:src="@mipmap/ic_launcher"
++                        android:scaleType="fitXY"
++                        />
++                    <TextView
++                        android:id="@+id/rzj8n41oroyj"
++                        android:textColor="#181725"
++                        android:textSize="20sp"
++                        android:layout_height="wrap_content"
++                        android:layout_width="wrap_content"
++                        android:text="25.000"
++                        />
++                </LinearLayout>
++            </LinearLayout>
++            <LinearLayout
++                xmlns:android="http://schemas.android.com/apk/res/android"
++                xmlns:tools="http://schemas.android.com/tools"
++                xmlns:app="http://schemas.android.com/apk/res-auto"
++                android:id="@+id/r34b7x4k0zf"
++                android:layout_width="match_parent"
++                android:layout_height="1dp"
++                android:background="#E2E2E2"
++                android:layout_marginBottom="11dp"
++                android:layout_marginHorizontal="29dp"
++                android:orientation="vertical">
++            </LinearLayout>
++            <LinearLayout
++                xmlns:android="http://schemas.android.com/apk/res/android"
++                xmlns:tools="http://schemas.android.com/tools"
++                xmlns:app="http://schemas.android.com/apk/res-auto"
++                android:id="@+id/rlhhwy54p5m"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginBottom="11dp"
++                android:layout_marginHorizontal="34dp"
++                android:orientation="horizontal">
++                <ImageView
++                    android:id="@+id/rleyi2x8gnyb"
++                    android:layout_width="70dp"
++                    android:layout_height="64dp"
++                    android:layout_marginTop="13dp"
++                    android:layout_marginEnd="33dp"
++                    android:src="@mipmap/ic_launcher"
++                    android:scaleType="fitXY"
++                    />
++                <LinearLayout
++                    xmlns:android="http://schemas.android.com/apk/res/android"
++                    xmlns:tools="http://schemas.android.com/tools"
++                    xmlns:app="http://schemas.android.com/apk/res-auto"
++                    android:id="@+id/rkj58gwiwgae"
++                    android:layout_width="79dp"
++                    android:layout_height="wrap_content"
++                    android:layout_marginTop="1dp"
++                    android:layout_marginEnd="8dp"
++                    android:orientation="vertical">
++                    <TextView
++                        android:id="@+id/rkqlaq6d013"
++                        android:textColor="#181725"
++                        android:textSize="16sp"
++                        android:layout_marginBottom="4dp"
++                        android:layout_height="wrap_content"
++                        android:layout_width="wrap_content"
++                        android:text="Egg Pasta"
++                        />
++                    <TextView
++                        android:id="@+id/rx1j6q7qv4pr"
++                        android:textColor="#7C7C7C"
++                        android:textSize="14sp"
++                        android:layout_marginBottom="12dp"
++                        android:layout_height="wrap_content"
++                        android:layout_width="wrap_content"
++                        android:text="1pcs, Price"
++                        />
++                    <LinearLayout
++                        xmlns:android="http://schemas.android.com/apk/res/android"
++                        xmlns:tools="http://schemas.android.com/tools"
++                        xmlns:app="http://schemas.android.com/apk/res-auto"
++                        android:id="@+id/ruf9yh46gz7e"
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:gravity="center_vertical"
++                        android:orientation="horizontal">
++                        <LinearLayout
++                            xmlns:android="http://schemas.android.com/apk/res/android"
++                            xmlns:tools="http://schemas.android.com/tools"
++                            xmlns:app="http://schemas.android.com/apk/res-auto"
++                            android:id="@+id/r9ypyddldco5"
++                            android:layout_width="45dp"
++                            android:layout_height="wrap_content"
++                            android:background="@drawable/sf0f0f0sw1cr17"
++                            android:paddingHorizontal="14dp"
++                            android:orientation="vertical">
++                            <ImageView
++                                android:id="@+id/res38ubqog8"
++                                android:layout_width="match_parent"
++                                android:layout_height="2dp"
++                                android:layout_marginTop="22dp"
++                                android:src="@mipmap/ic_launcher"
++                                android:scaleType="fitXY"
++                                />
++                        </LinearLayout>
++                        <View
++                            android:layout_width="0dp"
++                            android:layout_height="0dp"
++                            android:layout_weight="1"
++                            />
++                        <TextView
++                            android:id="@+id/rk34a3ix52lc"
++                            android:textColor="#181725"
++                            android:textSize="16sp"
++                            android:layout_height="wrap_content"
++                            android:layout_width="wrap_content"
++                            android:text="1"
++                            />
++                    </LinearLayout>
++                </LinearLayout>
++                <LinearLayout
++                    xmlns:android="http://schemas.android.com/apk/res/android"
++                    xmlns:tools="http://schemas.android.com/tools"
++                    xmlns:app="http://schemas.android.com/apk/res-auto"
++                    android:id="@+id/r5y98gmgf16f"
++                    android:layout_width="45dp"
++                    android:layout_height="wrap_content"
++                    android:background="@drawable/se2e2e2sw1cr17"
++                    android:paddingHorizontal="15dp"
++                    android:layout_marginTop="46dp"
++                    android:orientation="vertical">
++                    <ImageView
++                        android:id="@+id/rgf47m5ay3dn"
++                        android:layout_width="match_parent"
++                        android:layout_height="17dp"
++                        android:layout_marginTop="14dp"
++                        android:src="@mipmap/ic_launcher"
++                        android:scaleType="fitXY"
++                        />
++                </LinearLayout>
++                <LinearLayout
++                    xmlns:android="http://schemas.android.com/apk/res/android"
++                    xmlns:tools="http://schemas.android.com/tools"
++                    xmlns:app="http://schemas.android.com/apk/res-auto"
++                    android:id="@+id/rz2rfy5jznhk"
++                    android:layout_width="0dp"
++                    android:layout_height="match_parent"
++                    android:layout_weight="1"
++                    android:orientation="vertical">
++                </LinearLayout>
++                <LinearLayout
++                    xmlns:android="http://schemas.android.com/apk/res/android"
++                    xmlns:tools="http://schemas.android.com/tools"
++                    xmlns:app="http://schemas.android.com/apk/res-auto"
++                    android:id="@+id/r731isqxjwgy"
++                    android:layout_width="66dp"
++                    android:layout_height="wrap_content"
++                    android:orientation="vertical">
++                    <ImageView
++                        android:id="@+id/r6v6mgqgnhu8"
++                        android:layout_width="14dp"
++                        android:layout_height="14dp"
++                        android:layout_marginBottom="46dp"
++                        android:src="@mipmap/ic_launcher"
++                        android:scaleType="fitXY"
++                        />
++                    <TextView
++                        android:id="@+id/rrz4zg63ov3q"
++                        android:textColor="#181725"
++                        android:textSize="20sp"
++                        android:layout_height="wrap_content"
++                        android:layout_width="wrap_content"
++                        android:text="22.000"
++                        />
++                </LinearLayout>
++            </LinearLayout>
++            <LinearLayout
++                xmlns:android="http://schemas.android.com/apk/res/android"
++                xmlns:tools="http://schemas.android.com/tools"
++                xmlns:app="http://schemas.android.com/apk/res-auto"
++                android:id="@+id/r106cz9bzd7f"
++                android:layout_width="match_parent"
++                android:layout_height="1dp"
++                android:background="#E2E2E2"
++                android:layout_marginBottom="60dp"
++                android:layout_marginHorizontal="29dp"
++                android:orientation="vertical">
++            </LinearLayout>
++            <LinearLayout
++                xmlns:android="http://schemas.android.com/apk/res/android"
++                xmlns:tools="http://schemas.android.com/tools"
++                xmlns:app="http://schemas.android.com/apk/res-auto"
++                android:id="@+id/r7uoy48gs0yp"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:gravity="center_horizontal"
++                android:background="@drawable/cr19b53b175"
++                android:paddingVertical="25dp"
++                android:layout_marginBottom="16dp"
++                android:layout_marginHorizontal="31dp"
++                android:orientation="vertical">
++                <TextView
++                    android:id="@+id/rkh5f3gt79z"
++                    android:textColor="#FCFCFC"
++                    android:textSize="18sp"
++                    android:layout_height="wrap_content"
++                    android:layout_width="wrap_content"
++                    android:text="Go to Checkout"
++                    />
++            </LinearLayout>
++            <LinearLayout
++                xmlns:android="http://schemas.android.com/apk/res/android"
++                xmlns:tools="http://schemas.android.com/tools"
++                xmlns:app="http://schemas.android.com/apk/res-auto"
++                android:id="@+id/r8k12bt5p194"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:background="#FFFFFF"
++                android:paddingTop="18dp"
++                android:paddingBottom="8dp"
++                android:elevation="37dp"
++                android:orientation="vertical">
++                <LinearLayout
++                    xmlns:android="http://schemas.android.com/apk/res/android"
++                    xmlns:tools="http://schemas.android.com/tools"
++                    xmlns:app="http://schemas.android.com/apk/res-auto"
++                    android:id="@+id/rpv73o5nwtf9"
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:gravity="center_vertical"
++                    android:layout_marginBottom="8dp"
++                    android:layout_marginHorizontal="37dp"
++                    android:orientation="horizontal">
++                    <ImageView
++                        android:id="@+id/rqhexy6z82tq"
++                        android:layout_width="20dp"
++                        android:layout_height="20dp"
++                        android:layout_marginEnd="53dp"
++                        android:src="@mipmap/ic_launcher"
++                        android:scaleType="fitXY"
++                        />
++                    <LinearLayout
++                        xmlns:android="http://schemas.android.com/apk/res/android"
++                        xmlns:tools="http://schemas.android.com/tools"
++                        xmlns:app="http://schemas.android.com/apk/res-auto"
++                        android:id="@+id/rveorwi83zjn"
++                        android:layout_width="9dp"
++                        android:layout_height="wrap_content"
++                        android:layout_marginEnd="2dp"
++                        android:orientation="vertical">
++                        <LinearLayout
++                            xmlns:android="http://schemas.android.com/apk/res/android"
++                            xmlns:tools="http://schemas.android.com/tools"
++                            xmlns:app="http://schemas.android.com/apk/res-auto"
++                            android:id="@+id/rn91w8flszk"
++                            android:layout_width="match_parent"
++                            android:layout_height="2dp"
++                            android:background="@drawable/cr13b000000"
++                            android:layout_marginBottom="5dp"
++                            android:orientation="vertical">
++                        </LinearLayout>
++                        <LinearLayout
++                            xmlns:android="http://schemas.android.com/apk/res/android"
++                            xmlns:tools="http://schemas.android.com/tools"
++                            xmlns:app="http://schemas.android.com/apk/res-auto"
++                            android:id="@+id/r3vawdtdp63"
++                            android:layout_width="match_parent"
++                            android:layout_height="2dp"
++                            android:background="@drawable/cr13b000000"
++                            android:layout_marginBottom="6dp"
++                            android:orientation="vertical">
++                        </LinearLayout>
++                        <LinearLayout
++                            xmlns:android="http://schemas.android.com/apk/res/android"
++                            xmlns:tools="http://schemas.android.com/tools"
++                            xmlns:app="http://schemas.android.com/apk/res-auto"
++                            android:id="@+id/rwtspqhdd7c"
++                            android:layout_width="match_parent"
++                            android:layout_height="2dp"
++                            android:background="@drawable/cr13b000000"
++                            android:orientation="vertical">
++                        </LinearLayout>
++                    </LinearLayout>
++                    <ImageView
++                        android:id="@+id/rfv9z4xq37sm"
++                        android:layout_width="18dp"
++                        android:layout_height="18dp"
++                        android:layout_marginEnd="48dp"
++                        android:src="@mipmap/ic_launcher"
++                        android:scaleType="fitXY"
++                        />
++                    <ImageView
++                        android:id="@+id/r8e55gtwdwsu"
++                        android:layout_width="22dp"
++                        android:layout_height="19dp"
++                        android:layout_marginEnd="63dp"
++                        android:src="@mipmap/ic_launcher"
++                        android:scaleType="fitXY"
++                        />
++                    <ImageView
++                        android:id="@+id/r3ncts4pjkrq"
++                        android:layout_width="23dp"
++                        android:layout_height="19dp"
++                        android:src="@mipmap/ic_launcher"
++                        android:scaleType="fitXY"
++                        />
++                    <LinearLayout
++                        xmlns:android="http://schemas.android.com/apk/res/android"
++                        xmlns:tools="http://schemas.android.com/tools"
++                        xmlns:app="http://schemas.android.com/apk/res-auto"
++                        android:id="@+id/r1qk0f0xb0bd"
++                        android:layout_width="0dp"
++                        android:layout_height="match_parent"
++                        android:layout_weight="1"
++                        android:orientation="vertical">
++                    </LinearLayout>
++                    <ImageView
++                        android:id="@+id/rkcyyup26wx"
++                        android:layout_width="16dp"
++                        android:layout_height="20dp"
++                        android:src="@mipmap/ic_launcher"
++                        android:scaleType="fitXY"
++                        />
++                </LinearLayout>
++                <LinearLayout
++                    xmlns:android="http://schemas.android.com/apk/res/android"
++                    xmlns:tools="http://schemas.android.com/tools"
++                    xmlns:app="http://schemas.android.com/apk/res-auto"
++                    android:id="@+id/rz3yocgzzb4p"
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:gravity="center_vertical"
++                    android:layout_marginBottom="19dp"
++                    android:layout_marginHorizontal="25dp"
++                    android:orientation="horizontal">
++                    <TextView
++                        android:id="@+id/rmpu0oilv9sa"
++                        android:textColor="#030303"
++                        android:textSize="12sp"
++                        android:layout_height="wrap_content"
++                        android:layout_width="wrap_content"
++                        android:text="Shop"
++                        />
++                    <View
++                        android:layout_width="0dp"
++                        android:layout_height="0dp"
++                        android:layout_weight="1"
++                        />
++                    <TextView
++                        android:id="@+id/r6j2we9k799k"
++                        android:textColor="#000000"
++                        android:textSize="12sp"
++                        android:layout_height="wrap_content"
++                        android:layout_width="wrap_content"
++                        android:text="Explore"
++                        />
++                    <View
++                        android:layout_width="0dp"
++                        android:layout_height="0dp"
++                        android:layout_weight="1"
++                        />
++                    <TextView
++                        android:id="@+id/r2r82h9va9vz"
++                        android:textColor="#53B175"
++                        android:textSize="12sp"
++                        android:layout_height="wrap_content"
++                        android:layout_width="wrap_content"
++                        android:text="Cart"
++                        />
++                    <View
++                        android:layout_width="0dp"
++                        android:layout_height="0dp"
++                        android:layout_weight="1"
++                        />
++                    <TextView
++                        android:id="@+id/rpk7vetg1ipa"
++                        android:textColor="#030303"
++                        android:textSize="12sp"
++                        android:layout_height="wrap_content"
++                        android:layout_width="wrap_content"
++                        android:text="Favorite"
++                        />
++                    <View
++                        android:layout_width="0dp"
++                        android:layout_height="0dp"
++                        android:layout_weight="1"
++                        />
++                    <TextView
++                        android:id="@+id/r1eb8z7x5bx5"
++                        android:textColor="#030303"
++                        android:textSize="12sp"
++                        android:layout_height="wrap_content"
++                        android:layout_width="wrap_content"
++                        android:text="Account"
++                        />
++                </LinearLayout>
++                <LinearLayout
++                    xmlns:android="http://schemas.android.com/apk/res/android"
++                    xmlns:tools="http://schemas.android.com/tools"
++                    xmlns:app="http://schemas.android.com/apk/res-auto"
++                    android:id="@+id/rma4qaxx5rs"
++                    android:layout_width="match_parent"
++                    android:layout_height="5dp"
++                    android:background="@drawable/cr100b000000"
++                    android:layout_marginHorizontal="147dp"
++                    android:orientation="vertical">
++                </LinearLayout>
++            </LinearLayout>
++        </LinearLayout>
++    </ScrollView>
++</LinearLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/product_item.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/product_item.xml b/app/src/main/res/layout/product_item.xml
+new file mode 100644
+--- /dev/null	(date 1733245657520)
++++ b/app/src/main/res/layout/product_item.xml	(date 1733245657520)
+@@ -0,0 +1,40 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content"
++    android:orientation="horizontal"
++    android:padding="8dp">
++
++    <ImageView
++        android:id="@+id/productImage"
++        android:layout_width="100dp"
++        android:layout_height="100dp"
++        android:scaleType="centerCrop"/>
++
++    <LinearLayout
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:orientation="vertical"
++        android:layout_marginStart="16dp">
++
++        <TextView
++            android:id="@+id/productName"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Product Name"
++            android:textSize="16sp"/>
++
++        <TextView
++            android:id="@+id/productStock"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Stock"/>
++
++        <TextView
++            android:id="@+id/productPrice"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Price"/>
++    </LinearLayout>
++</LinearLayout>
+Index: app/src/main/res/layout/activity_user_view.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_user_view.xml b/app/src/main/res/layout/activity_user_view.xml
+new file mode 100644
+--- /dev/null	(date 1733245657565)
++++ b/app/src/main/res/layout/activity_user_view.xml	(date 1733245657565)
+@@ -0,0 +1,13 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical"
++    android:padding="16dp">
++
++    <androidx.recyclerview.widget.RecyclerView
++        android:id="@+id/recyclerViewProducts"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"/>
++</LinearLayout>
+Index: app/src/main/res/layout/activity_admin_panel.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_admin_panel.xml b/app/src/main/res/layout/activity_admin_panel.xml
+new file mode 100644
+--- /dev/null	(date 1733245657549)
++++ b/app/src/main/res/layout/activity_admin_panel.xml	(date 1733245657549)
+@@ -0,0 +1,77 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical"
++    android:padding="16dp">
++
++    <!-- Buttons for navigating between Stock Opname and Request Order -->
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="horizontal"
++        android:layout_marginBottom="16dp">
++
++        <Button
++            android:id="@+id/btnStockOpname"
++            android:layout_width="0dp"
++            android:layout_height="wrap_content"
++            android:layout_weight="1"
++            android:text="Stock Opname"
++            android:backgroundTint="@color/gray"
++            android:textColor="@android:color/white"/>
++
++        <Button
++            android:id="@+id/btnRequestOrder"
++            android:layout_width="0dp"
++            android:layout_height="wrap_content"
++            android:layout_weight="1"
++            android:text="Request Order"
++            android:backgroundTint="@color/green"
++            android:textColor="@android:color/white"
++            android:layout_marginStart="8dp"/>
++    </LinearLayout>
++
++    <!-- Product Image Upload -->
++    <ImageView
++        android:id="@+id/productImage"
++        android:layout_width="match_parent"
++        android:layout_height="200dp"
++        android:layout_marginBottom="16dp"
++        android:scaleType="centerCrop"
++        android:src="@mipmap/ic_launcher"
++        />
++
++    <Button
++        android:id="@+id/btnUploadImage"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="Upload Image"/>
++
++    <!-- Edit Text fields for Product Name, Stock, and Price -->
++    <EditText
++        android:id="@+id/productName"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:hint="Product Name"/>
++
++    <EditText
++        android:id="@+id/productStock"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:hint="Stock"/>
++
++    <EditText
++        android:id="@+id/productPrice"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:hint="Price"/>
++
++    <Button
++        android:id="@+id/btnSubmitProduct"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:text="Submit Product"
++        android:layout_marginTop="16dp"/>
++</LinearLayout>
+Index: app/src/main/res/layout/activity_product_list.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_product_list.xml b/app/src/main/res/layout/activity_product_list.xml
+new file mode 100644
+--- /dev/null	(date 1733245657557)
++++ b/app/src/main/res/layout/activity_product_list.xml	(date 1733245657557)
+@@ -0,0 +1,73 @@
++<RelativeLayout
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:padding="16dp">
++
++    <!-- Header dengan tombol Stock Opname dan Request Order -->
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="horizontal"
++        android:gravity="center_vertical"
++        android:id="@+id/headerLayout"
++        android:layout_marginBottom="16dp">
++
++        <Button
++            android:id="@+id/btnStockOpname"
++            android:layout_width="0dp"
++            android:layout_height="wrap_content"
++            android:layout_weight="1"
++            android:text="Stock Opname"
++            android:backgroundTint="@color/FitMealGreen"/>
++
++        <Button
++            android:id="@+id/btnRequestOrder"
++            android:layout_width="0dp"
++            android:layout_height="wrap_content"
++            android:layout_weight="1"
++            android:text="Request Order"
++            android:backgroundTint="@color/grey"
++            android:layout_marginStart="8dp"/>
++    </LinearLayout>
++
++    <!-- RecyclerView Produk -->
++    <androidx.recyclerview.widget.RecyclerView
++        android:id="@+id/recyclerViewProducts"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_below="@id/headerLayout"
++        android:padding="0dp"
++        android:clipToPadding="false" />
++
++    <!-- Kontainer untuk tombol bawah -->
++    <LinearLayout
++        android:id="@+id/bottomButtonContainer"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_alignParentBottom="true"
++        android:orientation="horizontal"
++        android:gravity="center"
++        android:layout_marginTop="16dp">
++
++        <!-- Tombol Add New Item -->
++        <Button
++            android:id="@+id/btnAddNewItem"
++            android:layout_width="0dp"
++            android:layout_height="wrap_content"
++            android:layout_weight="1"
++            android:text="Add New Item"
++            android:backgroundTint="@color/FitMealGreen"
++            android:layout_marginEnd="8dp"/>
++
++        <!-- Tombol Update -->
++        <Button
++            android:id="@+id/btnUpdate"
++            android:layout_width="0dp"
++            android:layout_height="wrap_content"
++            android:layout_weight="1"
++            android:text="Update"
++            android:backgroundTint="@color/FitMealGreen"/>
++    </LinearLayout>
++
++</RelativeLayout>
+Index: app/src/main/res/layout/login_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/login_page.xml b/app/src/main/res/layout/login_page.xml
+--- a/app/src/main/res/layout/login_page.xml	
++++ b/app/src/main/res/layout/login_page.xml	(date 1733245657582)
+@@ -95,29 +95,13 @@
+         android:layout_marginStart="32dp"
+         android:layout_marginEnd="32dp" />
+ 
+-    <!-- Admin Panel -->
+-
+-    <Button
+-        android:id="@+id/AdminButton"
+-        android:layout_width="0dp"
+-        android:layout_height="wrap_content"
+-        android:backgroundTint="@color/FitMealGreen"
+-        android:text="Admin Panel (beta)"
+-        android:textColor="@android:color/white"
+-        android:fontFamily="@font/poppinsbold"
+-        app:layout_constraintTop_toBottomOf="@id/createAccountButton"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        android:layout_marginTop="16dp"
+-        android:layout_marginStart="32dp"
+-        android:layout_marginEnd="32dp" />
+     <!-- Divider Line -->
+     <View
+         android:id="@+id/dividerLine"
+         android:layout_width="0dp"
+         android:layout_height="1dp"
+         android:background="@android:color/darker_gray"
+-        app:layout_constraintTop_toBottomOf="@id/AdminButton"
++        app:layout_constraintTop_toBottomOf="@id/createAccountButton"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         android:layout_marginTop="32dp"
+Index: app/src/main/res/layout/splash_screen.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/splash_screen.xml b/app/src/main/res/layout/splash_screen.xml
+--- a/app/src/main/res/layout/splash_screen.xml	
++++ b/app/src/main/res/layout/splash_screen.xml	(date 1733245657577)
+@@ -22,6 +22,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginTop="40dp"
+         android:text="Making Your Life Easy and Healthy"
++        android:textColor="@android:color/black"
+         android:textSize="16sp"
+         android:fontFamily="@font/poppinsregular"
+         app:layout_constraintEnd_toEndOf="parent"
+Index: app/src/main/res/layout/bottom_navigation.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/bottom_navigation.xml b/app/src/main/res/layout/bottom_navigation.xml
+--- a/app/src/main/res/layout/bottom_navigation.xml	
++++ b/app/src/main/res/layout/bottom_navigation.xml	(date 1733245657572)
+@@ -6,6 +6,6 @@
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_alignParentBottom="true"
+-    android:background="@android:color/darker_gray"
++    android:background="@android:color/white"
+     app:menu="@menu/bottom_nav_menu"
+     app:labelVisibilityMode="labeled" />
+Index: app/src/main/res/layout/onboarding_screen.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/onboarding_screen.xml b/app/src/main/res/layout/onboarding_screen.xml
+--- a/app/src/main/res/layout/onboarding_screen.xml	
++++ b/app/src/main/res/layout/onboarding_screen.xml	(date 1733245657568)
+@@ -21,6 +21,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginTop="316dp"
+         android:text="Welcome to our store"
++        android:textColor="@android:color/black"
+         android:textSize="55sp"
+         android:textAlignment="center"
+         android:fontFamily="@font/poppinsextrabold"
+Index: app/src/main/res/layout/change_password_activity.xml
+===================================================================
+diff --git a/app/src/main/res/layout/change_password_activity.xml b/app/src/main/res/layout/change_password_activity.xml
+deleted file mode 100644
+--- a/app/src/main/res/layout/change_password_activity.xml	
++++ /dev/null	
+@@ -1,92 +0,0 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent">
+-
+-    <!-- Header layout with back button and screen title -->
+-    <LinearLayout
+-        android:id="@+id/linearLayout2"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:background="@color/FitMealGreen"
+-        android:orientation="vertical"
+-        android:padding="24dp">
+-
+-        <LinearLayout
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content">
+-            <ImageView
+-                android:id="@+id/btnBack"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:src="@drawable/ic_back"
+-                android:contentDescription="Back"
+-                android:layout_marginEnd="16dp" />
+-
+-            <!-- Screen Title -->
+-            <TextView
+-                android:id="@+id/screen_title"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:text="Change Password"
+-                android:textStyle="bold"
+-                android:textSize="20sp"
+-                android:textColor="@android:color/white"
+-                android:fontFamily="@font/poppinsbold" />
+-        </LinearLayout>
+-    </LinearLayout>
+-
+-    <!-- Form for changing password -->
+-    <LinearLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_below="@+id/linearLayout2"
+-        android:orientation="vertical"
+-        android:paddingTop="16dp"
+-        android:padding="24dp">
+-
+-        <EditText
+-            android:id="@+id/et_old_password"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:hint="Old Password"
+-            android:inputType="textPassword"
+-            android:layout_marginBottom="16dp" />
+-
+-        <EditText
+-            android:id="@+id/et_new_password"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:hint="New Password"
+-            android:inputType="textPassword"
+-            android:layout_marginBottom="16dp" />
+-
+-        <EditText
+-            android:id="@+id/et_confirm_password"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:hint="Confirm Password"
+-            android:inputType="textPassword"
+-            android:layout_marginBottom="16dp" />
+-
+-        <Button
+-            android:id="@+id/btn_change_password"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:backgroundTint="@color/FitMealGreen"
+-            android:text="Change Password"
+-            android:textColor="@android:color/white"
+-            android:textStyle="bold"
+-            android:fontFamily="@font/poppinsbold"
+-            android:padding="16dp" />
+-    </LinearLayout>
+-
+-    <!-- Bottom Navigation -->
+-    <LinearLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_alignParentBottom="true">
+-        <include layout="@layout/bottom_navigation" />
+-    </LinearLayout>
+-
+-</RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/admin_panel.xml
+===================================================================
+diff --git a/app/src/main/res/layout/admin_panel.xml b/app/src/main/res/layout/admin_panel.xml
+deleted file mode 100644
+--- a/app/src/main/res/layout/admin_panel.xml	
++++ /dev/null	
+@@ -1,73 +0,0 @@
+-<RelativeLayout
+-    xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    android:padding="16dp">
+-
+-    <!-- Header dengan tombol Stock Opname dan Request Order -->
+-    <LinearLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:orientation="horizontal"
+-        android:gravity="center_vertical"
+-        android:id="@+id/headerLayout"
+-        android:layout_marginBottom="16dp">
+-
+-        <Button
+-            android:id="@+id/btnStockOpname"
+-            android:layout_width="0dp"
+-            android:layout_height="wrap_content"
+-            android:layout_weight="1"
+-            android:text="Stock Opname"
+-            android:backgroundTint="@color/FitMealGreen"/>
+-
+-        <Button
+-            android:id="@+id/btnRequestOrder"
+-            android:layout_width="0dp"
+-            android:layout_height="wrap_content"
+-            android:layout_weight="1"
+-            android:text="Request Order"
+-            android:backgroundTint="@color/grey"
+-            android:layout_marginStart="8dp"/>
+-    </LinearLayout>
+-
+-    <!-- RecyclerView Produk -->
+-    <androidx.recyclerview.widget.RecyclerView
+-        android:id="@+id/recyclerViewProducts"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_below="@id/headerLayout"
+-        android:padding="0dp"
+-        android:clipToPadding="false" />
+-
+-    <!-- Kontainer untuk tombol bawah -->
+-    <LinearLayout
+-        android:id="@+id/bottomButtonContainer"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_alignParentBottom="true"
+-        android:orientation="horizontal"
+-        android:gravity="center"
+-        android:layout_marginTop="16dp">
+-
+-        <!-- Tombol Add New Item -->
+-        <Button
+-            android:id="@+id/btnAddNewItem"
+-            android:layout_width="0dp"
+-            android:layout_height="wrap_content"
+-            android:layout_weight="1"
+-            android:text="Add New Item"
+-            android:backgroundTint="@color/FitMealGreen"
+-            android:layout_marginEnd="8dp"/>
+-
+-        <!-- Tombol Update -->
+-        <Button
+-            android:id="@+id/btnUpdate"
+-            android:layout_width="0dp"
+-            android:layout_height="wrap_content"
+-            android:layout_weight="1"
+-            android:text="Update"
+-            android:backgroundTint="@color/FitMealGreen"/>
+-    </LinearLayout>
+-
+-</RelativeLayout>
+Index: app/src/main/res/layout/activity_my_cart.xml
+===================================================================
+diff --git a/app/src/main/res/layout/activity_my_cart.xml b/app/src/main/res/layout/activity_my_cart.xml
+deleted file mode 100644
+--- a/app/src/main/res/layout/activity_my_cart.xml	
++++ /dev/null	
+@@ -1,63 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    android:padding="16dp">
+-
+-    <!-- Back Button and Cart Title -->
+-    <LinearLayout
+-        android:id="@+id/linearLayout"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:gravity="center_vertical"
+-        android:orientation="horizontal">
+-
+-        <!-- Back Button -->
+-        <ImageView
+-            android:id="@+id/btn_back"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_marginEnd="16dp"
+-            android:contentDescription="Back"
+-            android:src="@drawable/ic_back" />
+-
+-        <!-- Cart Title -->
+-        <TextView
+-            android:id="@+id/tv_cart_title"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_gravity="center_vertical"
+-            android:text="My Cart"
+-            android:textSize="18sp"
+-            android:textStyle="bold" />
+-    </LinearLayout>
+-
+-    <!-- RecyclerView for Cart Items -->
+-    <androidx.recyclerview.widget.RecyclerView
+-        android:id="@+id/recycler_view_cart"
+-        android:layout_width="match_parent"
+-        android:layout_height="0dp"
+-        android:layout_above="@id/bottom_navigation"
+-        android:layout_below="@id/linearLayout"
+-        android:layout_marginTop="16dp"
+-        android:layout_marginBottom="8dp" />
+-
+-    <!-- Checkout Button -->
+-    <Button
+-        android:id="@+id/btn_checkout"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_above="@id/bottom_navigation"
+-        android:layout_margin="16dp"
+-        android:backgroundTint="@color/FitMealGreen"
+-        android:text="Go to Checkout"
+-        android:textStyle="bold"
+-        android:fontFamily="@font/poppinsbold"
+-        android:padding="16dp" />
+-
+-    <!-- Bottom Navigation Bar -->
+-
+-    <include
+-        layout="@layout/bottom_navigation" />
+-</RelativeLayout>
+Index: app/src/main/res/layout/activity_favorites.xml
+===================================================================
+diff --git a/app/src/main/res/layout/activity_favorites.xml b/app/src/main/res/layout/activity_favorites.xml
+deleted file mode 100644
+--- a/app/src/main/res/layout/activity_favorites.xml	
++++ /dev/null	
+@@ -1,69 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    android:orientation="vertical"
+-    android:padding="16dp"
+-    tools:context=".FavoritesActivity">
+-
+-    <!-- Toolbar with Back Button -->
+-    <LinearLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:orientation="horizontal"
+-        android:gravity="center_vertical">
+-
+-        <ImageView
+-            android:id="@+id/btnBack"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:src="@drawable/ic_back"
+-            android:contentDescription="Back" />
+-
+-        <TextView
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_marginStart="16dp"
+-            android:text="Favorite"
+-            android:textStyle="bold"
+-            android:textSize="20sp"
+-            />
+-    </LinearLayout>
+-
+-    <!-- List of Favorites -->
+-    <ListView
+-        android:id="@+id/favoritesList"
+-        android:layout_width="match_parent"
+-        android:layout_height="0dp"
+-        android:layout_weight="1"
+-        android:divider="@android:color/darker_gray"
+-        android:dividerHeight="1dp" />
+-
+-    <!-- Add All to Cart Button -->
+-    <Button
+-        android:id="@+id/btnAddAllToCart"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_above="@id/bottom_navigation"
+-        android:layout_margin="16dp"
+-        android:backgroundTint="@color/FitMealGreen"
+-        android:text="Add All To Cart"
+-        android:textStyle="bold"
+-        android:fontFamily="@font/poppinsbold"
+-        android:padding="16dp" />
+-
+-
+-
+-
+-
+-    <!-- Bottom Navigation -->
+-    <include
+-        layout="@layout/bottom_navigation"
+-        />
+-
+-
+-
+-
+-</LinearLayout>
+Index: app/src/main/res/layout/my_account_activity.xml
+===================================================================
+diff --git a/app/src/main/res/layout/my_account_activity.xml b/app/src/main/res/layout/my_account_activity.xml
+deleted file mode 100644
+--- a/app/src/main/res/layout/my_account_activity.xml	
++++ /dev/null	
+@@ -1,50 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    android:orientation="vertical"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    android:padding="16dp">
+-
+-    <ImageView
+-        android:id="@+id/change_picture"
+-        android:layout_width="120dp"
+-        android:layout_height="120dp"
+-        android:layout_gravity="center_horizontal"
+-        android:src="@drawable/ic_profile" />
+-
+-    <EditText
+-        android:id="@+id/et_username"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="16dp"
+-        android:hint="Username" />
+-
+-    <EditText
+-        android:id="@+id/et_email"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="16dp"
+-        android:hint="Email Address" />
+-
+-    <EditText
+-        android:id="@+id/et_phone_number"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="16dp"
+-        android:hint="Phone Number" />
+-
+-    <Button
+-        android:id="@+id/btn_save_changes"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="24dp"
+-        android:text="Save Changes" />
+-
+-    <!-- Bottom Navigation -->
+-
+-    <include
+-        layout="@layout/bottom_navigation"
+-        />
+-
+-</LinearLayout>
+Index: app/src/main/res/layout/favorite_item.xml
+===================================================================
+diff --git a/app/src/main/res/layout/favorite_item.xml b/app/src/main/res/layout/favorite_item.xml
+deleted file mode 100644
+--- a/app/src/main/res/layout/favorite_item.xml	
++++ /dev/null	
+@@ -1,52 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:layout_width="match_parent"
+-    android:layout_height="wrap_content"
+-    android:orientation="horizontal"
+-    android:padding="16dp"
+-    android:gravity="center_vertical">
+-
+-    <ImageView
+-        android:id="@+id/itemImage"
+-        android:layout_width="40dp"
+-        android:layout_height="40dp"
+-        android:src="@drawable/fruitbg"
+-        android:contentDescription="Product Image"/>
+-
+-    <LinearLayout
+-        android:layout_width="0dp"
+-        android:layout_height="wrap_content"
+-        android:layout_weight="1"
+-        android:orientation="vertical"
+-        android:layout_marginStart="16dp">
+-
+-        <TextView
+-            android:id="@+id/itemName"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:text="Item Name"
+-            android:textStyle="bold"
+-            android:textSize="16sp" />
+-
+-        <TextView
+-            android:id="@+id/itemQuantity"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:text="1pcs, Price"
+-            android:textColor="@android:color/darker_gray"/>
+-    </LinearLayout>
+-
+-    <TextView
+-        android:id="@+id/itemPrice"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="22.000" />
+-
+-    <ImageView
+-        android:id="@+id/btnRemove"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginStart="8dp"
+-        android:src="@drawable/ic_close"
+-        android:contentDescription="Remove Item"/>
+-</LinearLayout>
+Index: app/src/main/res/layout/security_activity.xml
+===================================================================
+diff --git a/app/src/main/res/layout/security_activity.xml b/app/src/main/res/layout/security_activity.xml
+deleted file mode 100644
+--- a/app/src/main/res/layout/security_activity.xml	
++++ /dev/null	
+@@ -1,74 +0,0 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent">
+-
+-    <LinearLayout
+-        android:id="@+id/linearLayout2"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:background="@color/FitMealGreen"
+-        android:orientation="vertical"
+-        android:padding="16dp">
+-
+-        <ImageView
+-            android:id="@+id/security_image"
+-            android:layout_width="163dp"
+-            android:layout_height="151dp"
+-            android:layout_gravity="center_horizontal"
+-            android:background="@drawable/circle" />
+-
+-    </LinearLayout>
+-
+-    <LinearLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_below="@+id/linearLayout2"
+-        android:layout_alignParentEnd="true"
+-        android:layout_alignParentBottom="true"
+-        android:layout_marginTop="0dp"
+-        android:layout_marginEnd="0dp"
+-        android:layout_marginBottom="610dp"
+-        android:orientation="vertical"
+-        android:paddingTop="16dp">
+-
+-        <View
+-            android:layout_width="match_parent"
+-            android:layout_height="1dp"
+-            android:background="@android:color/darker_gray" />
+-
+-        <TextView
+-            android:id="@+id/changePassword"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:drawableEnd="@drawable/ic_arrow_right"
+-            android:gravity="center_vertical"
+-            android:onClick="startSecurityActivity"
+-            android:padding="16dp"
+-            android:text="Security"
+-            android:textSize="16sp"
+-            android:fontFamily="@font/poppinsregular"/>
+-    </LinearLayout>
+-
+-    <Button
+-        android:id="@+id/btn_logout"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_alignParentStart="true"
+-        android:layout_alignParentBottom="true"
+-        android:layout_marginHorizontal="16dp"
+-        android:layout_marginStart="8dp"
+-        android:layout_marginBottom="139dp"
+-        android:backgroundTint="@color/FitMealGreen"
+-        android:text="Log Out"
+-        android:textColor="@android:color/white"
+-        android:fontFamily="@font/poppinsbold"/>
+-
+-    <!-- Bottom Navigation -->
+-    <include
+-        layout="@layout/bottom_navigation"
+-        />
+-
+-
+-
+-</RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/home_activity.xml
+===================================================================
+diff --git a/app/src/main/res/layout/home_activity.xml b/app/src/main/res/layout/home_activity.xml
+deleted file mode 100644
+--- a/app/src/main/res/layout/home_activity.xml	
++++ /dev/null	
+@@ -1,110 +0,0 @@
+-<!-- Layout untuk Home Page (home_activity.xml) dengan RecyclerView untuk Exclusive Offering dan Popular Now -->
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent">
+-
+-    <!-- Search Bar -->
+-    <EditText
+-        android:id="@+id/et_search"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_margin="16dp"
+-        android:hint="Search"
+-        android:padding="12dp"
+-        android:background="@drawable/search_bar_background"
+-        android:drawableStart="@drawable/ic_search"
+-        android:inputType="text" />
+-
+-    <!-- Todays Meal Section -->
+-    <HorizontalScrollView
+-        android:id="@+id/todays_meal_scrollview"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_below="@id/et_search"
+-        android:layout_marginTop="16dp"
+-        android:paddingStart="16dp"
+-        android:paddingEnd="16dp">
+-
+-        <LinearLayout
+-            android:orientation="horizontal"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content">
+-
+-            <!-- Example: Snacks -->
+-            <LinearLayout
+-                android:orientation="vertical"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:gravity="center"
+-                android:padding="8dp">
+-
+-                <ImageView
+-                    android:layout_width="48dp"
+-                    android:layout_height="48dp"
+-                    android:src="@drawable/fruit" />
+-
+-                <TextView
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:text="Snacks"
+-                    android:textSize="14sp"
+-                    android:layout_marginTop="4dp" />
+-            </LinearLayout>
+-
+-            <!-- Repeat similar blocks for Breakfast, Lunch, Dinner -->
+-        </LinearLayout>
+-    </HorizontalScrollView>
+-
+-    <!-- Popular Now Section -->
+-    <TextView
+-        android:id="@+id/tv_popular_now"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_below="@id/todays_meal_scrollview"
+-        android:layout_marginTop="16dp"
+-        android:layout_marginStart="16dp"
+-        android:text="Popular now"
+-        android:textSize="18sp"
+-        android:textStyle="bold" />
+-
+-    <androidx.recyclerview.widget.RecyclerView
+-        android:id="@+id/rv_popular_now"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_below="@id/tv_popular_now"
+-        android:layout_marginTop="8dp"
+-        android:paddingStart="16dp"
+-        android:paddingEnd="16dp"
+-        app:layoutManager="LinearLayoutManager"
+-        android:orientation="horizontal" />
+-
+-    <!-- Exclusive Offering Section -->
+-    <TextView
+-        android:id="@+id/tv_exclusive_offering"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_below="@id/rv_popular_now"
+-        android:layout_marginTop="16dp"
+-        android:layout_marginStart="16dp"
+-        android:text="Exclusive Offering"
+-        android:textSize="18sp"
+-        android:textStyle="bold" />
+-
+-    <androidx.recyclerview.widget.RecyclerView
+-        android:id="@+id/rv_exclusive_offering"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_below="@id/tv_exclusive_offering"
+-        android:layout_marginTop="8dp"
+-        android:paddingStart="16dp"
+-        android:paddingEnd="16dp"
+-        app:layoutManager="GridLayoutManager"
+-        app:spanCount="2" />
+-
+-    <!-- Bottom Navigation -->
+-    <include
+-        layout="@layout/bottom_navigation"
+-        />
+-
+-</RelativeLayout>
+Index: app/src/main/res/layout/profile_activity.xml
+===================================================================
+diff --git a/app/src/main/res/layout/profile_activity.xml b/app/src/main/res/layout/profile_activity.xml
+deleted file mode 100644
+--- a/app/src/main/res/layout/profile_activity.xml	
++++ /dev/null	
+@@ -1,167 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent">
+-
+-    <!-- Header layout with user image and profile info -->
+-
+-    <!-- Section for Account Options -->
+-    <LinearLayout
+-        android:id="@+id/linearLayout2"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:background="@color/FitMealGreen"
+-        android:orientation="vertical"
+-        android:padding="24dp">
+-
+-        <LinearLayout
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content">
+-        <ImageView
+-            android:id="@+id/btnBack"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:src="@drawable/ic_back"
+-        android:contentDescription="Back"
+-        android:layout_marginEnd="16dp" />
+-
+-        <!-- Screen Title -->
+-        <TextView
+-            android:id="@+id/screen_title"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:text="Profile"
+-            android:textStyle="bold"
+-            android:textSize="20sp"
+-            android:textColor="@android:color/white"
+-            android:fontFamily="@font/poppinsbold" />
+-        </LinearLayout>
+-
+-        <!-- Profile Picture -->
+-        <ImageView
+-            android:id="@+id/profile_image"
+-            android:layout_width="100dp"
+-            android:layout_height="100dp"
+-            android:layout_gravity="center_horizontal"
+-            android:layout_marginBottom="12dp"
+-            android:background="@drawable/circle"
+-            android:contentDescription="Profile Picture" />
+-
+-        <!-- Username -->
+-        <TextView
+-            android:id="@+id/tv_username"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_gravity="center_horizontal"
+-            android:layout_marginTop="8dp"
+-            android:fontFamily="@font/poppinsregular"
+-            android:textColor="@android:color/white"
+-            android:textSize="20sp"
+-            android:textStyle="bold"
+-            android:hint="Nama"/>
+-
+-        <!-- Email -->
+-        <TextView
+-            android:id="@+id/tv_email"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_gravity="center_horizontal"
+-            android:layout_marginTop="4dp"
+-            android:fontFamily="@font/poppinsregular"
+-            android:textColor="@android:color/white"
+-            android:textSize="16sp"
+-            android:inputType="textEmailAddress"
+-            android:hint="email"/>
+-
+-        <!-- Phone Number -->
+-        <TextView
+-            android:id="@+id/tv_phone_number"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_gravity="center_horizontal"
+-            android:layout_marginTop="4dp"
+-            android:fontFamily="@font/poppinsregular"
+-            android:textColor="@android:color/white"
+-            android:textSize="16sp"
+-            android:inputType="phone"/>
+-    </LinearLayout>
+-
+-    <LinearLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_below="@+id/linearLayout2"
+-        android:orientation="vertical"
+-        android:paddingTop="16dp">
+-
+-        <!-- My Account -->
+-        <TextView
+-            android:id="@+id/tv_my_account"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:drawableEnd="@drawable/ic_arrow_right"
+-            android:gravity="center_vertical"
+-            android:padding="16dp"
+-            android:text="My Account"
+-            android:textSize="16sp"
+-            android:fontFamily="@font/poppinsregular"
+-            android:onClick="startMyAccountActivity" />
+-
+-        <View
+-            android:layout_width="match_parent"
+-            android:layout_height="1dp"
+-            android:background="@android:color/darker_gray" />
+-
+-        <!-- Orders -->
+-        <TextView
+-            android:id="@+id/tv_orders"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:drawableEnd="@drawable/ic_arrow_right"
+-            android:gravity="center_vertical"
+-            android:padding="16dp"
+-            android:text="Orders"
+-            android:textSize="16sp"
+-            android:fontFamily="@font/poppinsregular"
+-            android:onClick="startOrderActivity" />
+-
+-        <View
+-            android:layout_width="match_parent"
+-            android:layout_height="1dp"
+-            android:background="@android:color/darker_gray" />
+-
+-        <!-- Security -->
+-        <TextView
+-            android:id="@+id/tv_change_password"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:drawableEnd="@drawable/ic_arrow_right"
+-            android:gravity="center_vertical"
+-            android:padding="16dp"
+-            android:text="Security"
+-            android:textSize="16sp"
+-            android:fontFamily="@font/poppinsregular"
+-            android:onClick="startSecurityActivity" />
+-    </LinearLayout>
+-
+-    <!-- Log Out Button -->
+-    <Button
+-        android:id="@+id/btn_logout"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_above="@id/bottom_navigation"
+-        android:layout_margin="16dp"
+-        android:backgroundTint="@color/FitMealGreen"
+-        android:text="Log Out"
+-        android:textStyle="bold"
+-        android:fontFamily="@font/poppinsbold"
+-        android:padding="16dp" />
+-
+-    <!-- Bottom Navigation -->
+-    <include
+-        layout="@layout/bottom_navigation"
+-        />
+-
+-
+-</RelativeLayout>
+Index: app/src/main/res/layout/cart_item.xml
+===================================================================
+diff --git a/app/src/main/res/layout/cart_item.xml b/app/src/main/res/layout/cart_item.xml
+deleted file mode 100644
+--- a/app/src/main/res/layout/cart_item.xml	
++++ /dev/null	
+@@ -1,103 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:layout_width="match_parent"
+-    android:layout_height="wrap_content"
+-    android:orientation="horizontal"
+-    android:gravity="center_vertical"
+-    android:padding="8dp"
+-    android:layout_marginTop="8dp">
+-
+-    <!-- Product Image -->
+-    <ImageView
+-        android:id="@+id/img_product"
+-        android:layout_width="60dp"
+-        android:layout_height="60dp"
+-        android:src="@drawable/fruit" />
+-
+-    <!-- Product Details -->
+-    <LinearLayout
+-        android:layout_width="0dp"
+-        android:layout_height="wrap_content"
+-        android:layout_weight="1"
+-        android:orientation="vertical"
+-        android:paddingStart="16dp"
+-        android:gravity="center_vertical">
+-
+-        <!-- Product Name -->
+-        <TextView
+-            android:id="@+id/tv_product_name"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:text="Bell Pepper Red"
+-            android:textStyle="bold"
+-            android:textSize="16sp" />
+-
+-        <!-- Product Quantity and Price -->
+-        <TextView
+-            android:id="@+id/tv_product_quantity_price"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:text="1pcs, Price"
+-            android:textSize="14sp"
+-            android:textColor="@android:color/darker_gray" />
+-    </LinearLayout>
+-
+-    <!-- Quantity and Price Layout -->
+-    <LinearLayout
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:orientation="vertical"
+-        android:gravity="center_vertical">
+-
+-        <!-- Quantity Control -->
+-        <LinearLayout
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:orientation="horizontal"
+-            android:gravity="center_vertical">
+-
+-            <!-- Minus Button -->
+-            <ImageView
+-                android:id="@+id/btn_decrease"
+-                android:layout_width="24dp"
+-                android:layout_height="24dp"
+-                android:src="@drawable/ic_min" />
+-
+-            <!-- Quantity Text -->
+-            <TextView
+-                android:id="@+id/tv_quantity"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:text="1"
+-                android:layout_marginHorizontal="8dp"
+-                android:textSize="16sp" />
+-
+-            <!-- Plus Button -->
+-            <ImageView
+-                android:id="@+id/btn_increase"
+-                android:layout_width="24dp"
+-                android:layout_height="24dp"
+-                android:src="@drawable/ic_plus" />
+-        </LinearLayout>
+-
+-        <!-- Product Price -->
+-        <TextView
+-            android:id="@+id/tv_product_price"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:text="22.000"
+-            android:textSize="16sp"
+-            android:layout_gravity="center_horizontal"
+-            android:textStyle="bold"
+-            android:paddingTop="8dp" />
+-    </LinearLayout>
+-
+-    <!-- Remove Item Button -->
+-    <ImageView
+-        android:id="@+id/btn_remove_item"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:contentDescription="Remove Item"
+-        android:paddingStart="8dp"
+-        android:src="@drawable/ic_close" />
+-</LinearLayout>
+Index: app/src/main/res/layout/edit_profile_activity.xml
+===================================================================
+diff --git a/app/src/main/res/layout/edit_profile_activity.xml b/app/src/main/res/layout/edit_profile_activity.xml
+deleted file mode 100644
+--- a/app/src/main/res/layout/edit_profile_activity.xml	
++++ /dev/null	
+@@ -1,60 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<!-- edit_profile_activity.xml -->
+-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    android:orientation="vertical"
+-    android:padding="16dp">
+-
+-    <TextView
+-        android:id="@+id/tv_my_account"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="My Account"
+-        android:textSize="24sp"
+-        android:textStyle="bold"
+-        android:layout_marginBottom="16dp"/>
+-
+-    <TextView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Username:" />
+-
+-    <EditText
+-        android:id="@+id/et_username"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:hint="Enter your username"/>
+-
+-    <TextView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Email:" />
+-
+-    <EditText
+-        android:id="@+id/et_email"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:hint="Enter your email"
+-        android:inputType="textEmailAddress"/>
+-
+-    <TextView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Phone Number:" />
+-
+-    <EditText
+-        android:id="@+id/et_phone_number"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:hint="Enter your phone number"
+-        android:inputType="phone"/>
+-
+-    <Button
+-        android:id="@+id/btn_update"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:text="Update"
+-        android:layout_marginTop="16dp"/>
+-
+-</LinearLayout>
+Index: app/src/main/res/drawable/placeholder_image.xml
+===================================================================
+diff --git a/app/src/main/res/drawable/placeholder_image.xml b/app/src/main/res/drawable/placeholder_image.xml
+deleted file mode 100644
+--- a/app/src/main/res/drawable/placeholder_image.xml	
++++ /dev/null	
+@@ -1,4 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+-
+-</selector>
+\ No newline at end of file

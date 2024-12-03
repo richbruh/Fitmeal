@@ -1,0 +1,1504 @@
+Index: app/src/main/java/com/example/fitmeal/Item.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/Item.kt b/app/src/main/java/com/example/fitmeal/Item.kt
+new file mode 100644
+--- /dev/null	(date 1733245029211)
++++ b/app/src/main/java/com/example/fitmeal/Item.kt	(date 1733245029211)
+@@ -0,0 +1,9 @@
++package com.example.fitmeal
++
++data class Item(
++    val details: String = "",
++    val imageUrl: String = "",
++    val name: String = "",
++    val price: Int = 0,
++    val quantity: Int = 0
++)
+Index: app/src/main/java/com/example/fitmeal/ItemAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/ItemAdapter.kt b/app/src/main/java/com/example/fitmeal/ItemAdapter.kt
+new file mode 100644
+--- /dev/null	(date 1733245029129)
++++ b/app/src/main/java/com/example/fitmeal/ItemAdapter.kt	(date 1733245029129)
+@@ -0,0 +1,48 @@
++package com.example.fitmeal
++
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
++import android.widget.Button
++import android.widget.ImageView
++import android.widget.TextView
++import androidx.recyclerview.widget.RecyclerView
++import com.bumptech.glide.Glide
++
++class ItemAdapter(private val itemList: List<Item>) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
++
++    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
++        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_view, parent, false)
++        return ItemViewHolder(view)
++    }
++
++    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
++        val item = itemList[position]
++
++        // Bind data ke view
++        holder.itemName.text = item.name
++        holder.itemPrice.text = "Rp ${item.price}"
++
++        // Load image dengan Glide
++        Glide.with(holder.itemView.context)
++            .load(item.imageUrl)
++            .placeholder(R.drawable.placeholder_image)
++            .into(holder.itemImage)
++
++        // Set listener untuk tombol Add to Cart (jika diperlukan)
++        holder.addToCartButton.setOnClickListener {
++            // Tambahkan logika untuk Add to Cart
++        }
++    }
++
++    override fun getItemCount(): Int = itemList.size
++
++    inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
++        val itemImage: ImageView = itemView.findViewById(R.id.item_image)
++        val itemName: TextView = itemView.findViewById(R.id.item_name)
++        val itemPrice: TextView = itemView.findViewById(R.id.item_price)
++        val addToCartButton: Button = itemView.findViewById(R.id.add_to_cart_button)
++    }
++}
++
++
+Index: app/src/main/java/com/example/fitmeal/AdminAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/AdminAdapter.kt b/app/src/main/java/com/example/fitmeal/AdminAdapter.kt
+--- a/app/src/main/java/com/example/fitmeal/AdminAdapter.kt	
++++ b/app/src/main/java/com/example/fitmeal/AdminAdapter.kt	(date 1733245029474)
+@@ -1,103 +1,101 @@
+ package com.example.fitmeal
+ 
++import android.net.Uri
+ import android.text.Editable
+ import android.text.TextWatcher
++import android.util.Log
+ import android.view.LayoutInflater
+ import android.view.View
+ import android.view.ViewGroup
+-import android.widget.Button
+ import android.widget.EditText
+ import android.widget.ImageView
+-import android.widget.TextView
+ import androidx.recyclerview.widget.RecyclerView
++import com.bumptech.glide.Glide
+ 
+-class AdminAdapter(private val stockList: MutableList<AdminStock>, private val activity: AdminPanelActivity) : RecyclerView.Adapter<AdminAdapter.StockViewHolder>() {
++class AdminAdapter(
++    private val stockList: MutableList<AdminStock>, // List data stok
++    private val activity: AdminPanelActivity // Referensi ke activity untuk callback
++) : RecyclerView.Adapter<AdminAdapter.StockViewHolder>() {
+ 
++    // ViewHolder untuk menampung elemen-elemen UI dari item_stock.xml
+     class StockViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+         val productName: EditText = itemView.findViewById(R.id.product_name)
+-        val productDetails: EditText = itemView.findViewById(R.id.product_name)
++        val productQuantity: EditText = itemView.findViewById(R.id.product_quantity)
+         val productPrice: EditText = itemView.findViewById(R.id.product_price)
+-        val productQuantity: TextView = itemView.findViewById(R.id.product_quantity)
+-        val btnIncreaseQuantity: Button = itemView.findViewById(R.id.btn_increase)
+-        val btnDecreaseQuantity: Button = itemView.findViewById(R.id.btn_decrease)
+-        val deleteProduct: ImageView = itemView.findViewById(R.id.deleteProduct) // Add delete button
++        val productImage: ImageView = itemView.findViewById(R.id.product_image)
++        val deleteProduct: ImageView = itemView.findViewById(R.id.deleteProduct)
+     }
+ 
++    // Inflating layout item_stock.xml ke dalam ViewHolder
+     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StockViewHolder {
+         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_stock, parent, false)
+         return StockViewHolder(itemView)
+     }
+ 
++    // Mengikat data ke elemen UI di setiap item
+     override fun onBindViewHolder(holder: StockViewHolder, position: Int) {
+         val stockItem = stockList[position]
+ 
+-        // Set initial values
++        // Set data ke EditText
+         holder.productName.setText(stockItem.name)
+-        holder.productDetails.setText(stockItem.details)
+-        holder.productPrice.setText(stockItem.price.toString()) // Set initial price
+-        holder.productQuantity.text = stockItem.productQuantity.toString()
+-
+-        // Handle quantity increase
+-        holder.btnIncreaseQuantity.setOnClickListener {
+-            stockItem.productQuantity++
+-            holder.productQuantity.text = stockItem.productQuantity.toString()
+-        }
++        holder.productQuantity.setText(stockItem.productQuantity.toString())
++        holder.productPrice.setText(stockItem.price.toString())
+ 
+-        // Handle quantity decrease
+-        holder.btnDecreaseQuantity.setOnClickListener {
+-            if (stockItem.productQuantity > 0) { // Prevent going below 0
+-                stockItem.productQuantity--
+-                holder.productQuantity.text = stockItem.productQuantity.toString()
+-            }
++        // Menggunakan Glide untuk memuat gambar
++        if (stockItem.imageRes.isNotEmpty()) {
++            Glide.with(holder.itemView.context)
++                .load(stockItem.imageRes) // URL gambar atau URI
++                .placeholder(R.drawable.placeholder_image) // Placeholder saat loading
++                .error(R.drawable.ic_close) // Gambar jika gagal memuat
++                .into(holder.productImage) // Target ImageView
++        } else {
++            holder.productImage.setImageResource(R.drawable.fruit) // Gambar default jika kosong
+         }
+ 
+-        // Handle item removal
+-        holder.deleteProduct.setOnClickListener {
+-            activity.removeItem(position) // Call the remove function from AdminPanelActivity
+-        }
++        // Logging untuk debug URL gambar
++        Log.d("AdminAdapter", "Image URL for position $position: ${stockItem.imageRes}")
+ 
+-        // Watch for changes in the name input
++        // Listener untuk mengupdate data lokal saat teks berubah
+         holder.productName.addTextChangedListener(object : TextWatcher {
+             override fun afterTextChanged(s: Editable?) {
+-                stockItem.name = s.toString() // Update the name in AdminStock
++                stockItem.name = s.toString()
+             }
++
+             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+         })
+ 
+-        // Watch for changes in the details input
+-        holder.productDetails.addTextChangedListener(object : TextWatcher {
++        holder.productQuantity.addTextChangedListener(object : TextWatcher {
+             override fun afterTextChanged(s: Editable?) {
+-                stockItem.details = s.toString() // Update the details in AdminStock
++                stockItem.productQuantity = s.toString().toIntOrNull() ?: 0
+             }
++
+             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+         })
+ 
+-        // Watch for changes in the price input
+         holder.productPrice.addTextChangedListener(object : TextWatcher {
+             override fun afterTextChanged(s: Editable?) {
+-                val newPrice = s.toString().toDoubleOrNull() ?: stockItem.price
+-                stockItem.price = newPrice // Update the price in AdminStock
++                stockItem.price = s.toString().toDoubleOrNull() ?: 0.0
+             }
++
+             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+         })
++
++        // Listener untuk membuka galeri saat gambar diklik
++        holder.productImage.setOnClickListener {
++            activity.openGalleryForImage(position)
++        }
++
++        // Listener untuk menghapus item
++        holder.deleteProduct.setOnClickListener {
++            activity.removeItem(position)
++        }
+     }
+ 
++    // Mengembalikan jumlah item dalam daftar
+     override fun getItemCount(): Int {
+         return stockList.size
+     }
+-
+-    // Add function to allow adding a new item
+-    fun addItem(item: AdminStock) {
+-        stockList.add(item)
+-        notifyItemInserted(stockList.size - 1)
+-    }
+-
+-    // Add function to allow removing an item
+-    fun removeItem(position: Int) {
+-        stockList.removeAt(position)
+-        notifyItemRemoved(position)
+-    }
+ }
+Index: app/src/main/java/com/example/fitmeal/HomeActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/HomeActivity.kt b/app/src/main/java/com/example/fitmeal/HomeActivity.kt
+--- a/app/src/main/java/com/example/fitmeal/HomeActivity.kt	
++++ b/app/src/main/java/com/example/fitmeal/HomeActivity.kt	(date 1733245185250)
+@@ -2,15 +2,13 @@
+ 
+ import android.content.Intent
+ import android.os.Bundle
+-import android.view.LayoutInflater
+-import android.view.View
+-import android.view.ViewGroup
++import android.widget.Toast
+ import androidx.appcompat.app.AppCompatActivity
++import androidx.recyclerview.widget.GridLayoutManager
+ import androidx.recyclerview.widget.LinearLayoutManager
+ import androidx.recyclerview.widget.RecyclerView
+ import com.google.android.material.bottomnavigation.BottomNavigationView
+ import com.google.firebase.firestore.FirebaseFirestore
+-import com.google.firebase.firestore.Query
+ 
+ class HomeActivity : AppCompatActivity() {
+ 
+@@ -22,109 +20,79 @@
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.home_activity)
+ 
+-
+         // Inisialisasi BottomNavigationView
+         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+-        bottomNav.selectedItemId = R.id.navigation_shop // Highlight Favorite
++        bottomNav.selectedItemId = R.id.navigation_shop
+ 
+         bottomNav.setOnItemSelectedListener { item ->
+             when (item.itemId) {
+                 R.id.navigation_shop -> {
+-                    // Arahkan ke HomeActivity saat Shop dipilih
+-                    val intent = Intent(this, HomeActivity::class.java)
+-                    startActivity(intent)
++                    startActivity(Intent(this, HomeActivity::class.java))
+                     true
+                 }
+                 R.id.navigation_favorite -> {
+-                    // Arahkan ke FavoritesActivity saat Favorite dipilih
+-                    val intent = Intent(this, FavoritesActivity::class.java)
+-                    startActivity(intent)
++                    startActivity(Intent(this, FavoritesActivity::class.java))
+                     true
+                 }
+                 R.id.navigation_account -> {
+-                    // Arahkan ke FavoritesActivity saat Favorite dipilih
+-                    val intent = Intent(this, ProfileActivity::class.java)
+-                    startActivity(intent)
++                    startActivity(Intent(this, ProfileActivity::class.java))
+                     true
+                 }
+                 R.id.navigation_cart -> {
+-                    // Arahkan ke MyCartActivity saat Favorite dipilih
+-                    val intent = Intent(this, MyCartActivity::class.java)
+-                    startActivity(intent)
++                    startActivity(Intent(this, MyCartActivity::class.java))
+                     true
+                 }
+                 else -> false
+             }
+         }
+ 
+-
+         // Initialize RecyclerViews
+         popularNowRecyclerView = findViewById(R.id.rv_popular_now)
+         exclusiveOfferingRecyclerView = findViewById(R.id.rv_exclusive_offering)
+ 
+         // Set layout managers
+         popularNowRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+-        exclusiveOfferingRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
++        exclusiveOfferingRecyclerView.layoutManager = GridLayoutManager(this,2, LinearLayoutManager.VERTICAL, false)
+ 
+-        // Load popular items
++        // Load products from Firestore
+         loadPopularNowItems()
+-        // Load exclusive offerings
+         loadExclusiveOfferingItems()
+     }
+ 
+     private fun loadPopularNowItems() {
+-        db.collection("items")
+-            .orderBy("likes", Query.Direction.DESCENDING)
++        db.collection("products")
++            .orderBy("price", com.google.firebase.firestore.Query.Direction.DESCENDING) // Bisa diganti sesuai kebutuhan
+             .limit(10)
+             .get()
+             .addOnSuccessListener { documents ->
+                 val popularItems = documents.toObjects(Item::class.java)
+-                val adapter = ItemAdapter(popularItems)
+-                popularNowRecyclerView.adapter = adapter
++                if (popularItems.isNotEmpty()) {
++                    val adapter = ItemAdapter(popularItems)
++                    popularNowRecyclerView.adapter = adapter
++                } else {
++                    Toast.makeText(this, "No popular items found", Toast.LENGTH_SHORT).show()
++                }
+             }
+             .addOnFailureListener { e ->
+-                // Handle the error
++                Toast.makeText(this, "Failed to load popular items: ${e.message}", Toast.LENGTH_LONG).show()
+             }
+     }
+ 
+     private fun loadExclusiveOfferingItems() {
+-        db.collection("exclusive_offerings")
++        db.collection("products")
+             .get()
+             .addOnSuccessListener { documents ->
+                 val exclusiveItems = documents.toObjects(Item::class.java)
+-                val adapter = ItemAdapter(exclusiveItems)
+-                exclusiveOfferingRecyclerView.adapter = adapter
++                if (exclusiveItems.isNotEmpty()) {
++                    val adapter = ItemAdapter(exclusiveItems)
++                    exclusiveOfferingRecyclerView.adapter = adapter
++                } else {
++                    Toast.makeText(this, "No exclusive offerings found", Toast.LENGTH_SHORT).show()
++                }
+             }
+             .addOnFailureListener { e ->
+-                // Handle the error
++                Toast.makeText(this, "Failed to load exclusive offerings: ${e.message}", Toast.LENGTH_LONG).show()
+             }
+     }
+-}
+-
+-// Assuming you have a data class for Item
+-data class Item(
+-    val name: String = "",
+-    val price: Double = 0.0,
+-    val likes: Int = 0,
+-    val imageUrl: String = ""
+-)
+-
+-// Assuming you have an adapter for RecyclerView
+-class ItemAdapter(private val itemList: List<Item>) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
+-    // Adapter implementation here
+-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+-        val view = LayoutInflater.from(parent.context).inflate(R.layout.favorite_item, parent, false)
+-        return ItemViewHolder(view)
+-    }
+-
+-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+-        val item = itemList[position]
+-        // Bind data to view holder
+-    }
+ 
+-    override fun getItemCount(): Int = itemList.size
+-
+-    inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+-        // ViewHolder implementation here
+-    }
+ }
+Index: app/src/main/java/com/example/fitmeal/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/MainActivity.kt b/app/src/main/java/com/example/fitmeal/MainActivity.kt
+--- a/app/src/main/java/com/example/fitmeal/MainActivity.kt	
++++ b/app/src/main/java/com/example/fitmeal/MainActivity.kt	(date 1733245185247)
+@@ -11,7 +11,6 @@
+         super.onCreate(savedInstanceState)
+         enableEdgeToEdge()
+         setContentView(R.layout.activity_main)
+-
+         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+Index: app/src/main/java/com/example/fitmeal/LoginActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/LoginActivity.kt b/app/src/main/java/com/example/fitmeal/LoginActivity.kt
+--- a/app/src/main/java/com/example/fitmeal/LoginActivity.kt	
++++ b/app/src/main/java/com/example/fitmeal/LoginActivity.kt	(date 1733245185241)
+@@ -2,155 +2,153 @@
+ 
+ import android.content.Intent
+ import android.os.Bundle
+-import android.util.Log
+ import android.widget.Button
+ import android.widget.EditText
+-import android.widget.ImageView
+ import android.widget.Toast
+ import androidx.appcompat.app.AppCompatActivity
+-import com.google.android.gms.auth.api.signin.GoogleSignIn
+-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+-import com.google.android.gms.auth.api.signin.GoogleSignInClient
+-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+-import com.google.android.gms.common.api.ApiException
++<<<<<<< Updated upstream
++
++class LoginActivity : AppCompatActivity() {
++
++=======
+ import com.google.firebase.auth.FirebaseAuth
+-import com.google.firebase.auth.FirebaseUser
+-import com.google.firebase.auth.GoogleAuthProvider
+ import com.google.firebase.firestore.FirebaseFirestore
+ 
+ class LoginActivity : AppCompatActivity() {
+ 
+     private lateinit var auth: FirebaseAuth
+     private lateinit var firestore: FirebaseFirestore
+-    private lateinit var googleSignInClient: GoogleSignInClient
+ 
+     companion object {
+-        private const val RC_SIGN_IN = 9001
+         private const val TAG = "LoginActivity"
+     }
+ 
++>>>>>>> Stashed changes
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.login_page)
+ 
++<<<<<<< Updated upstream
++=======
+         // Initialize Firebase Auth and Firestore
+         auth = FirebaseAuth.getInstance()
+         firestore = FirebaseFirestore.getInstance()
+ 
+-        // Configure Google Sign-In
+-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+-            .requestIdToken(getString(R.string.default_web_client_id))
+-            .requestEmail()
+-            .build()
+-
+-        googleSignInClient = GoogleSignIn.getClient(this, gso)
+-
+-        val googleSignInButton = findViewById<ImageView>(R.id.googleSignInButton)
+-        googleSignInButton.setOnClickListener {
+-            signInWithGoogle()
+-        }
+-
+-        // Other initialization code...
++>>>>>>> Stashed changes
+         val emailInput = findViewById<EditText>(R.id.emailInput)
+         val passwordInput = findViewById<EditText>(R.id.passwordInput)
+         val loginButton = findViewById<Button>(R.id.loginButton)
+         val createAccountButton = findViewById<Button>(R.id.createAccountButton)
+-        val AdminButton = findViewById<Button>(R.id.AdminButton)
++<<<<<<< Updated upstream
++=======
++        val adminButton = findViewById<Button>(R.id.AdminButton)
++>>>>>>> Stashed changes
+ 
++        // Login as regular user
+         loginButton.setOnClickListener {
+-            val email = emailInput.text.toString()
+-            val password = passwordInput.text.toString()
++            val email = emailInput.text.toString().trim()
++            val password = passwordInput.text.toString().trim()
++
++            if (email.isNotEmpty() && password.isNotEmpty()) {
++<<<<<<< Updated upstream
++                // Handle login logic here
++                Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
++=======
++                loginUser(email, password)
++>>>>>>> Stashed changes
++            } else {
++                Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
++            }
++        }
++
++        // Create new account
++        createAccountButton.setOnClickListener {
++            val intent = Intent(this, RegisterActivity::class.java)
++            startActivity(intent)
++        }
++<<<<<<< Updated upstream
++=======
++
++        // Login as admin
++        adminButton.setOnClickListener {
++            val email = emailInput.text.toString().trim()
++            val password = passwordInput.text.toString().trim()
+ 
+             if (email.isNotEmpty() && password.isNotEmpty()) {
+-                // Authenticate user with Firebase
+-                auth.signInWithEmailAndPassword(email, password)
+-                    .addOnCompleteListener { task ->
+-                        if (task.isSuccessful) {
+-                            val userId = auth.currentUser?.uid
+-                            if (userId != null) {
+-                                // Fetch user role from Firestore
+-                                firestore.collection("users").document(userId)
+-                                    .get()
+-                                    .addOnSuccessListener { document ->
+-                                        if (document.exists()) {
+-                                            val role = document.getString("role")
+-                                            if (role == "admin") {
+-                                                val intent = Intent(this, DashboardActivity::class.java)
+-                                                startActivity(intent)
+-                                            } else if (role == "user") {
+-                                                val intent = Intent(this, HomeActivity::class.java)
+-                                                startActivity(intent)
+-                                            }
+-                                            finish()
+-                                        } else {
+-                                            Toast.makeText(this, "User role not found", Toast.LENGTH_SHORT).show()
+-                                        }
+-                                    }
+-                                    .addOnFailureListener {
+-                                        Toast.makeText(this, "Failed to fetch user role", Toast.LENGTH_SHORT).show()
+-                                    }
+-                            }
+-                        } else {
+-                            Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+-                        }
+-                    }
+-            } else {
+-                Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
++                loginAdmin(email, password)
++            } else {
++                Toast.makeText(this, "Please enter admin email and password", Toast.LENGTH_SHORT).show()
++            }
++        }
++    }
++
++    private fun loginUser(email: String, password: String) {
++        auth.signInWithEmailAndPassword(email, password)
++            .addOnCompleteListener { task ->
++                if (task.isSuccessful) {
++                    val userId = auth.currentUser?.uid
++                    if (userId != null) {
++                        firestore.collection("users").document(userId)
++                            .get()
++                            .addOnSuccessListener { document ->
++                                if (document.exists()) {
++                                    val role = document.getString("role")
++                                    if (role == "admin") {
++                                        val intent = Intent(this, AdminPanelActivity::class.java)
++                                        startActivity(intent)
++                                    } else {
++                                        val intent = Intent(this, HomeActivity::class.java)
++                                        startActivity(intent)
++                                    }
++                                    finish()
++                                } else {
++                                    Toast.makeText(this, "User role not found", Toast.LENGTH_SHORT).show()
++                                }
++                            }
++                            .addOnFailureListener {
++                                Toast.makeText(this, "Failed to fetch user role", Toast.LENGTH_SHORT).show()
++                            }
++                    } else {
++                        Toast.makeText(this, "Login failed: User not found", Toast.LENGTH_SHORT).show()
++                    }
++                } else {
++                    Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
++                }
+             }
+-        }
++    }
+ 
+-        createAccountButton.setOnClickListener {
+-            val intent = Intent(this, RegisterActivity::class.java)
+-            startActivity(intent)
+-        }
+-
+-        AdminButton.setOnClickListener {
+-            val intent = Intent(this, AdminPanelActivity::class.java)
+-            startActivity(intent)
+-        }
+-    }
+-
+-    private fun signInWithGoogle() {
+-        val signInIntent = googleSignInClient.signInIntent
+-        startActivityForResult(signInIntent, RC_SIGN_IN)
+-    }
+-
+-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+-        super.onActivityResult(requestCode, resultCode, data)
+-
+-        if (requestCode == RC_SIGN_IN) {
+-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+-            try {
+-                val account = task.getResult(ApiException::class.java)!!
+-                Log.d(TAG, "firebaseAuthWithGoogle:" + account.id)
+-                firebaseAuthWithGoogle(account.idToken!!)
+-            } catch (e: ApiException) {
+-                Log.w(TAG, "Google sign in failed", e)
+-            }
+-        }
+-    }
+-
+-    private fun firebaseAuthWithGoogle(idToken: String) {
+-        val credential = GoogleAuthProvider.getCredential(idToken, null)
+-        auth.signInWithCredential(credential)
+-            .addOnCompleteListener(this) { task ->
+-                if (task.isSuccessful) {
+-                    Log.d(TAG, "signInWithCredential:success")
+-                    val user = auth.currentUser
+-                    updateUI(user)
+-                } else {
+-                    Log.w(TAG, "signInWithCredential:failure", task.exception)
+-                    Toast.makeText(this, "Authentication Failed.", Toast.LENGTH_SHORT).show()
+-                    updateUI(null)
+-                }
+-            }
+-    }
+-
+-    private fun updateUI(user: FirebaseUser?) {
+-        if (user != null) {
+-            val intent = Intent(this, HomeActivity::class.java)
+-            startActivity(intent)
+-            finish()
+-        }
+-    }
+-}
+\ No newline at end of file
++    private fun loginAdmin(email: String, password: String) {
++        auth.signInWithEmailAndPassword(email, password)
++            .addOnCompleteListener { task ->
++                if (task.isSuccessful) {
++                    val userId = auth.currentUser?.uid
++                    if (userId != null) {
++                        firestore.collection("users").document(userId)
++                            .get()
++                            .addOnSuccessListener { document ->
++                                if (document.exists()) {
++                                    val role = document.getString("role")
++                                    if (role == "admin") {
++                                        val intent = Intent(this, AdminPanelActivity::class.java)
++                                        startActivity(intent)
++                                        finish()
++                                    } else {
++                                        Toast.makeText(this, "Access denied: Admin only.", Toast.LENGTH_SHORT).show()
++                                    }
++                                } else {
++                                    Toast.makeText(this, "User role not found", Toast.LENGTH_SHORT).show()
++                                }
++                            }
++                            .addOnFailureListener {
++                                Toast.makeText(this, "Failed to fetch user role", Toast.LENGTH_SHORT).show()
++                            }
++                    } else {
++                        Toast.makeText(this, "Login failed: User not found", Toast.LENGTH_SHORT).show()
++                    }
++                } else {
++                    Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
++                }
++            }
++>>>>>>> Stashed changes
++    }
++}
+Index: app/src/main/java/com/example/fitmeal/RegisterActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/RegisterActivity.kt b/app/src/main/java/com/example/fitmeal/RegisterActivity.kt
+--- a/app/src/main/java/com/example/fitmeal/RegisterActivity.kt	
++++ b/app/src/main/java/com/example/fitmeal/RegisterActivity.kt	(date 1733245185238)
+@@ -9,14 +9,9 @@
+ import android.widget.TextView
+ import android.widget.Toast
+ import androidx.appcompat.app.AppCompatActivity
+-import com.google.firebase.auth.FirebaseAuth
+-import com.google.firebase.firestore.FirebaseFirestore
+ 
+ class RegisterActivity : AppCompatActivity() {
+ 
+-    private lateinit var auth: FirebaseAuth
+-    private lateinit var firestore: FirebaseFirestore
+-
+     private lateinit var usernameInput: EditText
+     private lateinit var mobileNumberInput: EditText
+     private lateinit var emailInput: EditText
+@@ -29,10 +24,6 @@
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.register_page)
+ 
+-        // Initialize Firebase Auth and Firestore
+-        auth = FirebaseAuth.getInstance()
+-        firestore = FirebaseFirestore.getInstance()
+-
+         // Menghubungkan view dengan id dari XML
+         usernameInput = findViewById(R.id.usernameInput)
+         mobileNumberInput = findViewById(R.id.mobileNumberInput)
+@@ -67,36 +58,9 @@
+                 return@setOnClickListener
+             }
+ 
+-            // Create user with email and password
+-            auth.createUserWithEmailAndPassword(email, password)
+-                .addOnCompleteListener { task ->
+-                    if (task.isSuccessful) {
+-                        val userId = auth.currentUser?.uid
+-                        if (userId != null) {
+-                            // Create user data map
+-                            val userData = hashMapOf(
+-                                "username" to username,
+-                                "email" to email,
+-                                "role" to "user",
+-                                "phonenumber" to mobileNumber
+-                            )
+-
+-                            // Store user data in Firestore
+-                            firestore.collection("users").document(userId)
+-                                .set(userData)
+-                                .addOnSuccessListener {
+-                                    Toast.makeText(this, "Account created successfully", Toast.LENGTH_SHORT).show()
+-                                    // Redirect to login or home activity
+-                                    finish()
+-                                }
+-                                .addOnFailureListener {
+-                                    Toast.makeText(this, "Failed to store user data", Toast.LENGTH_SHORT).show()
+-                                }
+-                        }
+-                    } else {
+-                        Toast.makeText(this, "Registration failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+-                    }
+-                }
++            // Jika semua validasi lolos, tampilkan pesan sukses (atau integrasi lebih lanjut)
++            Toast.makeText(this, "Registration Successful!", Toast.LENGTH_LONG).show()
++            // Di sini, Anda bisa menambahkan integrasi ke Firebase atau server backend
+         }
+ 
+         // Tombol Google Sign-In (Tambahkan fungsi sesuai kebutuhan)
+Index: app/src/main/java/com/example/fitmeal/CartItem.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/CartItem.kt b/app/src/main/java/com/example/fitmeal/CartItem.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/fitmeal/CartItem.kt	
++++ /dev/null	
+@@ -1,9 +0,0 @@
+-package com.example.fitmeal
+-
+-
+-data class CartItem(
+-    val name: String,
+-    val price: Int,
+-    var quantity: Int,
+-    val imageResId: Int
+-)
+Index: app/src/main/java/com/example/fitmeal/CartAdapter.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/CartAdapter.kt b/app/src/main/java/com/example/fitmeal/CartAdapter.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/fitmeal/CartAdapter.kt	
++++ /dev/null	
+@@ -1,52 +0,0 @@
+-package com.example.fitmeal
+-
+-import android.view.LayoutInflater
+-import android.view.ViewGroup
+-import androidx.recyclerview.widget.RecyclerView
+-import com.example.fitmeal.databinding.CartItemBinding
+-
+-class CartAdapter(
+-    private val items: List<CartItem>,
+-    private val listener: OnCartItemListener
+-) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
+-
+-    interface OnCartItemListener {
+-        fun onIncreaseQuantity(item: CartItem)
+-        fun onDecreaseQuantity(item: CartItem)
+-        fun onRemoveItem(item: CartItem)
+-    }
+-
+-    inner class CartViewHolder(private val binding: CartItemBinding) : RecyclerView.ViewHolder(binding.root) {
+-        fun bind(item: CartItem) {
+-            binding.tvProductName.text = item.name
+-            binding.tvQuantity.text = item.quantity.toString()
+-
+-            // Calculate total price based on quantity
+-            val totalPrice = item.price * item.quantity
+-            binding.tvProductPrice.text = totalPrice.toString()
+-
+-            binding.btnIncrease.setOnClickListener {
+-                listener.onIncreaseQuantity(item)
+-            }
+-
+-            binding.btnDecrease.setOnClickListener {
+-                listener.onDecreaseQuantity(item)
+-            }
+-
+-            binding.btnRemoveItem.setOnClickListener {
+-                listener.onRemoveItem(item)
+-            }
+-        }
+-    }
+-
+-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
+-        val binding = CartItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+-        return CartViewHolder(binding)
+-    }
+-
+-    override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
+-        holder.bind(items[position])
+-    }
+-
+-    override fun getItemCount(): Int = items.size
+-}
+Index: app/src/main/java/com/example/fitmeal/AdminRequest.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/AdminRequest.kt b/app/src/main/java/com/example/fitmeal/AdminRequest.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/fitmeal/AdminRequest.kt	
++++ /dev/null	
+@@ -1,29 +0,0 @@
+-package com.example.fitmeal
+-
+-import android.os.Bundle
+-import android.widget.Toast
+-import androidx.appcompat.app.AppCompatActivity
+-import com.example.fitmeal.databinding.AdminRequestBinding
+-
+-class AdminRequest : AppCompatActivity() {
+-
+-    private lateinit var binding: AdminRequestBinding
+-
+-    override fun onCreate(savedInstanceState: Bundle?) {
+-        super.onCreate(savedInstanceState)
+-        binding = AdminRequestBinding.inflate(layoutInflater)
+-        setContentView(binding.root)
+-
+-        // Example: Handle "Process" button click
+-        binding.btnProcessOrder.setOnClickListener {
+-            Toast.makeText(this, "Order Processed", Toast.LENGTH_SHORT).show()
+-            // Add logic to process the order here
+-        }
+-
+-        // Example: Handle "Cancel" button click
+-        binding.btnCancelOrder.setOnClickListener {
+-            Toast.makeText(this, "Order Canceled", Toast.LENGTH_SHORT).show()
+-            // Add logic to cancel the order here
+-        }
+-    }
+-}
+Index: app/src/main/java/com/example/fitmeal/FavoriteItem.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/FavoriteItem.kt b/app/src/main/java/com/example/fitmeal/FavoriteItem.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/fitmeal/FavoriteItem.kt	
++++ /dev/null	
+@@ -1,8 +0,0 @@
+-package com.example.fitmeal
+-
+-data class FavoriteItem(
+-    val name: String,
+-    val quantity: String,
+-    val price: Int,
+-    val imageResId: Int
+-)
+Index: app/src/main/java/com/example/fitmeal/MyCartActivity.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/MyCartActivity.kt b/app/src/main/java/com/example/fitmeal/MyCartActivity.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/fitmeal/MyCartActivity.kt	
++++ /dev/null	
+@@ -1,71 +0,0 @@
+-package com.example.fitmeal
+-
+-import android.content.Intent
+-import android.os.Bundle
+-import android.widget.ImageView
+-import android.widget.Toast
+-import androidx.appcompat.app.AppCompatActivity
+-import androidx.recyclerview.widget.LinearLayoutManager
+-import com.example.fitmeal.databinding.ActivityMyCartBinding
+-import com.google.android.material.bottomnavigation.BottomNavigationView
+-
+-class MyCartActivity : AppCompatActivity() {
+-
+-    private lateinit var binding: ActivityMyCartBinding
+-    private lateinit var cartAdapter: CartAdapter
+-    private lateinit var backBtn: ImageView
+-    private val cartItems = mutableListOf<CartItem>()
+-
+-    override fun onCreate(savedInstanceState: Bundle?) {
+-        super.onCreate(savedInstanceState)
+-
+-        // Inflate layout using View Binding
+-        binding = ActivityMyCartBinding.inflate(layoutInflater)
+-        setContentView(binding.root) // Ensure you set content using binding.root
+-
+-        // Initialize BottomNavigationView after setContentView
+-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+-        bottomNav.selectedItemId = R.id.navigation_cart
+-        BottomNavHelper.setupBottomNav(bottomNav, this)
+-
+-        // Add some sample items before initializing the adapter
+-        cartItems.add(CartItem("Bell Pepper Red", 22000, 1, R.drawable.fruit))
+-        cartItems.add(CartItem("Egg Chicken Red", 50000, 1, R.drawable.fruit))
+-        cartItems.add(CartItem("Organic Banana", 20000, 1, R.drawable.fruit))
+-        cartItems.add(CartItem("Egg Noodles", 25000, 1, R.drawable.fruit))
+-        cartItems.add(CartItem("Egg Pasta", 22000, 1, R.drawable.fruit))
+-
+-        // Initialize RecyclerView
+-        cartAdapter = CartAdapter(cartItems, object : CartAdapter.OnCartItemListener {
+-            override fun onIncreaseQuantity(item: CartItem) {
+-                item.quantity++
+-                cartAdapter.notifyDataSetChanged()
+-            }
+-
+-            override fun onDecreaseQuantity(item: CartItem) {
+-                if (item.quantity > 1) {
+-                    item.quantity--
+-                    cartAdapter.notifyDataSetChanged()
+-                }
+-            }
+-
+-            override fun onRemoveItem(item: CartItem) {
+-                cartItems.remove(item)
+-                cartAdapter.notifyDataSetChanged()
+-            }
+-        })
+-
+-        binding.recyclerViewCart.apply {
+-            layoutManager = LinearLayoutManager(this@MyCartActivity)
+-            adapter = cartAdapter
+-        }
+-
+-        // Notify the adapter that data has changed after adding the items
+-        cartAdapter.notifyDataSetChanged()
+-
+-        binding.btnCheckout.setOnClickListener {
+-            Toast.makeText(this, "Proceed to checkout", Toast.LENGTH_SHORT).show()
+-        }
+-    }
+-}
+-
+Index: app/src/main/java/com/example/fitmeal/BottomNavHelper.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/BottomNavHelper.kt b/app/src/main/java/com/example/fitmeal/BottomNavHelper.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/fitmeal/BottomNavHelper.kt	
++++ /dev/null	
+@@ -1,35 +0,0 @@
+-package com.example.fitmeal
+-
+-import android.content.Context
+-import android.content.Intent
+-import com.google.android.material.bottomnavigation.BottomNavigationView
+-
+-object BottomNavHelper {
+-    fun setupBottomNav(bottomNav: BottomNavigationView, context: Context) {
+-        bottomNav.setOnItemSelectedListener { item ->
+-            when (item.itemId) {
+-                R.id.navigation_shop -> {
+-                    val intent = Intent(context, HomeActivity::class.java)
+-                    context.startActivity(intent)
+-                    true
+-                }
+-                R.id.navigation_favorite -> {
+-                    val intent = Intent(context, FavoritesActivity::class.java)
+-                    context.startActivity(intent)
+-                    true
+-                }
+-                R.id.navigation_account -> {
+-                    val intent = Intent(context, ProfileActivity::class.java)
+-                    context.startActivity(intent)
+-                    true
+-                }
+-                R.id.navigation_cart -> {
+-                    val intent = Intent(context, MyCartActivity::class.java)
+-                    context.startActivity(intent)
+-                    true
+-                }
+-                else -> false
+-            }
+-        }
+-    }
+-}
+Index: app/src/main/java/com/example/fitmeal/ProfileActivity.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/ProfileActivity.kt b/app/src/main/java/com/example/fitmeal/ProfileActivity.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/fitmeal/ProfileActivity.kt	
++++ /dev/null	
+@@ -1,119 +0,0 @@
+-package com.example.fitmeal
+-
+-import android.content.Intent
+-import android.os.Bundle
+-import android.widget.Button
+-import android.widget.ImageView
+-import android.widget.TextView
+-import androidx.appcompat.app.AppCompatActivity
+-import com.google.android.material.bottomnavigation.BottomNavigationView
+-import com.google.firebase.auth.FirebaseAuth
+-import com.google.firebase.firestore.FirebaseFirestore
+-
+-class ProfileActivity : AppCompatActivity() {
+-
+-    private lateinit var auth: FirebaseAuth
+-    private lateinit var firestore: FirebaseFirestore
+-    private lateinit var backBtn: ImageView
+-    private lateinit var tvUsername: TextView
+-    private lateinit var tvEmail: TextView
+-    private lateinit var tvPhoneNumber: TextView
+-
+-    override fun onCreate(savedInstanceState: Bundle?) {
+-        super.onCreate(savedInstanceState)
+-        setContentView(R.layout.profile_activity)
+-
+-        // Initialize Firebase Auth and Firestore
+-        auth = FirebaseAuth.getInstance()
+-        firestore = FirebaseFirestore.getInstance()
+-
+-        // Inisialisasi BottomNavigationView
+-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+-        bottomNav.selectedItemId = R.id.navigation_account
+-        BottomNavHelper.setupBottomNav(bottomNav, this)
+-
+-        // Tombol Back action
+-        backBtn = findViewById(R.id.btnBack)
+-        backBtn.setOnClickListener {
+-            // Pindah ke HomeActivity ketika back button ditekan
+-            val intent = Intent(this, HomeActivity::class.java)
+-            startActivity(intent)
+-            finish()
+-        }
+-
+-        // Tombol Logout
+-        val btnLogout = findViewById<Button>(R.id.btn_logout)
+-        btnLogout.setOnClickListener {
+-            auth.signOut() // Logout dari Firebase
+-            val intent = Intent(this, LoginActivity::class.java)
+-            startActivity(intent)
+-            finish() // Tutup ProfileActivity agar tidak bisa diakses kembali setelah logout
+-        }
+-
+-        // Initialize TextViews to display user data
+-        tvUsername = findViewById(R.id.tv_username)
+-        tvEmail = findViewById(R.id.tv_email)
+-        tvPhoneNumber = findViewById(R.id.tv_phone_number)
+-
+-        // Load user data
+-        loadUserData()
+-
+-        // Navigate to EditProfileActivity when "My Account" is clicked
+-        val tvMyAccount = findViewById<TextView>(R.id.tv_my_account)
+-        tvMyAccount.setOnClickListener {
+-            // Navigate to EditProfileActivity
+-            val intent = Intent(this, EditProfileActivity::class.java)
+-            startActivity(intent)
+-        }
+-        val tvChangePassword = findViewById<TextView>(R.id.tv_change_password)
+-        tvChangePassword.setOnClickListener {
+-            val intent = Intent(this, ChangePasswordActivity::class.java)
+-            startActivity(intent)
+-        }
+-
+-    }
+-
+-    // Load user data from Firestore
+-    private fun loadUserData() {
+-        val userId = auth.currentUser?.uid
+-        if (userId != null) {
+-            firestore.collection("users").document(userId) // Ensure the collection name is correct
+-                .get()
+-                .addOnSuccessListener { document ->
+-                    if (document.exists()) {
+-                        // Get the user data from the document
+-                        val username = document.getString("username")
+-                        val email = document.getString("email")
+-                        val phoneNumber = document.getString("phonenumber")
+-
+-                        // Set the fetched data to TextViews
+-                        tvUsername.text = username ?: "N/A" // Use "N/A" if null
+-                        tvEmail.text = email ?: "N/A"
+-                        tvPhoneNumber.text = phoneNumber ?: "N/A"
+-                    } else {
+-                        // Handle the case where the document does not exist
+-                        tvUsername.text = "User not found"
+-                        tvEmail.text = "N/A"
+-                        tvPhoneNumber.text = "N/A"
+-                    }
+-                }
+-                .addOnFailureListener { exception ->
+-                    // Handle the error (e.g., log it)
+-                    tvUsername.text = "Error loading data"
+-                    tvEmail.text = "N/A"
+-                    tvPhoneNumber.text = "N/A"
+-                }
+-        } else {
+-            // Handle case when user ID is null
+-            tvUsername.text = "User not logged in"
+-            tvEmail.text = "N/A"
+-            tvPhoneNumber.text = "N/A"
+-        }
+-    }
+-
+-    // Refresh user data when returning to this activity
+-    override fun onResume() {
+-        super.onResume()
+-        loadUserData() // Refresh user data
+-    }
+-}
+Index: app/src/main/java/com/example/fitmeal/SecurityActivity.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/SecurityActivity.kt b/app/src/main/java/com/example/fitmeal/SecurityActivity.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/fitmeal/SecurityActivity.kt	
++++ /dev/null	
+@@ -1,48 +0,0 @@
+-package com.example.fitmeal
+-
+-import android.os.Bundle
+-import android.widget.Button
+-import android.widget.ImageView
+-import androidx.appcompat.app.AppCompatActivity
+-import com.google.firebase.auth.FirebaseAuth
+-import com.google.firebase.firestore.FirebaseFirestore
+-
+-class SecurityActivity : AppCompatActivity() {
+-
+-    private lateinit var auth: FirebaseAuth
+-    private lateinit var firestore: FirebaseFirestore
+-
+-    override fun onCreate(savedInstanceState: Bundle?) {
+-        super.onCreate(savedInstanceState)
+-        setContentView(R.layout.security_activity)
+-
+-        // Initialize Firebase Auth and Firestore
+-        auth = FirebaseAuth.getInstance()
+-        firestore = FirebaseFirestore.getInstance()
+-
+-        val securityIcon = findViewById<ImageView>(R.id.security_image)
+-        val btnChangePassword = findViewById<Button>(R.id.btn_change_password)
+-
+-        val userId = auth.currentUser?.uid
+-        if (userId != null) {
+-            // Fetch user security data from Firestore
+-            firestore.collection("user").document(userId)
+-                .get()
+-                .addOnSuccessListener { document ->
+-                    if (document.exists()) {
+-                        // Handle the fetched data (if any)
+-                        // For example, you can set the security icon or other UI elements
+-                    } else {
+-                        // Handle the case where the document does not exist
+-                    }
+-                }
+-                .addOnFailureListener { exception ->
+-                    // Handle the error
+-                }
+-        }
+-
+-        btnChangePassword.setOnClickListener {
+-            // Handle change password action
+-        }
+-    }
+-}
+\ No newline at end of file
+Index: app/src/main/java/com/example/fitmeal/DashboardActivity.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/DashboardActivity.kt b/app/src/main/java/com/example/fitmeal/DashboardActivity.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/fitmeal/DashboardActivity.kt	
++++ /dev/null	
+@@ -1,4 +0,0 @@
+-package com.example.fitmeal
+-
+-class DashboardActivity {
+-}
+\ No newline at end of file
+Index: app/src/main/java/com/example/fitmeal/FavoritesActivity.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/FavoritesActivity.kt b/app/src/main/java/com/example/fitmeal/FavoritesActivity.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/fitmeal/FavoritesActivity.kt	
++++ /dev/null	
+@@ -1,63 +0,0 @@
+-package com.example.fitmeal
+-
+-import android.content.Intent
+-import android.os.Bundle
+-import android.widget.Button
+-import android.widget.ImageView
+-import android.widget.ListView
+-import androidx.appcompat.app.AppCompatActivity
+-import com.google.android.material.bottomnavigation.BottomNavigationView
+-
+-class FavoritesActivity : AppCompatActivity() {
+-
+-    private lateinit var backBtn: ImageView
+-    private lateinit var addAllToCartBtn: Button
+-    private lateinit var favoritesListView: ListView
+-    private lateinit var adapter: FavoriteItemAdapter
+-
+-    override fun onCreate(savedInstanceState: Bundle?) {
+-        super.onCreate(savedInstanceState)
+-        setContentView(R.layout.activity_favorites)
+-
+-        // Inisialisasi BottomNavigationView
+-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+-        bottomNav.selectedItemId = R.id.navigation_favorite // Highlight Favorite
+-        BottomNavHelper.setupBottomNav(bottomNav, this)
+-
+-        // Inisialisasi views
+-        backBtn = findViewById(R.id.btnBack)
+-        addAllToCartBtn = findViewById(R.id.btnAddAllToCart)
+-        favoritesListView = findViewById(R.id.favoritesList)
+-
+-        // Data favorit untuk contoh
+-        val favoriteItems = mutableListOf(
+-            FavoriteItem("Bell Pepper Red", "1pcs, Price", 22000, R.drawable.fruit),
+-            FavoriteItem("Egg Chicken Red", "1 Basket, Price", 90000, R.drawable.fruit),
+-            // Tambahkan item lainnya di sini
+-        )
+-
+-        // Set adapter untuk ListView
+-        adapter = FavoriteItemAdapter(this, favoriteItems)
+-        favoritesListView.adapter = adapter
+-
+-        // Tombol Back action
+-        backBtn.setOnClickListener {
+-            // Pindah ke HomeActivity ketika back button ditekan
+-            val intent = Intent(this, HomeActivity::class.java)
+-            startActivity(intent)
+-            finish() // Tutup FavoritesActivity
+-        }
+-
+-        // Logika ketika Add All to Cart ditekan
+-        addAllToCartBtn.setOnClickListener {
+-            // Logika untuk menambah semua item ke keranjang
+-        }
+-    }
+-
+-    override fun onBackPressed() {
+-        // Arahkan ke HomeActivity ketika tombol back fisik ditekan
+-        val intent = Intent(this, HomeActivity::class.java)
+-        startActivity(intent)
+-        finish() // Tutup FavoritesActivity
+-    }
+-}
+Index: app/src/main/java/com/example/fitmeal/EditProfileActivity.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/EditProfileActivity.kt b/app/src/main/java/com/example/fitmeal/EditProfileActivity.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/fitmeal/EditProfileActivity.kt	
++++ /dev/null	
+@@ -1,87 +0,0 @@
+-package com.example.fitmeal
+-
+-import android.os.Bundle
+-import android.widget.Button
+-import android.widget.EditText
+-import android.widget.Toast
+-import androidx.appcompat.app.AppCompatActivity
+-import com.google.firebase.auth.FirebaseAuth
+-import com.google.firebase.firestore.FirebaseFirestore
+-
+-class EditProfileActivity : AppCompatActivity() {
+-
+-    private lateinit var auth: FirebaseAuth
+-    private lateinit var firestore: FirebaseFirestore
+-    private lateinit var etUsername: EditText
+-    private lateinit var etEmail: EditText
+-    private lateinit var etPhoneNumber: EditText
+-    private lateinit var btnUpdate: Button
+-
+-    override fun onCreate(savedInstanceState: Bundle?) {
+-        super.onCreate(savedInstanceState)
+-        setContentView(R.layout.edit_profile_activity)
+-
+-        // Initialize Firebase Auth and Firestore
+-        auth = FirebaseAuth.getInstance()
+-        firestore = FirebaseFirestore.getInstance()
+-
+-        // Initialize EditTexts
+-        etUsername = findViewById(R.id.et_username)
+-        etEmail = findViewById(R.id.et_email)
+-        etPhoneNumber = findViewById(R.id.et_phone_number)
+-        btnUpdate = findViewById(R.id.btn_update)
+-
+-        // Load user data when the activity starts
+-        loadUserData()
+-
+-        // Set onClickListener for the update button
+-        btnUpdate.setOnClickListener {
+-            updateUserProfile()
+-        }
+-    }
+-
+-    // Load user data from Firestore
+-    private fun loadUserData() {
+-        val userId = auth.currentUser?.uid
+-        if (userId != null) {
+-            firestore.collection("users").document(userId)
+-                .get()
+-                .addOnSuccessListener { document ->
+-                    if (document.exists()) {
+-                        etUsername.setText(document.getString("username"))
+-                        etEmail.setText(document.getString("email"))
+-                        etPhoneNumber.setText(document.getString("phonenumber"))
+-                    }
+-                }
+-                .addOnFailureListener { exception ->
+-                    Toast.makeText(this, "Error loading data: ${exception.message}", Toast.LENGTH_SHORT).show()
+-                }
+-        }
+-    }
+-
+-    // Update user profile in Firestore
+-    private fun updateUserProfile() {
+-        val userId = auth.currentUser?.uid
+-        val username = etUsername.text.toString().trim()
+-        val email = etEmail.text.toString().trim()
+-        val phoneNumber = etPhoneNumber.text.toString().trim()
+-
+-        if (userId != null) {
+-            val userUpdates = hashMapOf(
+-                "username" to username,
+-                "email" to email,
+-                "phonenumber" to phoneNumber
+-            )
+-
+-            firestore.collection("users").document(userId)
+-                .set(userUpdates) // Use set() to replace the document with new data
+-                .addOnSuccessListener {
+-                    Toast.makeText(this, "Profile updated successfully", Toast.LENGTH_SHORT).show()
+-                    finish() // Close the activity
+-                }
+-                .addOnFailureListener { exception ->
+-                    Toast.makeText(this, "Error updating profile: ${exception.message}", Toast.LENGTH_SHORT).show()
+-                }
+-        }
+-    }
+-}
+Index: app/src/main/java/com/example/fitmeal/FavoriteItemAdapter.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/FavoriteItemAdapter.kt b/app/src/main/java/com/example/fitmeal/FavoriteItemAdapter.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/fitmeal/FavoriteItemAdapter.kt	
++++ /dev/null	
+@@ -1,47 +0,0 @@
+-package com.example.fitmeal
+-
+-import android.content.Context
+-import android.view.LayoutInflater
+-import android.view.View
+-import android.view.ViewGroup
+-import android.widget.BaseAdapter
+-import android.widget.ImageView
+-import android.widget.TextView
+-
+-class FavoriteItemAdapter(
+-    private val context: Context,
+-    private var items: MutableList<FavoriteItem> // Ubah menjadi MutableList agar bisa dimodifikasi
+-) : BaseAdapter() {
+-
+-    override fun getCount(): Int = items.size
+-
+-    override fun getItem(position: Int): Any = items[position]
+-
+-    override fun getItemId(position: Int): Long = position.toLong()
+-
+-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+-        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.favorite_item, parent, false)
+-
+-        val item = items[position]
+-
+-        // Bind data ke view
+-        val itemImage = view.findViewById<ImageView>(R.id.itemImage)
+-        val itemName = view.findViewById<TextView>(R.id.itemName)
+-        val itemQuantity = view.findViewById<TextView>(R.id.itemQuantity)
+-        val itemPrice = view.findViewById<TextView>(R.id.itemPrice)
+-        val btnRemove = view.findViewById<ImageView>(R.id.btnRemove)
+-
+-        itemImage.setImageResource(item.imageResId)
+-        itemName.text = item.name
+-        itemQuantity.text = item.quantity
+-        itemPrice.text = "${item.price}"
+-
+-        // Menghapus item dari list ketika tombol remove ditekan
+-        btnRemove.setOnClickListener {
+-            items.removeAt(position) // Hapus item dari list
+-            notifyDataSetChanged()   // Update tampilan ListView
+-        }
+-
+-        return view
+-    }
+-}
+Index: app/src/main/java/com/example/fitmeal/ChangePasswordActivity.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/fitmeal/ChangePasswordActivity.kt b/app/src/main/java/com/example/fitmeal/ChangePasswordActivity.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/fitmeal/ChangePasswordActivity.kt	
++++ /dev/null	
+@@ -1,64 +0,0 @@
+-package com.example.fitmeal
+-
+-import android.os.Bundle
+-import android.widget.Button
+-import android.widget.EditText
+-import android.widget.Toast
+-import androidx.appcompat.app.AppCompatActivity
+-import com.google.firebase.auth.EmailAuthProvider
+-import com.google.firebase.auth.FirebaseAuth
+-import com.google.firebase.firestore.FirebaseFirestore
+-
+-class ChangePasswordActivity : AppCompatActivity() {
+-
+-    private lateinit var auth: FirebaseAuth
+-    private lateinit var firestore: FirebaseFirestore
+-
+-    override fun onCreate(savedInstanceState: Bundle?) {
+-        super.onCreate(savedInstanceState)
+-        setContentView(R.layout.change_password_activity)
+-
+-        // Initialize Firebase Auth and Firestore
+-        auth = FirebaseAuth.getInstance()
+-        firestore = FirebaseFirestore.getInstance()
+-
+-        val etOldPassword = findViewById<EditText>(R.id.et_old_password)
+-        val etNewPassword = findViewById<EditText>(R.id.et_new_password)
+-        val etConfirmPassword = findViewById<EditText>(R.id.et_confirm_password)
+-        val btnChangePassword = findViewById<Button>(R.id.btn_change_password)
+-
+-        btnChangePassword.setOnClickListener {
+-            val oldPassword = etOldPassword.text.toString()
+-            val newPassword = etNewPassword.text.toString()
+-            val confirmPassword = etConfirmPassword.text.toString()
+-
+-            if (oldPassword.isNotEmpty() && newPassword.isNotEmpty() && confirmPassword.isNotEmpty()) {
+-                if (newPassword == confirmPassword) {
+-                    val user = auth.currentUser
+-                    if (user != null) {
+-                        val credential = EmailAuthProvider.getCredential(user.email!!, oldPassword)
+-                        user.reauthenticate(credential)
+-                            .addOnCompleteListener { task ->
+-                                if (task.isSuccessful) {
+-                                    user.updatePassword(newPassword)
+-                                        .addOnCompleteListener { updateTask ->
+-                                            if (updateTask.isSuccessful) {
+-                                                Toast.makeText(this, "Password updated successfully", Toast.LENGTH_SHORT).show()
+-                                            } else {
+-                                                Toast.makeText(this, "Error updating password", Toast.LENGTH_SHORT).show()
+-                                            }
+-                                        }
+-                                } else {
+-                                    Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
+-                                }
+-                            }
+-                    }
+-                } else {
+-                    Toast.makeText(this, "New passwords do not match", Toast.LENGTH_SHORT).show()
+-                }
+-            } else {
+-                Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show()
+-            }
+-        }
+-    }
+-}
+\ No newline at end of file
+diff --git a/app/src/main/java/com/example/fitmeal/MyCart.kt b/app/src/main/java/com/example/fitmeal/MyCart.kt
+new file mode 100644
+diff --git a/app/src/main/java/com/example/fitmeal/Product.kt b/app/src/main/java/com/example/fitmeal/Product.kt
+new file mode 100644
+diff --git a/app/src/main/java/com/example/fitmeal/ProductAdapter.kt b/app/src/main/java/com/example/fitmeal/ProductAdapter.kt
+new file mode 100644
+diff --git a/app/src/main/java/com/example/fitmeal/UserViewActivity.kt b/app/src/main/java/com/example/fitmeal/UserViewActivity.kt
+new file mode 100644

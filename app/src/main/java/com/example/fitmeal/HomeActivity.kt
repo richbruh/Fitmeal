@@ -2,15 +2,13 @@ package com.example.fitmeal
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 
 class HomeActivity : AppCompatActivity() {
 
@@ -22,41 +20,31 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_activity)
 
-
         // Inisialisasi BottomNavigationView
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        bottomNav.selectedItemId = R.id.navigation_shop // Highlight Favorite
+        bottomNav.selectedItemId = R.id.navigation_shop
 
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_shop -> {
-                    // Arahkan ke HomeActivity saat Shop dipilih
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this, HomeActivity::class.java))
                     true
                 }
                 R.id.navigation_favorite -> {
-                    // Arahkan ke FavoritesActivity saat Favorite dipilih
-                    val intent = Intent(this, FavoritesActivity::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this, FavoritesActivity::class.java))
                     true
                 }
                 R.id.navigation_account -> {
-                    // Arahkan ke FavoritesActivity saat Favorite dipilih
-                    val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this, ProfileActivity::class.java))
                     true
                 }
                 R.id.navigation_cart -> {
-                    // Arahkan ke MyCartActivity saat Favorite dipilih
-                    val intent = Intent(this, MyCartActivity::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this, MyCartActivity::class.java))
                     true
                 }
                 else -> false
             }
         }
-
 
         // Initialize RecyclerViews
         popularNowRecyclerView = findViewById(R.id.rv_popular_now)
@@ -64,67 +52,47 @@ class HomeActivity : AppCompatActivity() {
 
         // Set layout managers
         popularNowRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        exclusiveOfferingRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        exclusiveOfferingRecyclerView.layoutManager = GridLayoutManager(this,2, LinearLayoutManager.VERTICAL, false)
 
-        // Load popular items
+        // Load products from Firestore
         loadPopularNowItems()
-        // Load exclusive offerings
         loadExclusiveOfferingItems()
     }
 
     private fun loadPopularNowItems() {
-        db.collection("items")
-            .orderBy("likes", Query.Direction.DESCENDING)
+        db.collection("products")
+            .orderBy("price", com.google.firebase.firestore.Query.Direction.DESCENDING) // Bisa diganti sesuai kebutuhan
             .limit(10)
             .get()
             .addOnSuccessListener { documents ->
                 val popularItems = documents.toObjects(Item::class.java)
-                val adapter = ItemAdapter(popularItems)
-                popularNowRecyclerView.adapter = adapter
+                if (popularItems.isNotEmpty()) {
+                    val adapter = ItemAdapter(popularItems)
+                    popularNowRecyclerView.adapter = adapter
+                } else {
+                    Toast.makeText(this, "No popular items found", Toast.LENGTH_SHORT).show()
+                }
             }
             .addOnFailureListener { e ->
-                // Handle the error
+                Toast.makeText(this, "Failed to load popular items: ${e.message}", Toast.LENGTH_LONG).show()
             }
     }
 
     private fun loadExclusiveOfferingItems() {
-        db.collection("exclusive_offerings")
+        db.collection("products")
             .get()
             .addOnSuccessListener { documents ->
                 val exclusiveItems = documents.toObjects(Item::class.java)
-                val adapter = ItemAdapter(exclusiveItems)
-                exclusiveOfferingRecyclerView.adapter = adapter
+                if (exclusiveItems.isNotEmpty()) {
+                    val adapter = ItemAdapter(exclusiveItems)
+                    exclusiveOfferingRecyclerView.adapter = adapter
+                } else {
+                    Toast.makeText(this, "No exclusive offerings found", Toast.LENGTH_SHORT).show()
+                }
             }
             .addOnFailureListener { e ->
-                // Handle the error
+                Toast.makeText(this, "Failed to load exclusive offerings: ${e.message}", Toast.LENGTH_LONG).show()
             }
     }
-}
 
-// Assuming you have a data class for Item
-data class Item(
-    val name: String = "",
-    val price: Double = 0.0,
-    val likes: Int = 0,
-    val imageUrl: String = ""
-)
-
-// Assuming you have an adapter for RecyclerView
-class ItemAdapter(private val itemList: List<Item>) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
-    // Adapter implementation here
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.favorite_item, parent, false)
-        return ItemViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val item = itemList[position]
-        // Bind data to view holder
-    }
-
-    override fun getItemCount(): Int = itemList.size
-
-    inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // ViewHolder implementation here
-    }
 }
