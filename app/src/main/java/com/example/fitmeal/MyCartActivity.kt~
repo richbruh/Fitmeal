@@ -65,10 +65,11 @@ class MyCartActivity : AppCompatActivity() {
             Toast.makeText(this, "Proceed to checkout", Toast.LENGTH_SHORT).show()
         }
 
-        // Set up back button with correct ID
+        // Set up back button
         val backButton = findViewById<ImageView>(R.id.btn_back)
         backButton.setOnClickListener {
             finish()
         }
     }
 }
+

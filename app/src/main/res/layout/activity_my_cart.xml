@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
     <!-- Back Button and Cart Title -->
     <LinearLayout
@@ -11,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="16dp">
 
         <!-- Back Button -->
         <ImageView
@@ -19,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:contentDescription="Back"
+            android:contentDescription="@string/back_button"
             android:src="@drawable/ic_back" />
 
         <!-- Cart Title -->
@@ -40,8 +39,8 @@
         android:layout_height="0dp"
         android:layout_above="@id/bottom_navigation"
         android:layout_below="@id/linearLayout"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"
+        android:padding="16dp" />
 
     <!-- Checkout Button -->
     <Button
@@ -51,13 +50,12 @@
         android:layout_above="@id/bottom_navigation"
         android:layout_margin="16dp"
         android:backgroundTint="@color/FitMealGreen"
-        android:text="Go to Checkout"
-        android:textStyle="bold"
         android:fontFamily="@font/poppinsbold"
-        android:padding="16dp" />
+        android:padding="16dp"
+        android:text="Go to Checkout"
+        android:textStyle="bold" />
 
     <!-- Bottom Navigation Bar -->
 
-    <include
-        layout="@layout/bottom_navigation" />
+    <include layout="@layout/bottom_navigation" />
 </RelativeLayout>

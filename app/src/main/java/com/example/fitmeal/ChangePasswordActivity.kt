@@ -3,6 +3,7 @@ package com.example.fitmeal
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.EmailAuthProvider
@@ -22,6 +23,7 @@ class ChangePasswordActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
+        val backButton = findViewById<ImageView>(R.id.btnBack)
         val etOldPassword = findViewById<EditText>(R.id.et_old_password)
         val etNewPassword = findViewById<EditText>(R.id.et_new_password)
         val etConfirmPassword = findViewById<EditText>(R.id.et_confirm_password)
@@ -43,13 +45,25 @@ class ChangePasswordActivity : AppCompatActivity() {
                                     user.updatePassword(newPassword)
                                         .addOnCompleteListener { updateTask ->
                                             if (updateTask.isSuccessful) {
-                                                Toast.makeText(this, "Password updated successfully", Toast.LENGTH_SHORT).show()
+                                                Toast.makeText(
+                                                    this,
+                                                    "Password updated successfully",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
                                             } else {
-                                                Toast.makeText(this, "Error updating password", Toast.LENGTH_SHORT).show()
+                                                Toast.makeText(
+                                                    this,
+                                                    "Error updating password",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
                                             }
                                         }
                                 } else {
-                                    Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        this,
+                                        "Authentication failed",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
                             }
                     }
@@ -59,6 +73,10 @@ class ChangePasswordActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        backButton.setOnClickListener {
+            finish()
         }
     }
 }

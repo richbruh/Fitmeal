@@ -55,6 +55,7 @@ class FavoritesActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        super.onBackPressed()
         // Arahkan ke HomeActivity ketika tombol back fisik ditekan
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
