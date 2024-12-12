@@ -20,7 +20,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_activity)
 
-        // Inisialisasi BottomNavigationView
+        // Initialize BottomNavigationView
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNav.selectedItemId = R.id.navigation_shop
 
@@ -52,7 +52,7 @@ class HomeActivity : AppCompatActivity() {
 
         // Set layout managers
         popularNowRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        exclusiveOfferingRecyclerView.layoutManager = GridLayoutManager(this,2, LinearLayoutManager.VERTICAL, false)
+        exclusiveOfferingRecyclerView.layoutManager = GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false)
 
         // Load products from Firestore
         loadPopularNowItems()
@@ -61,13 +61,13 @@ class HomeActivity : AppCompatActivity() {
 
     private fun loadPopularNowItems() {
         db.collection("products")
-            .orderBy("price", com.google.firebase.firestore.Query.Direction.DESCENDING) // Bisa diganti sesuai kebutuhan
+            .orderBy("price", com.google.firebase.firestore.Query.Direction.DESCENDING)
             .limit(10)
             .get()
             .addOnSuccessListener { documents ->
                 val popularItems = documents.toObjects(Item::class.java)
                 if (popularItems.isNotEmpty()) {
-                    val adapter = ItemAdapter(popularItems)
+                    val adapter = ItemAdapter(popularItems, R.id.fragment_container)
                     popularNowRecyclerView.adapter = adapter
                 } else {
                     Toast.makeText(this, "No popular items found", Toast.LENGTH_SHORT).show()
@@ -84,7 +84,7 @@ class HomeActivity : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 val exclusiveItems = documents.toObjects(Item::class.java)
                 if (exclusiveItems.isNotEmpty()) {
-                    val adapter = ItemAdapter(exclusiveItems)
+                    val adapter = ItemAdapter(exclusiveItems, R.id.fragment_container)
                     exclusiveOfferingRecyclerView.adapter = adapter
                 } else {
                     Toast.makeText(this, "No exclusive offerings found", Toast.LENGTH_SHORT).show()
@@ -94,5 +94,4 @@ class HomeActivity : AppCompatActivity() {
                 Toast.makeText(this, "Failed to load exclusive offerings: ${e.message}", Toast.LENGTH_LONG).show()
             }
     }
-
 }
