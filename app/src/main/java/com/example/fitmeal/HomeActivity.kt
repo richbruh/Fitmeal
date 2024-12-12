@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
-
+import com.example.fitmeal.ItemDetailFragment
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var popularNowRecyclerView: RecyclerView
@@ -67,7 +67,9 @@ class HomeActivity : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 val popularItems = documents.toObjects(Item::class.java)
                 if (popularItems.isNotEmpty()) {
-                    val adapter = ItemAdapter(popularItems, R.id.fragment_container)
+                    val adapter = ItemAdapter(popularItems) { item ->
+                        showItemDetailFragment(item)
+                    }
                     popularNowRecyclerView.adapter = adapter
                 } else {
                     Toast.makeText(this, "No popular items found", Toast.LENGTH_SHORT).show()
@@ -84,7 +86,9 @@ class HomeActivity : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 val exclusiveItems = documents.toObjects(Item::class.java)
                 if (exclusiveItems.isNotEmpty()) {
-                    val adapter = ItemAdapter(exclusiveItems, R.id.fragment_container)
+                    val adapter = ItemAdapter(exclusiveItems) { item ->
+                        showItemDetailFragment(item)
+                    }
                     exclusiveOfferingRecyclerView.adapter = adapter
                 } else {
                     Toast.makeText(this, "No exclusive offerings found", Toast.LENGTH_SHORT).show()
@@ -93,5 +97,21 @@ class HomeActivity : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Failed to load exclusive offerings: ${e.message}", Toast.LENGTH_LONG).show()
             }
+    }
+
+    private fun showItemDetailFragment(item: Item) {
+        val bundle = Bundle().apply {
+            putString("name", item.name)
+            putString("price", item.price.toString())
+            putString("stock", item.stock.toString())
+            putString("imageUrl", item.imageUrl)
+        }
+        val fragment = ItemDetailFragment().apply {
+            arguments = bundle
+        }
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }
