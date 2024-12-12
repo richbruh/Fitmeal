@@ -1,48 +1,54 @@
 package com.example.fitmeal
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 
-class ItemAdapter(private val itemList: List<Item>) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
+class ItemAdapter(private val itemList: List<Item>, private val fragmentContainerId: Int) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_view, parent, false)
-        return ItemViewHolder(view)
-    }
+    inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val itemName: TextView = itemView.findViewById(R.id.itemName)
+        val itemPrice: TextView = itemView.findViewById(R.id.itemPrice)
+        val itemStock: TextView = itemView.findViewById(R.id.itemStock)
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val item = itemList[position]
-
-        // Bind data ke view
-        holder.itemName.text = item.name
-        holder.itemPrice.text = "Rp ${item.price}"
-
-        // Load image dengan Glide
-        Glide.with(holder.itemView.context)
-            .load(item.imageUrl)
-            .placeholder(R.drawable.placeholder_image)
-            .into(holder.itemImage)
-
-        // Set listener untuk tombol Add to Cart (jika diperlukan)
-        holder.addToCartButton.setOnClickListener {
-            // Tambahkan logika untuk Add to Cart
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val item = itemList[position]
+                    val bundle = Bundle().apply {
+                        putString("name", item.name)
+                        putString("price", item.price.toString())
+                        putString("stock", item.stock.toString())
+                        putString("imageUrl", item.imageUrl)
+                    }
+                    val fragment = ItemDetailFragment().apply {
+                        arguments = bundle
+                    }
+                    (itemView.context as AppCompatActivity).supportFragmentManager.beginTransaction()
+                        .replace(fragmentContainerId, fragment)
+                        .addToBackStack(null)
+                        .commit()
+                }
+            }
         }
     }
 
-    override fun getItemCount(): Int = itemList.size
-
-    inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val itemImage: ImageView = itemView.findViewById(R.id.item_image)
-        val itemName: TextView = itemView.findViewById(R.id.item_name)
-        val itemPrice: TextView = itemView.findViewById(R.id.item_price)
-        val addToCartButton: Button = itemView.findViewById(R.id.add_to_cart_button)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.favorite_item, parent, false)
+        return ItemViewHolder(itemView)
     }
+
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+        val currentItem = itemList[position]
+        holder.itemName.text = currentItem.name
+        holder.itemPrice.text = currentItem.price.toString()
+        holder.itemStock.text = currentItem.stock.toString()
+    }
+
+    override fun getItemCount() = itemList.size
 }
-
-

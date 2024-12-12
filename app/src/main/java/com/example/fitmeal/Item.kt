@@ -5,5 +5,6 @@ data class Item(
     val imageUrl: String = "",
     val name: String = "",
     val price: Int = 0,
-    val quantity: Int = 0
+    val quantity: Int = 0,
+    val stock: Int = 0
 )
