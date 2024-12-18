@@ -1,5 +1,6 @@
 package com.example.fitmeal
 
+import Item
 import android.content.Intent
 import android.graphics.Rect
 import android.net.Uri
@@ -15,6 +16,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.util.UUID
+
+// Import the Item class
+import com.example.fitmeal.Item
 
 class AdminPanelActivity : AppCompatActivity() {
 
