@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
-
+import com.example.fitmeal.ItemDetailFragment
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var popularNowRecyclerView: RecyclerView
@@ -20,7 +20,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_activity)
 
-        // Inisialisasi BottomNavigationView
+        // Initialize BottomNavigationView
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNav.selectedItemId = R.id.navigation_shop
 
@@ -52,7 +52,7 @@ class HomeActivity : AppCompatActivity() {
 
         // Set layout managers
         popularNowRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        exclusiveOfferingRecyclerView.layoutManager = GridLayoutManager(this,2, LinearLayoutManager.VERTICAL, false)
+        exclusiveOfferingRecyclerView.layoutManager = GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false)
 
         // Load products from Firestore
         loadPopularNowItems()
@@ -61,13 +61,15 @@ class HomeActivity : AppCompatActivity() {
 
     private fun loadPopularNowItems() {
         db.collection("products")
-            .orderBy("price", com.google.firebase.firestore.Query.Direction.DESCENDING) // Bisa diganti sesuai kebutuhan
+            .orderBy("price", com.google.firebase.firestore.Query.Direction.DESCENDING)
             .limit(10)
             .get()
             .addOnSuccessListener { documents ->
                 val popularItems = documents.toObjects(Item::class.java)
                 if (popularItems.isNotEmpty()) {
-                    val adapter = ItemAdapter(popularItems)
+                    val adapter = ItemAdapter(popularItems) { item ->
+                        showItemDetailFragment(item)
+                    }
                     popularNowRecyclerView.adapter = adapter
                 } else {
                     Toast.makeText(this, "No popular items found", Toast.LENGTH_SHORT).show()
@@ -84,7 +86,9 @@ class HomeActivity : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 val exclusiveItems = documents.toObjects(Item::class.java)
                 if (exclusiveItems.isNotEmpty()) {
-                    val adapter = ItemAdapter(exclusiveItems)
+                    val adapter = ItemAdapter(exclusiveItems) { item ->
+                        showItemDetailFragment(item)
+                    }
                     exclusiveOfferingRecyclerView.adapter = adapter
                 } else {
                     Toast.makeText(this, "No exclusive offerings found", Toast.LENGTH_SHORT).show()
@@ -95,4 +99,19 @@ class HomeActivity : AppCompatActivity() {
             }
     }
 
+    private fun showItemDetailFragment(item: Item) {
+        val bundle = Bundle().apply {
+            putString("name", item.name)
+            putString("price", item.price.toString())
+            putString("stock", item.stock.toString())
+            putString("imageUrl", item.imageUrl)
+        }
+        val fragment = ItemDetailFragment().apply {
+            arguments = bundle
+        }
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
 }
