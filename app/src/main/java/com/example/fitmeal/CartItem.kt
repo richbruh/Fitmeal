@@ -1,9 +1,8 @@
 package com.example.fitmeal
 
-
 data class CartItem(
-    val name: String,
-    val price: Int,
-    var quantity: Int,
-    val imageResId: Int
+    val id: Int = 0,
+    val cart_id: Int = 0, // Foreign key to Cart
+    val item_id: Int = 0, // Foreign key to Item
+    val quantity: Int = 0
 )

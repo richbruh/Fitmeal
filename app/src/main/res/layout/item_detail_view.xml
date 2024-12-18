@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="600dp"
+    android:background="#F5F5F5"
+    android:orientation="vertical"
+    android:padding="30dp">
+
+    <ImageView
+        android:id="@+id/item_image"
+        android:layout_width="match_parent"
+        android:layout_height="397dp"
+        android:layout_weight="1"
+        android:background="@color/grey"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Item Name"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/item_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Rp 0"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/add_to_cart_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/FitMealGreen"
+        android:text="Add to Cart"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/back_to_home_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/FitMealGreen"
+        android:text="Back to Home"
+        android:textSize="16sp"
+        android:drawableStart="@drawable/ic_back"
+        android:paddingStart="16dp"
+        android:drawablePadding="8dp" />
+
+</LinearLayout>

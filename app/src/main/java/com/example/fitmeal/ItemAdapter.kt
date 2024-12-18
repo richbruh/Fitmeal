@@ -1,5 +1,6 @@
 package com.example.fitmeal
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,19 +20,31 @@ class ItemAdapter(private val itemList: List<Item>) : RecyclerView.Adapter<ItemA
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = itemList[position]
 
-        // Bind data ke view
+        // Bind data to view
         holder.itemName.text = item.name
         holder.itemPrice.text = "Rp ${item.price}"
 
-        // Load image dengan Glide
+        // Load image with Glide
         Glide.with(holder.itemView.context)
             .load(item.imageUrl)
             .placeholder(R.drawable.placeholder_image)
             .into(holder.itemImage)
 
-        // Set listener untuk tombol Add to Cart (jika diperlukan)
+        // Set listener for item click
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, ItemDetailActivity::class.java).apply {
+                putExtra("name", item.name)
+                putExtra("quantity", item.quantity)
+                putExtra("price", item.price)
+                putExtra("imageResId", item.imageUrl)
+            }
+            context.startActivity(intent)
+        }
+
+        // Set listener for Add to Cart button (if needed)
         holder.addToCartButton.setOnClickListener {
-            // Tambahkan logika untuk Add to Cart
+            // Add logic for Add to Cart
         }
     }
 
@@ -44,5 +57,3 @@ class ItemAdapter(private val itemList: List<Item>) : RecyclerView.Adapter<ItemA
         val addToCartButton: Button = itemView.findViewById(R.id.add_to_cart_button)
     }
 }
-
-
