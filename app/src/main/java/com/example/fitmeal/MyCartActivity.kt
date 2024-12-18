@@ -13,6 +13,84 @@ class MyCartActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMyCartBinding
     private lateinit var cartAdapter: CartAdapter
     private val cartItems = mutableListOf<CartItem>()
+    private val currentCartID = 1 // This should be dynamically set based on the logged-in user
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Inflate layout using View Binding
+        binding = ActivityMyCartBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Initialize BottomNavigationView after setContentView
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNav.selectedItemId = R.id.navigation_cart
+        BottomNavHelper.setupBottomNav(bottomNav, this)
+
+        // Initialize RecyclerView
+        cartAdapter = CartAdapter(cartItems, object : CartAdapter.OnCartItemListener {
+            override fun onIncreaseQuantity(item: CartItem) {
+                item.quantity++
+                cartAdapter.notifyDataSetChanged()
+            }
+
+            override fun onDecreaseQuantity(item: CartItem) {
+                if (item.quantity > 1) {
+                    item.quantity--
+                    cartAdapter.notifyDataSetChanged()
+                }
+            }
+
+            override fun onRemoveItem(item: CartItem) {
+                cartItems.remove(item)
+                cartAdapter.notifyDataSetChanged()
+            }
+        })
+
+        binding.recyclerViewCart.apply {
+            layoutManager = LinearLayoutManager(this@MyCartActivity)
+            adapter = cartAdapter
+        }
+
+        binding.btnCheckout.setOnClickListener {
+            Toast.makeText(this, "Proceed to checkout", Toast.LENGTH_SHORT).show()
+        }
+
+        val backButton = findViewById<ImageView>(R.id.btn_back)
+        backButton.setOnClickListener {
+            finish()
+        }
+    }
+
+    fun addItemToCart(itemID: Int) {
+        val existingItem = cartItems.find { it.itemID == itemID && it.cartID == currentCartID }
+        if (existingItem != null) {
+            existingItem.quantity++
+        } else {
+            cartItems.add(CartItem(currentCartID, itemID, 1))
+        }
+        cartAdapter.notifyDataSetChanged()
+    }
+}
+
+
+/*package com.example.fitmeal
+
+18 Desember 2024 - richbruh
+
+import android.os.Bundle
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.fitmeal.databinding.ActivityMyCartBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
+class MyCartActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMyCartBinding
+    private lateinit var cartAdapter: CartAdapter
+    private val cartItems = mutableListOf<CartItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,4 +149,4 @@ class MyCartActivity : AppCompatActivity() {
             finish()
         }
     }
-}
+}*/

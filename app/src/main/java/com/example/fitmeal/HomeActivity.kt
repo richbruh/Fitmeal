@@ -67,9 +67,11 @@ class HomeActivity : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 val popularItems = documents.toObjects(Item::class.java)
                 if (popularItems.isNotEmpty()) {
-                    val adapter = ItemAdapter(popularItems) { item ->
+                    val adapter = ItemAdapter(popularItems, { item ->
                         showItemDetailFragment(item)
-                    }
+                    }, { item ->
+                        // Handle add to cart click if needed
+                    })
                     popularNowRecyclerView.adapter = adapter
                 } else {
                     Toast.makeText(this, "No popular items found", Toast.LENGTH_SHORT).show()
@@ -86,9 +88,11 @@ class HomeActivity : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 val exclusiveItems = documents.toObjects(Item::class.java)
                 if (exclusiveItems.isNotEmpty()) {
-                    val adapter = ItemAdapter(exclusiveItems) { item ->
+                    val adapter = ItemAdapter(exclusiveItems, { item ->
                         showItemDetailFragment(item)
-                    }
+                    }, { item ->
+                        // Handle add to cart click if needed
+                    })
                     exclusiveOfferingRecyclerView.adapter = adapter
                 } else {
                     Toast.makeText(this, "No exclusive offerings found", Toast.LENGTH_SHORT).show()

@@ -11,7 +11,8 @@ import com.bumptech.glide.Glide
 
 class ItemAdapter(
     private val items: List<Item>,
-    private val onItemClicked: (Item) -> Unit
+    private val onItemClicked: (Item) -> Unit,
+    private val onAddToCartClicked: (Item) -> Unit
 ) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -19,6 +20,7 @@ class ItemAdapter(
         val itemPrice: TextView = itemView.findViewById(R.id.itemPrice)
         val itemStock: TextView = itemView.findViewById(R.id.itemStock)
         val itemImage: ImageView = itemView.findViewById(R.id.itemImage)
+        val addToCartButton: Button = itemView.findViewById(R.id.addToCartButton)
 
         fun bind(item: Item) {
             itemName.text = item.name
@@ -31,6 +33,10 @@ class ItemAdapter(
 
             itemView.setOnClickListener {
                 onItemClicked(item)
+            }
+
+            addToCartButton.setOnClickListener {
+                onAddToCartClicked(item)
             }
         }
     }

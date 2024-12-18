@@ -32,6 +32,14 @@
         android:textColor="@android:color/holo_red_dark"
         android:textSize="16sp" />
 
+    <TextView
+        android:id="@+id/item_stock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:paddingTop="4dp" />
+
+
     <Button
         android:id="@+id/add_to_cart_button"
         android:layout_width="match_parent"

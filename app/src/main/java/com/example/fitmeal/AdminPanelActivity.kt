@@ -19,8 +19,8 @@ import java.util.UUID
 class AdminPanelActivity : AppCompatActivity() {
 
     private lateinit var binding: AdminPanelBinding
-    private lateinit var adapter: AdminAdapter
-    private val stockList = mutableListOf<AdminStock>()
+    private lateinit var adapter: ItemAdapter
+    private val itemList = mutableListOf<Item>()
     private val db = FirebaseFirestore.getInstance()
     private val storage = FirebaseStorage.getInstance()
     private var selectedPosition: Int = -1 // Menyimpan posisi item untuk penggantian gambar
@@ -35,7 +35,11 @@ class AdminPanelActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Setup RecyclerView
-        adapter = AdminAdapter(stockList, this)
+        adapter = ItemAdapter(itemList, { item ->
+            // Handle item click
+        }, { item ->
+            // Handle add to cart click
+        })
         binding.recyclerViewProducts.layoutManager = LinearLayoutManager(this)
         binding.recyclerViewProducts.adapter = adapter
 
@@ -47,6 +51,23 @@ class AdminPanelActivity : AppCompatActivity() {
 
         // Setup button listeners
         setupButtonListeners()
+
+        // Load items from Firestore
+        loadItems()
+    }
+
+    private fun loadItems() {
+        db.collection("products")
+            .get()
+            .addOnSuccessListener { documents ->
+                val items = documents.toObjects(Item::class.java)
+                itemList.clear()
+                itemList.addAll(items)
+                adapter.notifyDataSetChanged()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Failed to load items: ${e.message}", Toast.LENGTH_LONG).show()
+            }
     }
 
     private fun verifyAuthentication() {
@@ -109,16 +130,35 @@ class AdminPanelActivity : AppCompatActivity() {
     }
 
     private fun addNewItem() {
-        val newProduct = AdminStock(
-            id = UUID.randomUUID().toString(),
-            name = "New Product",
-            details = "Details here",
-            price = 0.0,
-            productQuantity = 0,
-            imageRes = "https://via.placeholder.com/150" // Placeholder image
+        val newItem = Item(
+            itemID = UUID.randomUUID().hashCode(),
+            name = "",
+            details = "",
+            price = 0,
+            stock = 0,
+            imageUrl = ""
         )
-        stockList.add(newProduct)
-        adapter.notifyItemInserted(stockList.size - 1)
+        itemList.add(newItem)
+        adapter.notifyItemInserted(itemList.size - 1)
+    }
+
+    private fun updateItemsToFirestore() {
+        if (itemList.isEmpty()) {
+            Toast.makeText(this, "No products to update.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        for (item in itemList) {
+            db.collection("products").document(item.itemID.toString())
+                .set(item)
+                .addOnSuccessListener {
+                    Log.d("AdminPanelActivity", "Product ${item.name} updated in Firestore")
+                }
+                .addOnFailureListener { e ->
+                    Log.e("AdminPanelActivity", "Failed to update product: ${e.message}")
+                }
+        }
+        Toast.makeText(this, "Products updated successfully!", Toast.LENGTH_SHORT).show()
     }
 
     fun openGalleryForImage(position: Int) {
@@ -145,7 +185,7 @@ class AdminPanelActivity : AppCompatActivity() {
         storageRef.putFile(imageUri)
             .addOnSuccessListener {
                 storageRef.downloadUrl.addOnSuccessListener { uri ->
-                    stockList[position].imageRes = uri.toString() // Update gambar produk
+                    itemList[position].imageUrl = uri.toString() // Update gambar produk
                     adapter.notifyItemChanged(position)
                     Toast.makeText(this, "Image updated successfully!", Toast.LENGTH_SHORT).show()
                 }
@@ -156,48 +196,21 @@ class AdminPanelActivity : AppCompatActivity() {
             }
     }
 
-    private fun updateItemsToFirestore() {
-        if (stockList.isEmpty()) {
-            Toast.makeText(this, "No products to update.", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        for (item in stockList) {
-            db.collection("products").document(item.id)
-                .set(
-                    mapOf(
-                        "name" to item.name,
-                        "details" to item.details,
-                        "price" to item.price,
-                        "quantity" to item.productQuantity,
-                        "imageUrl" to item.imageRes
-                    )
-                )
-                .addOnSuccessListener {
-                    Log.d("AdminPanelActivity", "Product ${item.name} updated in Firestore")
-                }
-                .addOnFailureListener { e ->
-                    Log.e("AdminPanelActivity", "Failed to update product: ${e.message}")
-                }
-        }
-        Toast.makeText(this, "Products updated successfully!", Toast.LENGTH_SHORT).show()
-    }
-
     fun removeItem(position: Int) {
-        if (position < 0 || position >= stockList.size) {
+        if (position < 0 || position >= itemList.size) {
             Toast.makeText(this, "Invalid item position", Toast.LENGTH_SHORT).show()
             return
         }
 
-        val removedItem = stockList[position]
-        stockList.removeAt(position)
+        val removedItem = itemList[position]
+        itemList.removeAt(position)
         adapter.notifyItemRemoved(position)
 
-        db.collection("products").document(removedItem.id)
+        db.collection("products").document(removedItem.itemID.toString())
             .delete()
             .addOnSuccessListener {
                 Toast.makeText(this, "Product removed from Firestore", Toast.LENGTH_SHORT).show()
-                Log.d("AdminPanelActivity", "Product removed from Firestore: ${removedItem.id}")
+                Log.d("AdminPanelActivity", "Product removed from Firestore: ${removedItem.itemID}")
             }
             .addOnFailureListener { e ->
                 Log.e("AdminPanelActivity", "Failed to remove product: ${e.message}")

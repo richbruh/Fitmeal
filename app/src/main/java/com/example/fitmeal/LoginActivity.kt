@@ -2,7 +2,6 @@ package com.example.fitmeal
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -23,7 +22,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_page)
 
-        // Initialize Firebase Auth and Firestore
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
@@ -33,7 +31,6 @@ class LoginActivity : AppCompatActivity() {
         val createAccountButton = findViewById<Button>(R.id.createAccountButton)
         val adminButton = findViewById<Button>(R.id.AdminButton)
 
-        // Login as regular user
         loginButton.setOnClickListener {
             val email = emailInput.text.toString().trim()
             val password = passwordInput.text.toString().trim()
@@ -45,13 +42,11 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        // Create new account
         createAccountButton.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
 
-        // Login as admin
         adminButton.setOnClickListener {
             val email = emailInput.text.toString().trim()
             val password = passwordInput.text.toString().trim()

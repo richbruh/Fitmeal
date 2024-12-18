@@ -35,4 +35,12 @@
         android:layout_height="wrap_content"
         android:text="Item Stock"
         android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/addToCartButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:color="@color/FitMealGreen"
+        android:paddingTop="8dp"
+        android:text="Add to Cart" />
 </LinearLayout>
