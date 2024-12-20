@@ -16,6 +16,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.util.UUID
 
+/**
+ * Activity untuk mengelola produk dalam panel admin.
+ */
 class AdminPanelActivity : AppCompatActivity() {
 
     private lateinit var binding: AdminPanelBinding
@@ -56,6 +59,9 @@ class AdminPanelActivity : AppCompatActivity() {
         loadItems()
     }
 
+    /**
+     * Memuat item dari Firestore dan memperbarui RecyclerView.
+     */
     private fun loadItems() {
         db.collection("products")
             .get()
@@ -70,6 +76,9 @@ class AdminPanelActivity : AppCompatActivity() {
             }
     }
 
+    /**
+     * Memverifikasi autentikasi pengguna dan memastikan pengguna adalah admin.
+     */
     private fun verifyAuthentication() {
         val auth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser
@@ -104,6 +113,9 @@ class AdminPanelActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Menavigasi pengguna ke halaman login.
+     */
     private fun navigateToLogin() {
         val intent = Intent(this, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
@@ -111,6 +123,9 @@ class AdminPanelActivity : AppCompatActivity() {
         finish()
     }
 
+    /**
+     * Mengatur listener untuk tombol-tombol di layout.
+     */
     private fun setupButtonListeners() {
         binding.btnAddNewItem.setOnClickListener {
             addNewItem()
@@ -129,6 +144,9 @@ class AdminPanelActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Menambahkan item baru ke dalam daftar dan memperbarui RecyclerView.
+     */
     private fun addNewItem() {
         val newItem = Item(
             itemID = UUID.randomUUID().hashCode(),
@@ -142,6 +160,9 @@ class AdminPanelActivity : AppCompatActivity() {
         adapter.notifyItemInserted(itemList.size - 1)
     }
 
+    /**
+     * Memperbarui item-item di Firestore.
+     */
     private fun updateItemsToFirestore() {
         if (itemList.isEmpty()) {
             Toast.makeText(this, "No products to update.", Toast.LENGTH_SHORT).show()
@@ -161,6 +182,10 @@ class AdminPanelActivity : AppCompatActivity() {
         Toast.makeText(this, "Products updated successfully!", Toast.LENGTH_SHORT).show()
     }
 
+    /**
+     * Membuka galeri untuk memilih gambar.
+     * @param position Posisi item yang akan diperbarui gambarnya.
+     */
     fun openGalleryForImage(position: Int) {
         selectedPosition = position
         val intent = Intent(Intent.ACTION_PICK)
@@ -180,6 +205,11 @@ class AdminPanelActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Mengunggah gambar ke Firebase Storage dan memperbarui URL gambar item.
+     * @param imageUri URI gambar yang dipilih.
+     * @param position Posisi item yang akan diperbarui gambarnya.
+     */
     private fun uploadImageToStorage(imageUri: Uri, position: Int) {
         val storageRef = storage.reference.child("product_images/${UUID.randomUUID()}.jpg")
         storageRef.putFile(imageUri)
@@ -196,6 +226,10 @@ class AdminPanelActivity : AppCompatActivity() {
             }
     }
 
+    /**
+     * Menghapus item dari daftar dan Firestore.
+     * @param position Posisi item yang akan dihapus.
+     */
     fun removeItem(position: Int) {
         if (position < 0 || position >= itemList.size) {
             Toast.makeText(this, "Invalid item position", Toast.LENGTH_SHORT).show()
@@ -219,6 +253,10 @@ class AdminPanelActivity : AppCompatActivity() {
             }
     }
 
+    /**
+     * Kelas dekorasi item untuk RecyclerView.
+     * @param space Jarak antar item dalam piksel.
+     */
     class SpaceItemDecoration(private val space: Int) : RecyclerView.ItemDecoration() {
         override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
             outRect.top = space
