@@ -68,6 +68,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx:22.1.1")
     implementation("com.google.firebase:firebase-firestore-ktx:24.8.1")
     implementation("com.google.android.material:material:1.9.0")
+    implementation ("com.google.code.gson:gson:2.8.9")
 
 
 }

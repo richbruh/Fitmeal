@@ -1,6 +1,7 @@
 package com.example.fitmeal
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.gson.Gson
 
 class LoginActivity : AppCompatActivity() {
 
@@ -70,6 +72,14 @@ class LoginActivity : AppCompatActivity() {
                             .addOnSuccessListener { document ->
                                 if (document.exists()) {
                                     val role = document.getString("role")
+                                    val user = User(
+                                        user_id = userId.hashCode(),
+                                        username = document.getString("username") ?: "",
+                                        phone_number = document.getString("phone_number") ?: "",
+                                        email = email,
+                                        role = role ?: ""
+                                    )
+                                    saveUserToSharedPreferences(user)
                                     if (role == "admin") {
                                         val intent = Intent(this, AdminPanelActivity::class.java)
                                         startActivity(intent)
@@ -105,6 +115,14 @@ class LoginActivity : AppCompatActivity() {
                             .addOnSuccessListener { document ->
                                 if (document.exists()) {
                                     val role = document.getString("role")
+                                    val user = User(
+                                        user_id = userId.hashCode(),
+                                        username = document.getString("username") ?: "",
+                                        phone_number = document.getString("phone_number") ?: "",
+                                        email = email,
+                                        role = role ?: ""
+                                    )
+                                    saveUserToSharedPreferences(user)
                                     if (role == "admin") {
                                         val intent = Intent(this, AdminPanelActivity::class.java)
                                         startActivity(intent)
@@ -126,5 +144,15 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    private fun saveUserToSharedPreferences(user: User) {
+        val sharedPreferences: SharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+        val gson = Gson()
+        val userJson = gson.toJson(user)
+        editor.putString("user", userJson)
+        editor.putBoolean("is_logged_in", true)
+        editor.apply()
     }
 }

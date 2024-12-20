@@ -16,9 +16,14 @@ class SplashActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             val sharedPreferences: SharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
             val isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false)
+            val userRole = sharedPreferences.getString("user_role", "")
 
             val intent = if (isLoggedIn) {
-                Intent(this, MainActivity::class.java)
+                when (userRole) {
+                    "admin" -> Intent(this, AdminPanelActivity::class.java)
+                    "user" -> Intent(this, HomeActivity::class.java)
+                    else -> Intent(this, LoginActivity::class.java)
+                }
             } else {
                 Intent(this, OnboardingActivity::class.java)
             }
