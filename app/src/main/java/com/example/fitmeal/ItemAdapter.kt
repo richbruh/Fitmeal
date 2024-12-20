@@ -21,12 +21,14 @@ class ItemAdapter(
         val itemPrice: TextView = itemView.findViewById(R.id.itemPrice)
         val itemStock: TextView = itemView.findViewById(R.id.itemStock)
         val itemImage: ImageView = itemView.findViewById(R.id.itemImage)
+        val itemCategory: TextView = itemView.findViewById(R.id.itemCategory)
         val addToCartButton: Button = itemView.findViewById(R.id.addToCartButton)
 
         fun bind(item: Item) {
             itemName.text = item.name
             itemPrice.text = "Rp${item.price}"
             itemStock.text = item.stock.toString()
+            itemCategory.text = item.category.name
             Glide.with(itemView.context)
                 .load(item.imageUrl)
                 .placeholder(R.drawable.placeholder_image)

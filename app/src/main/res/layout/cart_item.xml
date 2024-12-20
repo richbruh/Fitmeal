@@ -40,6 +40,14 @@
             android:text="1pcs, Price"
             android:textSize="14sp"
             android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/tvCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Category"
+            android:textSize="8sp"
+            android:layout_marginTop="6dp"/>
     </LinearLayout>
 
     <!-- Quantity and Price Layout -->

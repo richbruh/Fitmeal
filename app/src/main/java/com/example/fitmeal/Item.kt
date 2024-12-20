@@ -7,8 +7,8 @@ data class Item(
     var price: Int = 0,
     var stock: Int = 0,
     var imageUrl: String = "",
-    var category: CharCategory = CharCategory.OTHER
+    var category: CharCategory = CharCategory.UNCATEGORIZED
 ) {
     // No-argument constructor for Firestore
-    constructor() : this(0, "", "", 0, 0, "", CharCategory.OTHER)
+    constructor() : this(0, "", "", 0, 0, "", CharCategory.UNCATEGORIZED)
 }

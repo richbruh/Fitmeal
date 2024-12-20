@@ -30,6 +30,7 @@ class CartAdapter(
             holder.binding.tvProductName.text = item.name
             holder.binding.tvProductPrice.text = "Rp${item.price}"
             holder.binding.tvQuantity.text = cartItem.quantity.toString()
+            holder.binding.tvCategory.text = item.category.name
             // Load image using Glide or any other library
             // Glide.with(holder.binding.itemImage.context).load(item.imageUrl).into(holder.binding.itemImage)
         }
