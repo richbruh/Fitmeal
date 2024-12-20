@@ -2,12 +2,13 @@ package com.example.fitmeal
 
 data class Item(
     val itemID: Int = 0,
-    val name: String = "",
-    val details: String = "",
-    val price: Int = 0,
-    val stock: Int = 0,
-    var imageUrl: String = ""
+    var name: String = "",
+    var details: String = "",
+    var price: Int = 0,
+    var stock: Int = 0,
+    var imageUrl: String = "",
+    var category: CharCategory = CharCategory.OTHER
 ) {
     // No-argument constructor for Firestore
-    constructor() : this(0, "", "", 0, 0, "")
+    constructor() : this(0, "", "", 0, 0, "", CharCategory.OTHER)
 }

@@ -3,31 +3,44 @@ package com.example.fitmeal
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 class AdminItemAdapter(
     private val items: List<Item>,
-    private val onItemClicked: (Item) -> Unit
+    private val onUploadImageClicked: (Int) -> Unit,
+    private val onSubmitProductClicked: (Item) -> Unit
 ) : RecyclerView.Adapter<AdminItemAdapter.AdminItemViewHolder>() {
 
     inner class AdminItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val itemName: TextView = itemView.findViewById(R.id.itemName)
-        val itemPrice: TextView = itemView.findViewById(R.id.itemPrice)
-        val itemImage: ImageView = itemView.findViewById(R.id.itemImage)
+        val productImage: ImageView = itemView.findViewById(R.id.productImage)
+        val btnUploadImage: Button = itemView.findViewById(R.id.btnUploadImage)
+        val productName: EditText = itemView.findViewById(R.id.productName)
+        val productStock: EditText = itemView.findViewById(R.id.productStock)
+        val productPrice: EditText = itemView.findViewById(R.id.productPrice)
+        val btnSubmitProduct: Button = itemView.findViewById(R.id.btnSubmitProduct)
 
         fun bind(item: Item) {
-            itemName.text = item.name
-            itemPrice.text = "Rp${item.price}"
+            productName.setText(item.name)
+            productStock.setText(item.stock.toString())
+            productPrice.setText(item.price.toString())
             Glide.with(itemView.context)
                 .load(item.imageUrl)
                 .placeholder(R.drawable.placeholder_image)
-                .into(itemImage)
+                .into(productImage)
 
-            itemView.setOnClickListener {
-                onItemClicked(item)
+            btnUploadImage.setOnClickListener {
+                onUploadImageClicked(adapterPosition)
+            }
+
+            btnSubmitProduct.setOnClickListener {
+                item.name = productName.text.toString()
+                item.stock = productStock.text.toString().toInt()
+                item.price = productPrice.text.toString().toInt()
+                onSubmitProductClicked(item)
             }
         }
     }

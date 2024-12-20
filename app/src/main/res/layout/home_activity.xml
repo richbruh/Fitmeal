@@ -27,14 +27,16 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="5">
 
             <!-- Example: Snacks -->
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:padding="8dp">
 
@@ -53,8 +55,30 @@
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/fruits" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fruits"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:padding="8dp">
 
@@ -73,8 +97,9 @@
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:padding="8dp">
 
@@ -93,8 +118,9 @@
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:padding="8dp">
 
@@ -110,28 +136,8 @@
                     android:textSize="14sp"
                     android:layout_marginTop="4dp" />
             </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="8dp">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/chips_icon" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Snacks"
-                    android:textSize="14sp"
-                    android:layout_marginTop="4dp" />
-            </LinearLayout>
-            <!-- Repeat similar blocks for Breakfast, Lunch, Dinner -->
         </LinearLayout>
+            <!-- Repeat similar blocks for Breakfast, Lunch, Dinner -->
     </HorizontalScrollView>
 
     <!-- Popular Now Section -->

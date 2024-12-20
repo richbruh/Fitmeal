@@ -68,7 +68,13 @@ class HomeActivity : AppCompatActivity() {
                 val popularItems = documents.toObjects(Item::class.java)
                 if (popularItems.isNotEmpty()) {
                     val adapter = ItemAdapter(popularItems, { item ->
-                        showItemDetailFragment(item)
+                        val intent = Intent(this, ItemDetailActivity::class.java).apply {
+                            putExtra("name", item.name)
+                            putExtra("price", item.price.toString())
+                            putExtra("stock", item.stock.toString())
+                            putExtra("imageUrl", item.imageUrl)
+                        }
+                        startActivity(intent)
                     }, { item ->
                         // Handle add to cart click if needed
                     })
@@ -89,7 +95,13 @@ class HomeActivity : AppCompatActivity() {
                 val exclusiveItems = documents.toObjects(Item::class.java)
                 if (exclusiveItems.isNotEmpty()) {
                     val adapter = ItemAdapter(exclusiveItems, { item ->
-                        showItemDetailFragment(item)
+                        val intent = Intent(this, ItemDetailActivity::class.java).apply {
+                            putExtra("name", item.name)
+                            putExtra("price", item.price.toString())
+                            putExtra("stock", item.stock.toString())
+                            putExtra("imageUrl", item.imageUrl)
+                        }
+                        startActivity(intent)
                     }, { item ->
                         // Handle add to cart click if needed
                     })
