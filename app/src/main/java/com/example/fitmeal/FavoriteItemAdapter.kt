@@ -1,59 +1,42 @@
 package com.example.fitmeal
 
 import android.content.Context
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 class FavoriteItemAdapter(
     private val context: Context,
-    private var items: MutableList<FavoriteItem>
-) : BaseAdapter() {
+    private val items: List<Favorite>
+) : RecyclerView.Adapter<FavoriteItemAdapter.ViewHolder>() {
 
-    override fun getCount(): Int = items.size
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val itemName: TextView = itemView.findViewById(R.id.itemName)
+        val itemPrice: TextView = itemView.findViewById(R.id.itemPrice)
+        val itemImage: ImageView = itemView.findViewById(R.id.itemImage)
 
-    override fun getItem(position: Int): Any = items[position]
-
-    override fun getItemId(position: Int): Long = position.toLong()
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.favorite_item, parent, false)
-
-        val item = items[position]
-
-        // Bind data to view
-        val itemImage = view.findViewById<ImageView>(R.id.itemImage)
-        val itemName = view.findViewById<TextView>(R.id.itemName)
-        val itemQuantity = view.findViewById<TextView>(R.id.itemStock)
-        val itemPrice = view.findViewById<TextView>(R.id.itemPrice)
-
-        itemImage.setImageResource(item.imageResId)
-        itemName.text = item.name
-        itemQuantity.text = item.quantity
-        itemPrice.text = "${item.price}"
-
-        // Set OnClickListener for item
-        view.setOnClickListener {
-            val activity = context as FragmentActivity
-            val fragment = ItemDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString("name", item.name)
-                    putString("quantity", item.quantity)
-                    putInt("price", item.price)
-                    putInt("imageResId", item.imageResId)
-                }
-            }
-            activity.supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .addToBackStack(null)
-                .commit()
+        fun bind(item: Favorite) {
+            itemName.text = item.name
+            itemPrice.text = "Rp${item.price}"
+            Glide.with(context)
+                .load(item.imageUrl)
+                .placeholder(R.drawable.placeholder_image)
+                .into(itemImage)
         }
-
-        return view
     }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.favorite_item, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(items[position])
+    }
+
+    override fun getItemCount(): Int = items.size
 }

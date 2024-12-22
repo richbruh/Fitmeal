@@ -5,10 +5,14 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.firebase.firestore.FirebaseFirestore
 
 class ItemDetailActivity : AppCompatActivity() {
+
+    private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +36,27 @@ class ItemDetailActivity : AppCompatActivity() {
         backToHomeButton.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
+        }
+
+        val addToFavoritesButton = findViewById<Button>(R.id.add_to_favorites_button)
+        addToFavoritesButton.setOnClickListener {
+            addToFavorites(itemName, itemPrice, itemStock, itemImageUrl)
+        }
+    }
+
+    private fun addToFavorites(name: String?, price: String?, stock: String?, imageUrl: String?) {
+        if (name != null && price != null && stock != null && imageUrl != null) {
+            val favoriteItem = FavoriteItem(name, stock, price.toInt(), imageUrl.hashCode())
+            db.collection("favorites")
+                .add(favoriteItem)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Added to favorites", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Failed to add to favorites: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+        } else {
+            Toast.makeText(this, "Invalid item details", Toast.LENGTH_SHORT).show()
         }
     }
 }
