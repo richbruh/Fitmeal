@@ -94,7 +94,7 @@ class HomeActivity : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 val exclusiveItems = documents.toObjects(Item::class.java)
                 if (exclusiveItems.isNotEmpty()) {
-                    val adapter = ItemAdapter(exclusiveItems, { item ->
+                    val adapter = ExclusiveOfferingAdapter(this, exclusiveItems, { item ->
                         val intent = Intent(this, ItemDetailActivity::class.java).apply {
                             putExtra("name", item.name)
                             putExtra("price", item.price.toString())
