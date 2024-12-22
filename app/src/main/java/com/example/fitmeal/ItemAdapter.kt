@@ -46,6 +46,8 @@ class ItemAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_adapter, parent, false)
+        val layoutParams = view.layoutParams
+        layoutParams.width = parent.width / 2
         return ItemViewHolder(view)
     }
 
