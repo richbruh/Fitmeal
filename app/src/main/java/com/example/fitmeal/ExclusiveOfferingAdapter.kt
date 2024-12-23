@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 
 class ExclusiveOfferingAdapter(
     private val context: Context,
-    private val items: List<Item>,
+    private var items: List<Item>,
     private val onItemClicked: (Item) -> Unit,
     private val onAddToCartClicked: (Item) -> Unit
 ) : RecyclerView.Adapter<ExclusiveOfferingAdapter.ItemViewHolder>() {
@@ -26,7 +26,7 @@ class ExclusiveOfferingAdapter(
         fun bind(item: Item) {
             itemName.text = item.name
             itemPrice.text = "Rp${item.price}"
-            itemStock.text = item.stock.toString()
+            itemStock.text = "Stock: ${item.stock}"
             Glide.with(itemView.context)
                 .load(item.imageUrl)
                 .placeholder(R.drawable.placeholder_image)
@@ -52,4 +52,9 @@ class ExclusiveOfferingAdapter(
     }
 
     override fun getItemCount(): Int = items.size
+
+    fun updateItems(newItems: List<Item>) {
+        items = newItems
+        notifyDataSetChanged()
+    }
 }
