@@ -14,17 +14,19 @@ import com.bumptech.glide.Glide
 class AdminItemAdapter(
     private val items: List<Item>,
     private val onUploadImageClicked: (Int) -> Unit,
-    private val onSubmitProductClicked: (Item) -> Unit
+    private val onSubmitProductClicked: (Item) -> Unit,
+    private val onDeleteProductClicked: (Int) -> Unit
 ) : RecyclerView.Adapter<AdminItemAdapter.AdminItemViewHolder>() {
 
     inner class AdminItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val productImage: ImageView = itemView.findViewById(R.id.productImage)
-        val btnUploadImage: Button = itemView.findViewById(R.id.btnUploadImage)
-        val productName: EditText = itemView.findViewById(R.id.productName)
-        val productStock: EditText = itemView.findViewById(R.id.productStock)
-        val productPrice: EditText = itemView.findViewById(R.id.productPrice)
-        val spinnerCategory: Spinner = itemView.findViewById(R.id.spinnerCategory)
-        val btnSubmitProduct: Button = itemView.findViewById(R.id.btnSubmitProduct)
+        private val productImage: ImageView = itemView.findViewById(R.id.productImage)
+        private val btnUploadImage: Button = itemView.findViewById(R.id.btnUploadImage)
+        private val productName: EditText = itemView.findViewById(R.id.productName)
+        private val productStock: EditText = itemView.findViewById(R.id.productStock)
+        private val productPrice: EditText = itemView.findViewById(R.id.productPrice)
+        private val spinnerCategory: Spinner = itemView.findViewById(R.id.spinnerCategory)
+        private val btnSubmitProduct: Button = itemView.findViewById(R.id.btnSubmitProduct)
+        private val btnDeleteProduct: Button = itemView.findViewById(R.id.btnDeleteProduct)
 
         fun bind(item: Item) {
             productName.setText(item.name)
@@ -32,8 +34,10 @@ class AdminItemAdapter(
             productPrice.setText(item.price.toString())
 
             // Populate Spinner with CharCategory values
-            val categories = listOf("Uncategorized", "Food", "Drink", "Snack", "Vegetables", "Fruits")
-            val adapter = ArrayAdapter(itemView.context, android.R.layout.simple_spinner_item, categories)
+            val categories =
+                listOf("Uncategorized", "Food", "Drink", "Snack", "Vegetables", "Fruits")
+            val adapter =
+                ArrayAdapter(itemView.context, android.R.layout.simple_spinner_item, categories)
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerCategory.adapter = adapter
 
@@ -45,7 +49,6 @@ class AdminItemAdapter(
                 CharCategory.SNACK -> 3
                 CharCategory.VEGETABLES -> 4
                 CharCategory.FRUITS -> 5
-                else -> 0
             }
             spinnerCategory.setSelection(categoryPosition)
 
@@ -60,8 +63,9 @@ class AdminItemAdapter(
 
             btnSubmitProduct.setOnClickListener {
                 item.name = productName.text.toString()
-                item.stock = productStock.text.toString().toInt()
-                item.price = productPrice.text.toString().toInt()
+                item.stock = productStock.text.toString().toIntOrNull() ?: 0
+                item.price = productPrice.text.toString().toIntOrNull() ?: 0 // Ensure it's an Int
+
                 val selectedCategory = spinnerCategory.selectedItem.toString()
                 item.category = when (selectedCategory) {
                     "Uncategorized" -> CharCategory.UNCATEGORIZED
@@ -73,6 +77,9 @@ class AdminItemAdapter(
                     else -> CharCategory.UNCATEGORIZED
                 }
                 onSubmitProductClicked(item)
+            }
+            btnDeleteProduct.setOnClickListener {
+                onDeleteProductClicked(adapterPosition)
             }
         }
     }
