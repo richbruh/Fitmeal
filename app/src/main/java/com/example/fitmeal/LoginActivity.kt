@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
         val passwordInput = findViewById<EditText>(R.id.passwordInput)
         val loginButton = findViewById<Button>(R.id.loginButton)
         val createAccountButton = findViewById<Button>(R.id.createAccountButton)
-        val adminButton = findViewById<Button>(R.id.AdminButton)
+
 
         loginButton.setOnClickListener {
             val email = emailInput.text.toString().trim()
@@ -49,16 +49,6 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        adminButton.setOnClickListener {
-            val email = emailInput.text.toString().trim()
-            val password = passwordInput.text.toString().trim()
-
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                loginAdmin(email, password)
-            } else {
-                Toast.makeText(this, "Please enter admin email and password", Toast.LENGTH_SHORT).show()
-            }
-        }
     }
 
     private fun loginUser(email: String, password: String) {
