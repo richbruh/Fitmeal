@@ -10,9 +10,9 @@
         android:fillViewport="true">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <!-- Search Bar -->
             <EditText
@@ -20,34 +20,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:hint="Search"
-                android:padding="12dp"
                 android:background="@drawable/search_bar_background"
                 android:drawableStart="@drawable/ic_search"
-                android:inputType="text" />
+                android:hint="Search"
+                android:inputType="text"
+                android:padding="12dp" />
 
             <!-- Todays Meal Section -->
             <HorizontalScrollView
                 android:id="@+id/todays_meal_scrollview"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/et_search"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp">
 
                 <LinearLayout
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:weightSum="5">
 
-                    <!-- Example: Snacks -->
+                    <!-- Food -->
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:orientation="vertical"
                         android:padding="8dp">
 
                         <ImageView
@@ -58,17 +61,20 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
                             android:text="Food"
-                            android:textSize="14sp"
-                            android:layout_marginTop="4dp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
 
+                    <!-- Drinks -->
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:orientation="vertical"
                         android:padding="8dp">
 
                         <ImageView
@@ -79,17 +85,20 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
                             android:text="Drinks"
-                            android:textSize="14sp"
-                            android:layout_marginTop="4dp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
 
+                    <!-- Snacks -->
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:orientation="vertical"
                         android:padding="8dp">
 
                         <ImageView
@@ -100,17 +109,20 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
                             android:text="Snacks"
-                            android:textSize="14sp"
-                            android:layout_marginTop="4dp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
 
+                    <!-- Fruits -->
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:orientation="vertical"
                         android:padding="8dp">
 
                         <ImageView
@@ -121,17 +133,19 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
                             android:text="Fruits"
-                            android:textSize="14sp"
-                            android:layout_marginTop="4dp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
 
+                    <!-- Veggie -->
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:orientation="vertical"
                         android:padding="8dp">
 
                         <ImageView
@@ -142,20 +156,19 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
                             android:text="Veggie"
-                            android:textSize="14sp"
-                            android:layout_marginTop="4dp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
-
             <!-- Popular Now Section -->
             <TextView
                 android:id="@+id/tv_popular_now"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:text="Popular now"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -165,18 +178,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:orientation="horizontal"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                app:layoutManager="LinearLayoutManager"
-                android:orientation="horizontal" />
+                app:layoutManager="LinearLayoutManager" />
 
             <!-- Exclusive Offering Section -->
             <TextView
                 android:id="@+id/tv_exclusive_offering"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:text="Exclusive Offering"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -202,7 +215,6 @@
     </androidx.core.widget.NestedScrollView>
 
     <!-- Bottom Navigation -->
-    <include
-        layout="@layout/bottom_navigation" />
+    <include layout="@layout/bottom_navigation" />
 
 </RelativeLayout>
