@@ -3,7 +3,6 @@ package com.example.fitmeal
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.fitmeal.databinding.CartItemBinding
 
 class CartAdapter(
@@ -29,13 +28,11 @@ class CartAdapter(
 
         if (item != null) {
             holder.binding.tvProductName.text = item.name
-            holder.binding.tvProductPrice.text = item.price.toRupiahFormat()
+            holder.binding.tvProductPrice.text = "Rp ${item.price}"
             holder.binding.tvQuantity.text = cartItem.quantity.toString()
             holder.binding.tvCategory.text = item.category.name
-            Glide.with(holder.binding.imgProduct.context)
-                .load(item.imageUrl)
-                .placeholder(R.drawable.placeholder_image)
-                .into(holder.binding.imgProduct)
+            // Load image using Glide or any other library
+            // Glide.with(holder.binding.itemImage.context).load(item.imageUrl).into(holder.binding.itemImage)
         }
 
         holder.binding.btnIncrease.setOnClickListener {
@@ -52,10 +49,6 @@ class CartAdapter(
     }
 
     override fun getItemCount(): Int = cartItems.size
-
-    fun Int.toRupiahFormat(): String {
-        return "Rp %,d".format(this).replace(',', '.')
-    }
 
     class CartViewHolder(val binding: CartItemBinding) : RecyclerView.ViewHolder(binding.root)
 }

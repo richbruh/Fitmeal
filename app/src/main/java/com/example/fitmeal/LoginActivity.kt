@@ -56,7 +56,8 @@ class LoginActivity : AppCompatActivity() {
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 loginAdmin(email, password)
             } else {
-                Toast.makeText(this, "Please enter admin email and password", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please enter admin email and password", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
@@ -65,7 +66,8 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val userId = auth.currentUser?.uid
+                    val userId = FirebaseAuth.getInstance().currentUser?.uid
+                    println("Current userId: $userId") // Log UID pengguna
                     if (userId != null) {
                         firestore.collection("users").document(userId)
                             .get()
@@ -73,13 +75,16 @@ class LoginActivity : AppCompatActivity() {
                                 if (document.exists()) {
                                     val role = document.getString("role")
                                     val user = User(
-                                        user_id = userId.hashCode(),
+                                        user_id = userId, // Benar: Menggunakan UID asli Firebase
                                         username = document.getString("username") ?: "",
                                         phone_number = document.getString("phone_number") ?: "",
                                         email = email,
                                         role = role ?: ""
                                     )
-                                    saveUserToSharedPreferences(user)
+                                    saveUserToSharedPreferences(
+                                        user,
+                                        userId
+                                    ) // Kirim UID sebagai parameter
                                     if (role == "admin") {
                                         val intent = Intent(this, AdminPanelActivity::class.java)
                                         startActivity(intent)
@@ -89,17 +94,27 @@ class LoginActivity : AppCompatActivity() {
                                     }
                                     finish()
                                 } else {
-                                    Toast.makeText(this, "User role not found", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, "User role not found", Toast.LENGTH_SHORT)
+                                        .show()
                                 }
                             }
                             .addOnFailureListener {
-                                Toast.makeText(this, "Failed to fetch user role", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this,
+                                    "Failed to fetch user role",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                     } else {
-                        Toast.makeText(this, "Login failed: User not found", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Login failed: User not found", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 } else {
-                    Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "Login failed: ${task.exception?.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
     }
@@ -108,7 +123,8 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val userId = auth.currentUser?.uid
+                    val userId = FirebaseAuth.getInstance().currentUser?.uid
+                    println("Current userId: $userId") // Log UID pengguna
                     if (userId != null) {
                         firestore.collection("users").document(userId)
                             .get()
@@ -116,42 +132,60 @@ class LoginActivity : AppCompatActivity() {
                                 if (document.exists()) {
                                     val role = document.getString("role")
                                     val user = User(
-                                        user_id = userId.hashCode(),
+                                        user_id = userId, // Benar: Menggunakan UID asli Firebase
                                         username = document.getString("username") ?: "",
                                         phone_number = document.getString("phone_number") ?: "",
                                         email = email,
                                         role = role ?: ""
                                     )
-                                    saveUserToSharedPreferences(user)
+                                    saveUserToSharedPreferences(
+                                        user,
+                                        userId
+                                    ) // Kirim UID sebagai parameter
                                     if (role == "admin") {
                                         val intent = Intent(this, AdminPanelActivity::class.java)
                                         startActivity(intent)
                                         finish()
                                     } else {
-                                        Toast.makeText(this, "Access denied: Admin only.", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(
+                                            this,
+                                            "Access denied: Admin only.",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
                                     }
                                 } else {
-                                    Toast.makeText(this, "User role not found", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, "User role not found", Toast.LENGTH_SHORT)
+                                        .show()
                                 }
                             }
                             .addOnFailureListener {
-                                Toast.makeText(this, "Failed to fetch user role", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this,
+                                    "Failed to fetch user role",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                     } else {
-                        Toast.makeText(this, "Login failed: User not found", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Login failed: User not found", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 } else {
-                    Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "Login failed: ${task.exception?.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
     }
 
-    private fun saveUserToSharedPreferences(user: User) {
+    private fun saveUserToSharedPreferences(user: User, userId: String) {
         val sharedPreferences: SharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
         val gson = Gson()
         val userJson = gson.toJson(user)
         editor.putString("user", userJson)
+        editor.putString("user_id", userId) // Simpan UID asli
         editor.putBoolean("is_logged_in", true)
         editor.apply()
     }

@@ -10,13 +10,5 @@ data class Item(
     var category: CharCategory = CharCategory.UNCATEGORIZED
 ) {
     // No-argument constructor for Firestore
-    constructor() : this(
-        itemID = 0,
-        name = "",
-        details = "",
-        price = 0,
-        stock = 0,
-        imageUrl = "",
-        category = CharCategory.UNCATEGORIZED
-    )
+    constructor() : this(0, "", "", 0, 0, "", CharCategory.UNCATEGORIZED)
 }

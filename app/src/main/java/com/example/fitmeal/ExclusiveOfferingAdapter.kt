@@ -17,33 +17,29 @@ class ExclusiveOfferingAdapter(
 ) : RecyclerView.Adapter<ExclusiveOfferingAdapter.ItemViewHolder>() {
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val itemName: TextView = itemView.findViewById(R.id.itemName)
-        val itemPrice: TextView = itemView.findViewById(R.id.itemPrice)
-        val itemStock: TextView = itemView.findViewById(R.id.itemStock)
-        val itemImage: ImageView = itemView.findViewById(R.id.itemImage)
-        val addToCartButton: View = itemView.findViewById(R.id.addToCartButton)
+        private val itemName: TextView = itemView.findViewById(R.id.itemName)
+        private val itemPrice: TextView = itemView.findViewById(R.id.itemPrice)
+        private val itemStock: TextView = itemView.findViewById(R.id.itemStock)
+        private val itemImage: ImageView = itemView.findViewById(R.id.itemImage)
+        private val addToCartButton: View = itemView.findViewById(R.id.addToCartButton)
 
         fun bind(item: Item) {
             itemName.text = item.name
-            itemPrice.text = "Rp${item.price}"
+            itemPrice.text = item.price.toRupiahFormat()
             itemStock.text = item.stock.toString()
-            Glide.with(itemView.context)
+            Glide.with(context)
                 .load(item.imageUrl)
                 .placeholder(R.drawable.placeholder_image)
                 .into(itemImage)
 
-            itemView.setOnClickListener {
-                onItemClicked(item)
-            }
-
-            addToCartButton.setOnClickListener {
-                onAddToCartClicked(item)
-            }
+            itemView.setOnClickListener { onItemClicked(item) }
+            addToCartButton.setOnClickListener { onAddToCartClicked(item) }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.exclusive_offering_adapter, parent, false)
+        val view = LayoutInflater.from(context)
+            .inflate(R.layout.exclusive_offering_adapter, parent, false)
         return ItemViewHolder(view)
     }
 
@@ -52,4 +48,9 @@ class ExclusiveOfferingAdapter(
     }
 
     override fun getItemCount(): Int = items.size
+
+    fun Int.toRupiahFormat(): String {
+        return "Rp %,d".format(this).replace(',', '.')
+    }
+
 }

@@ -1,7 +1,6 @@
 package com.example.fitmeal
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -45,12 +44,6 @@ class ProfileActivity : AppCompatActivity() {
         // Tombol Logout
         val btnLogout = findViewById<Button>(R.id.btn_logout)
         btnLogout.setOnClickListener {
-            val sharedPreferences: SharedPreferences =
-                getSharedPreferences("user_prefs", MODE_PRIVATE)
-            val editor: SharedPreferences.Editor = sharedPreferences.edit()
-            editor.clear() // Hapus semua data
-            editor.apply()
-
             auth.signOut() // Logout dari Firebase
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)

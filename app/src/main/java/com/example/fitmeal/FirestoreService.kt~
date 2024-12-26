@@ -21,20 +21,21 @@ class FirestoreService {
             .addOnFailureListener { e -> onFailure(e) }
     }
 
-    fun addOrUpdateCart(cart: Cart, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+    fun addCart(cart: Cart, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         val cartRef = db.collection("carts").document(cart.cartID)
-        cartRef.set(cart, SetOptions.merge())
+        cartRef.set(cart)
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { e -> onFailure(e) }
     }
 
+    // Retrieve cart by user ID
     fun getCartByUserId(
         userId: String,
         onSuccess: (Cart?) -> Unit,
         onFailure: (Exception) -> Unit
     ) {
         db.collection("carts")
-            .whereEqualTo("user_id", userId)
+            .whereEqualTo("user_Id", userId)
             .get()
             .addOnSuccessListener { snapshot ->
                 val cart = snapshot.documents.firstOrNull()?.toObject(Cart::class.java)
