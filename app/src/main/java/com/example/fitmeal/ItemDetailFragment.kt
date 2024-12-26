@@ -28,9 +28,13 @@ class ItemDetailFragment : Fragment() {
 
         itemNameTextView.text = itemName
         itemQuantityTextView.text = itemQuantity
-        itemPriceTextView.text = "Rp$itemPrice"
+        itemPriceTextView.text = itemPrice?.toRupiahFormat()
         itemImageView.setImageResource(imageResId ?: 0)
 
         return view
+    }
+
+    fun Int.toRupiahFormat(): String {
+        return "Rp %,d".format(this).replace(',', '.')
     }
 }

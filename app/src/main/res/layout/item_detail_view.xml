@@ -12,7 +12,7 @@
         android:layout_height="397dp"
         android:layout_weight="1"
         android:background="@color/grey"
-        android:scaleType="centerCrop" />
+        android:scaleType="center" />
 
     <TextView
         android:id="@+id/item_name"
@@ -20,45 +20,41 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Item Name"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/item_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="Rp 0"
         android:textColor="@android:color/holo_red_dark"
-        android:textSize="16sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/item_stock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:paddingTop="4dp" />
-
+        android:text="10"
+        android:textSize="15sp" />
 
     <Button
         android:id="@+id/add_to_cart_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="14dp"
         android:backgroundTint="@color/FitMealGreen"
         android:text="Add to Cart"
-        android:textSize="16sp" />
+        android:textSize="15sp" />
 
     <Button
         android:id="@+id/back_to_home_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:backgroundTint="@color/FitMealGreen"
-        android:text="Back to Home"
-        android:textSize="16sp"
         android:drawableStart="@drawable/ic_back"
-        android:paddingStart="16dp"
-        android:drawablePadding="8dp" />
-
+        android:drawablePadding="8dp"
+        android:text="Back to Home"
+        android:textSize="16sp" />
 </LinearLayout>

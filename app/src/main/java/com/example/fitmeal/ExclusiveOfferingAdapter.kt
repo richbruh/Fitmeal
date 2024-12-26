@@ -21,17 +21,18 @@ class ExclusiveOfferingAdapter(
         private val itemPrice: TextView = itemView.findViewById(R.id.itemPrice)
         private val itemStock: TextView = itemView.findViewById(R.id.itemStock)
         private val itemImage: ImageView = itemView.findViewById(R.id.itemImage)
+        private val itemCategory: TextView = itemView.findViewById(R.id.itemCategory)
         private val addToCartButton: View = itemView.findViewById(R.id.addToCartButton)
 
         fun bind(item: Item) {
             itemName.text = item.name
             itemPrice.text = item.price.toRupiahFormat()
             itemStock.text = item.stock.toString()
+            itemCategory.text = item.category.name
             Glide.with(context)
                 .load(item.imageUrl)
                 .placeholder(R.drawable.placeholder_image)
                 .into(itemImage)
-
             itemView.setOnClickListener { onItemClicked(item) }
             addToCartButton.setOnClickListener { onAddToCartClicked(item) }
         }
@@ -52,5 +53,4 @@ class ExclusiveOfferingAdapter(
     fun Int.toRupiahFormat(): String {
         return "Rp %,d".format(this).replace(',', '.')
     }
-
 }

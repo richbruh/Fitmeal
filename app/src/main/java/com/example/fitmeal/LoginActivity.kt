@@ -31,7 +31,6 @@ class LoginActivity : AppCompatActivity() {
         val passwordInput = findViewById<EditText>(R.id.passwordInput)
         val loginButton = findViewById<Button>(R.id.loginButton)
         val createAccountButton = findViewById<Button>(R.id.createAccountButton)
-        val adminButton = findViewById<Button>(R.id.AdminButton)
 
         loginButton.setOnClickListener {
             val email = emailInput.text.toString().trim()
@@ -47,18 +46,6 @@ class LoginActivity : AppCompatActivity() {
         createAccountButton.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
-        }
-
-        adminButton.setOnClickListener {
-            val email = emailInput.text.toString().trim()
-            val password = passwordInput.text.toString().trim()
-
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                loginAdmin(email, password)
-            } else {
-                Toast.makeText(this, "Please enter admin email and password", Toast.LENGTH_SHORT)
-                    .show()
-            }
         }
     }
 
@@ -93,66 +80,6 @@ class LoginActivity : AppCompatActivity() {
                                         startActivity(intent)
                                     }
                                     finish()
-                                } else {
-                                    Toast.makeText(this, "User role not found", Toast.LENGTH_SHORT)
-                                        .show()
-                                }
-                            }
-                            .addOnFailureListener {
-                                Toast.makeText(
-                                    this,
-                                    "Failed to fetch user role",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                    } else {
-                        Toast.makeText(this, "Login failed: User not found", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-                } else {
-                    Toast.makeText(
-                        this,
-                        "Login failed: ${task.exception?.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-    }
-
-    private fun loginAdmin(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val userId = FirebaseAuth.getInstance().currentUser?.uid
-                    println("Current userId: $userId") // Log UID pengguna
-                    if (userId != null) {
-                        firestore.collection("users").document(userId)
-                            .get()
-                            .addOnSuccessListener { document ->
-                                if (document.exists()) {
-                                    val role = document.getString("role")
-                                    val user = User(
-                                        user_id = userId, // Benar: Menggunakan UID asli Firebase
-                                        username = document.getString("username") ?: "",
-                                        phone_number = document.getString("phone_number") ?: "",
-                                        email = email,
-                                        role = role ?: ""
-                                    )
-                                    saveUserToSharedPreferences(
-                                        user,
-                                        userId
-                                    ) // Kirim UID sebagai parameter
-                                    if (role == "admin") {
-                                        val intent = Intent(this, AdminPanelActivity::class.java)
-                                        startActivity(intent)
-                                        finish()
-                                    } else {
-                                        Toast.makeText(
-                                            this,
-                                            "Access denied: Admin only.",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    }
                                 } else {
                                     Toast.makeText(this, "User role not found", Toast.LENGTH_SHORT)
                                         .show()
