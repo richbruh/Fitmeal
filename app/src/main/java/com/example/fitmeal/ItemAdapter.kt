@@ -25,7 +25,7 @@ class ItemAdapter(
         fun bind(item: Item) {
             itemName.text = item.name
             itemPrice.text = item.price.toRupiahFormat()
-            itemStock.text = item.stock.toString()
+            itemStock.text = "Stock: " + item.stock.toString()
             itemCategory.text = item.category.name
             Glide.with(itemView.context)
                 .load(item.imageUrl)

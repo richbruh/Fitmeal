@@ -43,10 +43,72 @@ class FirestoreService {
             .addOnFailureListener { e -> onFailure(e) }
     }
 
-    fun addFavorite(favorite: Favorite, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
-        val favoriteRef = db.collection("favorites").document(favorite.id.toString())
-        favoriteRef.set(favorite)
+    fun addFavoriteItem(
+        userId: String,
+        itemId: String,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        val favorite = mapOf(
+            "user_id" to userId,
+            "item_id" to itemId
+        )
+        db.collection("favorites")
+            .add(favorite)
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { e -> onFailure(e) }
+    }
+
+    fun removeFavoriteItem(
+        userId: String,
+        itemId: String,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        db.collection("favorites")
+            .whereEqualTo("user_id", userId)
+            .whereEqualTo("item_id", itemId)
+            .get()
+            .addOnSuccessListener { snapshot ->
+                for (document in snapshot.documents) {
+                    db.collection("favorites").document(document.id).delete()
+                        .addOnSuccessListener { onSuccess() }
+                        .addOnFailureListener { e -> onFailure(e) }
+                }
+            }
+            .addOnFailureListener { e -> onFailure(e) }
+    }
+
+    fun getFavoriteItems(
+        userId: String,
+        onSuccess: (List<String>) -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        db.collection("favorites")
+            .whereEqualTo("user_id", userId)
+            .get()
+            .addOnSuccessListener { snapshot ->
+                val favoriteItems = snapshot.documents.map { it["item_id"].toString() }
+                onSuccess(favoriteItems)
+            }
+            .addOnFailureListener { e ->
+                onFailure(e)
+            }
+    }
+
+    fun getItemById(itemId: String, onSuccess: (Item?) -> Unit, onFailure: (Exception) -> Unit) {
+        if (itemId.isNotEmpty()) {
+            db.collection("items").document(itemId)
+                .get()
+                .addOnSuccessListener { document ->
+                    val item = document.toObject(Item::class.java)
+                    onSuccess(item)
+                }
+                .addOnFailureListener { exception ->
+                    onFailure(exception)
+                }
+        } else {
+            onFailure(IllegalArgumentException("Invalid item ID"))
+        }
     }
 }

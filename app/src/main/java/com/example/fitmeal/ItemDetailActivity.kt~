@@ -13,7 +13,6 @@ class ItemDetailActivity : AppCompatActivity() {
 
     private val firestore = FirebaseFirestore.getInstance()
     private val currentUser = FirebaseAuth.getInstance().currentUser
-    private val firestoreService = FirestoreService()
 
     private var isFavorite = false
 
@@ -81,11 +80,11 @@ class ItemDetailActivity : AppCompatActivity() {
 
     private fun addToFavorites(itemId: String) {
         currentUser?.let { user ->
-            firestoreService.addFavoriteItem(user.uid, itemId,
+            FirestoreService.addFavoriteItem(user.uid, itemId,
                 onSuccess = {
                     // Favorit berhasil ditambahkan
                 },
-                onFailure = { e: Exception ->
+                onFailure = { e ->
                     // Gagal menambahkan favorit
                 }
             )
@@ -94,11 +93,11 @@ class ItemDetailActivity : AppCompatActivity() {
 
     private fun removeFromFavorites(itemId: String) {
         currentUser?.let { user ->
-            firestoreService.removeFavoriteItem(user.uid, itemId,
+            FirestoreService.removeFavoriteItem(user.uid, itemId,
                 onSuccess = {
                     // Favorit berhasil dihapus
                 },
-                onFailure = { e: Exception ->
+                onFailure = { e ->
                     // Gagal menghapus favorit
                 }
             )

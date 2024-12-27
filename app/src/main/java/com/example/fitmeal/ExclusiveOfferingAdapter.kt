@@ -1,5 +1,6 @@
 package com.example.fitmeal
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -24,10 +25,11 @@ class ExclusiveOfferingAdapter(
         private val itemCategory: TextView = itemView.findViewById(R.id.itemCategory)
         private val addToCartButton: View = itemView.findViewById(R.id.addToCartButton)
 
+        @SuppressLint("SetTextI18n")
         fun bind(item: Item) {
             itemName.text = item.name
             itemPrice.text = item.price.toRupiahFormat()
-            itemStock.text = item.stock.toString()
+            itemStock.text = "Stock: " + item.stock.toString()
             itemCategory.text = item.category.name
             Glide.with(context)
                 .load(item.imageUrl)

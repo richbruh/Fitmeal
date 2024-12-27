@@ -1,5 +1,6 @@
 package com.example.fitmeal
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +24,7 @@ class CartAdapter(
         return CartViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         val cartItem = cartItems[position]
         val item = itemList.find { it.itemID == cartItem.itemID }
@@ -30,7 +32,7 @@ class CartAdapter(
         if (item != null) {
             holder.binding.tvProductName.text = item.name
             holder.binding.tvProductPrice.text = item.price.toRupiahFormat()
-            holder.binding.tvQuantity.text = cartItem.quantity.toString()
+            holder.binding.tvQuantity.text = "Stock: " + cartItem.quantity.toString()
             holder.binding.tvCategory.text = item.category.name
             Glide.with(holder.binding.imgProduct.context)
                 .load(item.imageUrl)
@@ -53,7 +55,7 @@ class CartAdapter(
 
     override fun getItemCount(): Int = cartItems.size
 
-    fun Int.toRupiahFormat(): String {
+    private fun Int.toRupiahFormat(): String {
         return "Rp %,d".format(this).replace(',', '.')
     }
 
