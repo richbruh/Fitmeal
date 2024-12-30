@@ -25,7 +25,7 @@ class FavoritesActivity : AppCompatActivity() {
     }
 
     private fun loadFavoriteItems() {
-        val userId = auth.currentUser?.uid?.toIntOrNull()
+        val userId = auth.currentUser?.uid
         if (userId != null) {
             db.collection("favorites")
                 .whereEqualTo("user_id", userId)
@@ -33,8 +33,7 @@ class FavoritesActivity : AppCompatActivity() {
                 .addOnSuccessListener { documents ->
                     val favoriteItems = documents.toObjects(Favorite::class.java)
                     if (favoriteItems.isNotEmpty()) {
-                        val adapter = FavoriteItemAdapter(this, favoriteItems)
-                        favoritesRecyclerView.adapter = adapter
+                        fetchItemDetails(favoriteItems)
                     } else {
                         Toast.makeText(this, "No favorite items found", Toast.LENGTH_SHORT).show()
                     }
@@ -43,7 +42,29 @@ class FavoritesActivity : AppCompatActivity() {
                     Toast.makeText(this, "Failed to load favorite items: ${e.message}", Toast.LENGTH_LONG).show()
                 }
         } else {
-            Toast.makeText(this, "User not logged in or invalid user ID", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun fetchItemDetails(favoriteItems: List<Favorite>) {
+        val items = mutableListOf<Item>()
+        for (favorite in favoriteItems) {
+            db.collection("products")
+                .document(favorite.item_id.toString())
+                .get()
+                .addOnSuccessListener { document ->
+                    val item = document.toObject(Item::class.java)
+                    if (item != null) {
+                        items.add(item)
+                        if (items.size == favoriteItems.size) {
+                            val adapter = FavoriteItemAdapter(this, items)
+                            favoritesRecyclerView.adapter = adapter
+                        }
+                    }
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Failed to load item details: ${e.message}", Toast.LENGTH_LONG).show()
+                }
         }
     }
 }

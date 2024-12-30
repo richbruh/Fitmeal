@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 
 class FavoriteItemAdapter(
     private val context: Context,
-    private val items: List<Favorite>
+    private val items: MutableList<Item>
 ) : RecyclerView.Adapter<FavoriteItemAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -19,7 +19,7 @@ class FavoriteItemAdapter(
         val itemPrice: TextView = itemView.findViewById(R.id.itemPrice)
         val itemImage: ImageView = itemView.findViewById(R.id.itemImage)
 
-        fun bind(item: Favorite) {
+        fun bind(item: Item) {
             itemName.text = item.name
             itemPrice.text = "Rp${item.price}"
             Glide.with(context)

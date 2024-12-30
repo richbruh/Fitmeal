@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class ItemDetailActivity : AppCompatActivity() {
@@ -40,13 +41,27 @@ class ItemDetailActivity : AppCompatActivity() {
 
         val addToFavoritesButton = findViewById<Button>(R.id.add_to_favorites_button)
         addToFavoritesButton.setOnClickListener {
-            addToFavorites(itemName, itemPrice, itemStock, itemImageUrl)
+            val item = Item(
+                name = itemName ?: "",
+                price = itemPrice?.toIntOrNull() ?: 0,
+                stock = itemStock?.toIntOrNull() ?: 0,
+                imageUrl = itemImageUrl ?: ""
+            )
+            addToFavorites(item)
         }
     }
 
-    private fun addToFavorites(name: String?, price: String?, stock: String?, imageUrl: String?) {
-        if (name != null && price != null && stock != null && imageUrl != null) {
-            val favoriteItem = FavoriteItem(name, stock, price.toInt(), imageUrl.hashCode())
+    private fun addToFavorites(item: Item) {
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            val userId = user.uid
+            val favoriteItem = hashMapOf(
+                "user_id" to userId,
+                "item_id" to item.itemID,
+                "name" to item.name,
+                "price" to item.price,
+                "imageUrl" to item.imageUrl
+            )
             db.collection("favorites")
                 .add(favoriteItem)
                 .addOnSuccessListener {
@@ -56,7 +71,10 @@ class ItemDetailActivity : AppCompatActivity() {
                     Toast.makeText(this, "Failed to add to favorites: ${e.message}", Toast.LENGTH_LONG).show()
                 }
         } else {
-            Toast.makeText(this, "Invalid item details", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show()
+            // Optionally, redirect to login activity
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 }
