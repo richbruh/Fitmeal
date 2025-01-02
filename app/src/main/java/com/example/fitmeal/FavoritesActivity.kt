@@ -1,64 +1,70 @@
 package com.example.fitmeal
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.ListView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class FavoritesActivity : AppCompatActivity() {
 
-    private lateinit var backBtn: ImageView
-    private lateinit var addAllToCartBtn: Button
-    private lateinit var favoritesListView: ListView
-    private lateinit var adapter: FavoriteItemAdapter
+    private lateinit var favoritesRecyclerView: RecyclerView
+    private val db = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
 
-        // Inisialisasi BottomNavigationView
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        bottomNav.selectedItemId = R.id.navigation_favorite // Highlight Favorite
-        BottomNavHelper.setupBottomNav(bottomNav, this)
+        favoritesRecyclerView = findViewById(R.id.rv_favorites)
+        favoritesRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Inisialisasi views
-        backBtn = findViewById(R.id.btnBack)
-        addAllToCartBtn = findViewById(R.id.btnAddAllToCart)
-        favoritesListView = findViewById(R.id.favoritesList)
+        loadFavoriteItems()
+    }
 
-        // Data favorit untuk contoh
-        val favoriteItems = mutableListOf(
-            FavoriteItem("Bell Pepper Red", "1pcs, Price", 22000, R.drawable.fruit),
-            FavoriteItem("Egg Chicken Red", "1 Basket, Price", 90000, R.drawable.fruit),
-            // Tambahkan item lainnya di sini
-        )
-
-        // Set adapter untuk ListView
-        adapter = FavoriteItemAdapter(this, favoriteItems)
-        favoritesListView.adapter = adapter
-
-        // Tombol Back action
-        backBtn.setOnClickListener {
-            // Pindah ke HomeActivity ketika back button ditekan
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-            finish() // Tutup FavoritesActivity
-        }
-
-        // Logika ketika Add All to Cart ditekan
-        addAllToCartBtn.setOnClickListener {
-            // Logika untuk menambah semua item ke keranjang
+    private fun loadFavoriteItems() {
+        val userId = auth.currentUser?.uid
+        if (userId != null) {
+            db.collection("favorites")
+                .whereEqualTo("user_id", userId)
+                .get()
+                .addOnSuccessListener { documents ->
+                    val favoriteItems = documents.toObjects(Favorite::class.java)
+                    if (favoriteItems.isNotEmpty()) {
+                        fetchItemDetails(favoriteItems)
+                    } else {
+                        Toast.makeText(this, "No favorite items found", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Failed to load favorite items: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+        } else {
+            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show()
         }
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        // Arahkan ke HomeActivity ketika tombol back fisik ditekan
-        val intent = Intent(this, HomeActivity::class.java)
-        startActivity(intent)
-        finish() // Tutup FavoritesActivity
+    private fun fetchItemDetails(favoriteItems: List<Favorite>) {
+        val items = mutableListOf<Item>()
+        for (favorite in favoriteItems) {
+            db.collection("products")
+                .document(favorite.item_id.toString())
+                .get()
+                .addOnSuccessListener { document ->
+                    val item = document.toObject(Item::class.java)
+                    if (item != null) {
+                        items.add(item)
+                        if (items.size == favoriteItems.size) {
+                            val adapter = FavoriteItemAdapter(this, items)
+                            favoritesRecyclerView.adapter = adapter
+                        }
+                    }
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Failed to load item details: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+        }
     }
 }
